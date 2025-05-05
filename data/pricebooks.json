@@ -1,0 +1,27 @@
+[
+  {
+    "priceBookId": "west_coast_inc",
+    "name": "West coast Inc. price book",
+    "currency": "USD"
+  },
+  {
+    "priceBookId": "vip_west_coast_inc",
+    "name": "West coast Inc. VIP customer price book",
+    "currency": "USD"
+  },
+  {
+    "priceBookId": "east_coast_inc",
+    "name": "East coast Inc. price book",
+    "currency": "USD"
+  },
+  {
+    "priceBookId": "vip_east_coast_inc",
+    "name": "East coast Inc. VIP customer price book",
+    "currency": "USD"
+  },
+  {
+    "priceBookId": "global_visibility",
+    "name": "Global visibility price book",
+    "currency": "USD"
+  }
+]

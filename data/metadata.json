@@ -1,0 +1,182 @@
+[
+  {
+    "code": "sku",
+    "scope": {
+      "locale": "en-US"
+    },
+    "label": "sku",
+    "dataType": "TEXT",
+    "visibleIn": [
+      "PRODUCT_DETAIL",
+      "PRODUCT_LISTING",
+      "SEARCH_RESULTS",
+      "PRODUCT_COMPARE"
+    ],
+    "filterable": false,
+    "sortable": false,
+    "searchable": true,
+    "searchWeight": 1,
+    "searchTypes": ["AUTOCOMPLETE"]
+  },
+  {
+    "code": "name",
+    "scope": {
+      "locale": "en-US"
+    },
+    "label": "Name",
+    "dataType": "TEXT",
+    "visibleIn": [
+      "PRODUCT_DETAIL",
+      "PRODUCT_LISTING",
+      "SEARCH_RESULTS",
+      "PRODUCT_COMPARE"
+    ],
+    "filterable": false,
+    "sortable": true,
+    "searchable": true,
+    "searchWeight": 1,
+    "searchTypes": ["AUTOCOMPLETE"]
+  },
+  {
+    "code": "description",
+    "scope": {
+      "locale": "en-US"
+    },
+    "label": "Description",
+    "dataType": "TEXT",
+    "visibleIn": ["PRODUCT_DETAIL"],
+    "filterable": false,
+    "sortable": false,
+    "searchable": false,
+    "searchWeight": 1,
+    "searchTypes": ["AUTOCOMPLETE"]
+  },
+  {
+    "code": "shortDescription",
+    "scope": {
+      "locale": "en-US"
+    },
+    "label": "Short Description",
+    "dataType": "TEXT",
+    "visibleIn": ["PRODUCT_DETAIL"],
+    "filterable": false,
+    "sortable": false,
+    "searchable": true,
+    "searchWeight": 1,
+    "searchTypes": ["AUTOCOMPLETE"]
+  },
+  {
+    "code": "brand",
+    "scope": {
+      "locale": "en-US"
+    },
+    "label": "Brand",
+    "dataType": "TEXT",
+    "visibleIn": [
+      "PRODUCT_DETAIL",
+      "PRODUCT_LISTING",
+      "SEARCH_RESULTS",
+      "PRODUCT_COMPARE"
+    ],
+    "filterable": true,
+    "sortable": false,
+    "searchable": true,
+    "searchWeight": 2,
+    "searchTypes": ["AUTOCOMPLETE"]
+  },
+  {
+    "code": "model",
+    "scope": {
+      "locale": "en-US"
+    },
+    "label": "Vehicle Model",
+    "dataType": "TEXT",
+    "visibleIn": [
+      "PRODUCT_DETAIL",
+      "PRODUCT_LISTING",
+      "SEARCH_RESULTS",
+      "PRODUCT_COMPARE"
+    ],
+    "filterable": true,
+    "sortable": false,
+    "searchable": true,
+    "searchWeight": 2,
+    "searchTypes": ["AUTOCOMPLETE"]
+  },
+  {
+    "code": "model_year",
+    "scope": {
+      "locale": "en-US"
+    },
+    "label": "Vehicle Model Year",
+    "dataType": "INTEGER",
+    "visibleIn": [
+      "PRODUCT_DETAIL",
+      "PRODUCT_LISTING",
+      "SEARCH_RESULTS",
+      "PRODUCT_COMPARE"
+    ],
+    "filterable": true,
+    "sortable": false,
+    "searchable": false,
+    "searchWeight": 2,
+    "searchTypes": ["AUTOCOMPLETE"]
+  },
+  {
+    "code": "country",
+    "scope": {
+      "locale": "en-US"
+    },
+    "label": "Dealer Country",
+    "dataType": "TEXT",
+    "visibleIn": [
+      "PRODUCT_DETAIL",
+      "PRODUCT_LISTING",
+      "SEARCH_RESULTS",
+      "PRODUCT_COMPARE"
+    ],
+    "filterable": false,
+    "sortable": false,
+    "searchable": false,
+    "searchWeight": 1,
+    "searchTypes": ["AUTOCOMPLETE"]
+  },
+  {
+    "code": "part_category",
+    "scope": {
+      "locale": "en-US"
+    },
+    "label": "Part Category",
+    "dataType": "TEXT",
+    "visibleIn": [
+      "PRODUCT_DETAIL",
+      "PRODUCT_LISTING",
+      "SEARCH_RESULTS",
+      "PRODUCT_COMPARE"
+    ],
+    "filterable": true,
+    "sortable": false,
+    "searchable": true,
+    "searchWeight": 3,
+    "searchTypes": ["AUTOCOMPLETE"]
+  },
+  {
+    "code": "price",
+    "scope": {
+      "locale": "en-US"
+    },
+    "label": "Price",
+    "dataType": "DECIMAL",
+    "visibleIn": [
+      "PRODUCT_DETAIL",
+      "PRODUCT_LISTING",
+      "SEARCH_RESULTS",
+      "PRODUCT_COMPARE"
+    ],
+    "filterable": true,
+    "sortable": true,
+    "searchable": false,
+    "searchWeight": 1,
+    "searchTypes": []
+  }
+]
