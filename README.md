@@ -24,9 +24,8 @@ Using our new Adobe Commerce Optimizer Typescript/Javascript SDK, we will ingest
 
 In order to ingest our new data, we first need to configure our Codespaces environment with our credentials and Adobe Commerce Optimizer instance information. This configuration will be used to instantiate the SDK client and allow us to securely interact with the Adobe Commerce Optimizer APIs.
 
-For this demo, our credentials can be found here: https://gist.github.com/rossbrandon/218acb04b2a5c6ab959801ac17c4969c
-
-Open the `.env` file and add our IMS client id and client secret crendentials:
+Open the `.env` file and add our IMS client id and client secret crendentials.
+The lab's `CLIENT_ID` and `CLIENT_SECRET` values can be found in **Row 3** of the Partner Days 2025 Excel document.
 
 ```conf
 CLIENT_ID=my-client-id
@@ -34,7 +33,7 @@ CLIENT_SECRET=my-client-secret
 ```
 
 Next, let's configure our instance information. The region and environment type have already been populated for us.
-Your `TENANT_ID` field can be found in your Partner Days 2025 Excel document.
+Your unique `TENANT_ID` can be found in **Column D** of the Partner Days 2025 Excel document.
 
 ```conf
 TENANT_ID=my-instance-id
