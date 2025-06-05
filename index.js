@@ -33,6 +33,35 @@ const readFile = (dirName) => {
 
 const getBatchNumber = (index) => Math.floor(index / BATCH_SIZE) + 1;
 
+const ingestMetadata = async (client) => {
+  try {
+    // Load product metadata from data/metadata.json file
+    const metadata = readFile("metadata.json");
+    const totalMetadata = metadata.length;
+    let totalAccepted = 0;
+
+    // Ingest product metadata in batches of 100
+    for (let i = 0; i < totalMetadata; i += BATCH_SIZE) {
+      const batch = metadata.slice(i, i + BATCH_SIZE);
+      const batchNumber = getBatchNumber(i);
+      console.log(
+        `Ingesting metadata batch ${batchNumber} containing ${batch.length} items`
+      );
+
+      const response = await client.createProductMetadata(batch);
+      totalAccepted += response.data.acceptedCount || 0;
+
+      console.log(`Metadata batch ${batchNumber} response:`, response.data);
+    }
+
+    console.log(
+      `Successfully ingested ${totalAccepted} out of ${totalMetadata} items`
+    );
+  } catch (error) {
+    console.error("Error ingesting metadata:", error);
+  }
+};
+
 const ingestProducts = async (client) => {
   try {
     // Load products from data/products.json file
@@ -59,6 +88,35 @@ const ingestProducts = async (client) => {
     );
   } catch (error) {
     console.error("Error ingesting products:", error);
+  }
+};
+
+const ingestPriceBooks = async (client) => {
+  try {
+    // Load price books from data/pricebooks.json file
+    const priceBooks = readFile("pricebooks.json");
+    const totalPriceBooks = priceBooks.length;
+    let totalAccepted = 0;
+
+    // Ingest prices in batches of 100
+    for (let i = 0; i < totalPriceBooks; i += BATCH_SIZE) {
+      const batch = priceBooks.slice(i, i + BATCH_SIZE);
+      const batchNumber = getBatchNumber(i);
+      console.log(
+        `Ingesting price books batch ${batchNumber} containing ${batch.length} price books`
+      );
+
+      const response = await client.createPriceBooks(batch);
+      totalAccepted += response.data.acceptedCount || 0;
+
+      console.log(`Price books batch ${batchNumber} response:`, response.data);
+    }
+
+    console.log(
+      `Successfully ingested ${totalAccepted} out of ${totalPriceBooks} price books`
+    );
+  } catch (error) {
+    console.error("Error ingesting price books:", error);
   }
 };
 
@@ -104,7 +162,9 @@ const main = async () => {
 
   const client = createClient(config);
 
+  await ingestMetadata(client);
   await ingestProducts(client);
+  await ingestPriceBooks(client);
   await ingestPrices(client);
 };
 

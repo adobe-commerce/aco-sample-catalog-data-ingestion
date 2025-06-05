@@ -4,19 +4,14 @@ Welcome to the Adobe Commerce Optimizer SDK Lab!
 
 ## What Will We Do?
 
-During the demonstration, we will ingest Product and Pricing data for 6 new Carvelo Automotive models:
-
-- Aurora Prism
-- Aurora Pulse
-- Bolt Scout
-- Bolt Terrain
-- Cruz Harmony
-- Cruz Verde
+During the demonstration, we will ingest `Product Metadata`, `Product`, `Price Book`, and `Price` data for our Carvelo Automotive demo dataset.
 
 Using our new Adobe Commerce Optimizer Typescript/Javascript SDK, we will ingest:
 
-- 435 Products across our 3 brands
-- 2610 Prices across our 5 configured Price Books
+- Metadata for our Product attributes
+- 1080 Products across our 3 brands (in batches of 100)
+- 5 unique Price Books
+- 6480 Prices across our 5 Price Books (in batches of 100)
 
 ## Run the Data Ingestion Demo
 
