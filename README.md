@@ -1,10 +1,14 @@
-# Adobe Partner Days 2025 - Commerce Optimizer SDK
+# Adobe Commerce Optimizer - Sample catalog data ingestion
 
-Welcome to the Adobe Commerce Optimizer SDK Lab!
+Adobe Commerce Optimizer has a sample data set which emulates the catalog data for an B2B2X Automobile manufacturer. The fictional Automobile conglomerate is called Carvelo. You will need to undertake this catalog data load to execute the tutorial [here](https://experienceleague.adobe.com/en/docs/commerce/optimizer/use-case/admin-use-case)
+
+This repository will help you execute the catalog data ingestion into your ACO instance. Internally, a devSDK is used to execute these requests. Please reach out to your account manager to know more about getting access to these devSDKs.
+
+**Important:** This repository helps you with the catalog data ingestion, this does not create the Channel and Policies called out in the [tutorial](https://experienceleague.adobe.com/en/docs/commerce/optimizer/use-case/admin-use-case). In your early access on-boarding email you would have received steps on creating these Channels and Policies. Please create them using the ACO UI.
 
 ## What Will We Do?
 
-During the demonstration, we will ingest `Product Metadata`, `Product`, `Price Book`, and `Price` data for our Carvelo Automotive demo dataset.
+You will ingest `Product Metadata`, `Product`, `Price Book`, and `Price` data for our Carvelo Automotive demo dataset.
 
 Using our new Adobe Commerce Optimizer Typescript/Javascript SDK, we will ingest:
 
@@ -20,7 +24,7 @@ Using our new Adobe Commerce Optimizer Typescript/Javascript SDK, we will ingest
 In order to ingest our new data, we first need to configure our Codespaces environment with our credentials and Adobe Commerce Optimizer instance information. This configuration will be used to instantiate the SDK client and allow us to securely interact with the Adobe Commerce Optimizer APIs.
 
 Open the `.env` file and add our IMS client id and client secret crendentials.
-The lab's `CLIENT_ID` and `CLIENT_SECRET` values can be found in **Row 3** of the Partner Days 2025 Excel document.
+The `CLIENT_ID` and `CLIENT_SECRET` values can be found in your early access on-boarding email. 
 
 ```conf
 CLIENT_ID=my-client-id
@@ -28,7 +32,7 @@ CLIENT_SECRET=my-client-secret
 ```
 
 Next, let's configure our instance information. The region and environment type have already been populated for us.
-Your unique `TENANT_ID` can be found in **Column D** of the Partner Days 2025 Excel document.
+Your unique `TENANT_ID` can be found in the early access on-boarding email.
 
 ```conf
 TENANT_ID=my-instance-id
