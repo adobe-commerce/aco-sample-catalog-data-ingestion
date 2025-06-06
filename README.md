@@ -1,6 +1,6 @@
 # Adobe Commerce Optimizer - Sample catalog data ingestion
 
-Adobe Commerce Optimizer has a sample data set which emulates the catalog data for an B2B2X Automobile manufacturer. The fictional Automobile conglomerate is called Carvelo. You will need to undertake this catalog data load to execute the tutorial [here](https://experienceleague.adobe.com/en/docs/commerce/optimizer/use-case/admin-use-case)
+Adobe Commerce Optimizer has a sample data set which emulates the catalog data for an B2B2X Automobile manufacturer. The fictional Automobile conglomerate is called Carvelo. You will need to undertake this catalog data load to execute the tutorial [here](https://experienceleague.adobe.com/en/docs/commerce/optimizer/use-case/admin-use-case).
 
 This repository will help you execute the catalog data ingestion into your ACO instance. Internally, a devSDK is used to execute these requests. Please reach out to your account manager to know more about getting access to these devSDKs.
 
