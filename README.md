@@ -4,7 +4,7 @@ Adobe Commerce Optimizer has a sample data set which emulates the catalog data f
 
 This repository will help you execute the catalog data ingestion into your ACO instance. Internally, a devSDK is used to execute these requests. Please reach out to your account manager to know more about getting access to these devSDKs.
 
-**Important:** This repository helps you with the catalog data ingestion, this does not create the Channel and Policies called out in the [tutorial](https://experienceleague.adobe.com/en/docs/commerce/optimizer/use-case/admin-use-case). In your early access on-boarding email you would have received steps on creating these Channels and Policies. Please create them using the ACO UI.
+**Important:** This repository helps you with the catalog data ingestion, this does not create the Channel and Policies called out in the [tutorial](https://experienceleague.adobe.com/en/docs/commerce/optimizer/use-case/admin-use-case). In your early access on-boarding process you would have received steps on creating these Channels and Policies. Please create them using the ACO UI.
 
 ## What Will We Do?
 
@@ -24,7 +24,7 @@ Using our new Adobe Commerce Optimizer Typescript/Javascript SDK, we will ingest
 In order to ingest our new data, we first need to configure our Codespaces environment with our credentials and Adobe Commerce Optimizer instance information. This configuration will be used to instantiate the SDK client and allow us to securely interact with the Adobe Commerce Optimizer APIs.
 
 Open the `.env` file and add our IMS client id and client secret crendentials.
-The `CLIENT_ID` and `CLIENT_SECRET` values can be found in your early access on-boarding email. 
+The `CLIENT_ID` and `CLIENT_SECRET` values will be provided to you as a part of the early access on-boarding process. 
 
 ```conf
 CLIENT_ID=my-client-id
@@ -32,7 +32,7 @@ CLIENT_SECRET=my-client-secret
 ```
 
 Next, let's configure our instance information. The region and environment type have already been populated for us.
-Your unique `TENANT_ID` can be found in the early access on-boarding email.
+Your unique `TENANT_ID` is provided to you as a part of the early access on-boarding.
 
 ```conf
 TENANT_ID=my-instance-id
