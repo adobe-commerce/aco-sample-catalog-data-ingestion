@@ -1,35 +1,11 @@
-import { createClient } from "@adobe-commerce/aco-ts-sdk";
-import { config } from "dotenv";
-import fs from "fs";
-import path from "path";
-import { fileURLToPath } from "url";
-
-config();
+import {
+  createClient,
+  consoleLogger,
+  LogLevel,
+} from "@adobe-commerce/aco-ts-sdk";
+import { loadConfig, readFile } from "./utils.js";
 
 const BATCH_SIZE = 100;
-
-const requiredEnvVars = [
-  "CLIENT_ID",
-  "CLIENT_SECRET",
-  "TENANT_ID",
-  "REGION",
-  "ENVIRONMENT",
-];
-
-for (const envVar of requiredEnvVars) {
-  if (!process.env[envVar]) {
-    throw new Error(`Missing required environment variable: ${envVar}`);
-  }
-}
-
-const readFile = (dirName) => {
-  const filePath = path.join(
-    path.dirname(fileURLToPath(import.meta.url)),
-    "data",
-    dirName
-  );
-  return JSON.parse(fs.readFileSync(filePath, "utf8"));
-};
 
 const getBatchNumber = (index) => Math.floor(index / BATCH_SIZE) + 1;
 
@@ -44,17 +20,17 @@ const ingestMetadata = async (client) => {
     for (let i = 0; i < totalMetadata; i += BATCH_SIZE) {
       const batch = metadata.slice(i, i + BATCH_SIZE);
       const batchNumber = getBatchNumber(i);
-      console.log(
+      console.info(
         `Ingesting metadata batch ${batchNumber} containing ${batch.length} items`
       );
 
       const response = await client.createProductMetadata(batch);
       totalAccepted += response.data.acceptedCount || 0;
 
-      console.log(`Metadata batch ${batchNumber} response:`, response.data);
+      console.info(`Metadata batch ${batchNumber} response:`, response.data);
     }
 
-    console.log(
+    console.info(
       `Successfully ingested ${totalAccepted} out of ${totalMetadata} items`
     );
   } catch (error) {
@@ -73,17 +49,17 @@ const ingestProducts = async (client) => {
     for (let i = 0; i < totalProducts; i += BATCH_SIZE) {
       const batch = products.slice(i, i + BATCH_SIZE);
       const batchNumber = getBatchNumber(i);
-      console.log(
+      console.info(
         `Ingesting products batch ${batchNumber} containing ${batch.length} products`
       );
 
       const response = await client.createProducts(batch);
       totalAccepted += response.data.acceptedCount || 0;
 
-      console.log(`Products batch ${batchNumber} response:`, response.data);
+      console.info(`Products batch ${batchNumber} response:`, response.data);
     }
 
-    console.log(
+    console.info(
       `Successfully ingested ${totalAccepted} out of ${totalProducts} products`
     );
   } catch (error) {
@@ -98,21 +74,21 @@ const ingestPriceBooks = async (client) => {
     const totalPriceBooks = priceBooks.length;
     let totalAccepted = 0;
 
-    // Ingest prices in batches of 100
+    // Ingest price books in batches of 100
     for (let i = 0; i < totalPriceBooks; i += BATCH_SIZE) {
       const batch = priceBooks.slice(i, i + BATCH_SIZE);
       const batchNumber = getBatchNumber(i);
-      console.log(
+      console.info(
         `Ingesting price books batch ${batchNumber} containing ${batch.length} price books`
       );
 
       const response = await client.createPriceBooks(batch);
       totalAccepted += response.data.acceptedCount || 0;
 
-      console.log(`Price books batch ${batchNumber} response:`, response.data);
+      console.info(`Price books batch ${batchNumber} response:`, response.data);
     }
 
-    console.log(
+    console.info(
       `Successfully ingested ${totalAccepted} out of ${totalPriceBooks} price books`
     );
   } catch (error) {
@@ -131,17 +107,17 @@ const ingestPrices = async (client) => {
     for (let i = 0; i < totalPrices; i += BATCH_SIZE) {
       const batch = prices.slice(i, i + BATCH_SIZE);
       const batchNumber = getBatchNumber(i);
-      console.log(
+      console.info(
         `Ingesting prices batch ${batchNumber} containing ${batch.length} prices`
       );
 
       const response = await client.createPrices(batch);
       totalAccepted += response.data.acceptedCount || 0;
 
-      console.log(`Prices batch ${batchNumber} response:`, response.data);
+      console.info(`Prices batch ${batchNumber} response:`, response.data);
     }
 
-    console.log(
+    console.info(
       `Successfully ingested ${totalAccepted} out of ${totalPrices} prices`
     );
   } catch (error) {
@@ -150,17 +126,19 @@ const ingestPrices = async (client) => {
 };
 
 const main = async () => {
-  const config = {
+  const envConfig = loadConfig();
+  const clientConfig = {
     credentials: {
-      clientId: process.env.CLIENT_ID,
-      clientSecret: process.env.CLIENT_SECRET,
+      clientId: envConfig.clientId,
+      clientSecret: envConfig.clientSecret,
     },
-    tenantId: process.env.TENANT_ID,
-    region: process.env.REGION,
-    environment: process.env.ENVIRONMENT,
+    tenantId: envConfig.tenantId,
+    region: envConfig.region,
+    environment: envConfig.environment,
+    logger: consoleLogger(LogLevel.INFO),
   };
 
-  const client = createClient(config);
+  const client = createClient(clientConfig);
 
   await ingestMetadata(client);
   await ingestProducts(client);

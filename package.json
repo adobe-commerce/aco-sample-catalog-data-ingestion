@@ -1,15 +1,16 @@
 {
-  "name": "adobe-partner-days-2025-aco-sdk",
-  "description": "Adobe Partner Days 2025 Commerce Optimizer SDK Demo",
+  "name": "@adobe-commerce/aco-sample-catalog-data-ingestion",
+  "description": "Example repo for how to use the Adobe Commerce Optimizer SDK to ingest catalog data.",
   "version": "1.0.0",
   "author": "Ross Brandon <wbrandon@adobe.com>",
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "ingest": "node index.js"
+    "ingest": "node index.js",
+    "reset": "node reset.js"
   },
   "dependencies": {
-    "@adobe-commerce/aco-ts-sdk": "^0.2.1",
+    "@adobe-commerce/aco-ts-sdk": "^0.3.0",
     "dotenv": "^16.5.0"
   }
 }

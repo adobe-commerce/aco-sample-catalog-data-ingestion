@@ -17,14 +17,14 @@ Using our new Adobe Commerce Optimizer Typescript/Javascript SDK, we will ingest
 - 5 unique Price Books
 - 6480 Prices across our 5 Price Books (in batches of 100)
 
-## Run the Data Ingestion Demo
+## Run the Sample Catalog Data Ingestion
 
 ### Configure .env
 
-In order to ingest our new data, we first need to configure our Codespaces environment with our credentials and Adobe Commerce Optimizer instance information. This configuration will be used to instantiate the SDK client and allow us to securely interact with the Adobe Commerce Optimizer APIs.
+In order to ingest our new data, we first need to configure our environment with our credentials and Adobe Commerce Optimizer instance information. This configuration will be used to instantiate the SDK client and allow us to securely interact with the Adobe Commerce Optimizer APIs.
 
 Open the `.env` file and add our IMS client id and client secret crendentials.
-The `CLIENT_ID` and `CLIENT_SECRET` values will be provided to you as a part of the early access on-boarding process. 
+The `CLIENT_ID` and `CLIENT_SECRET` values will be provided to you as a part of the early access on-boarding process.
 
 ```conf
 CLIENT_ID=my-client-id
@@ -42,8 +42,18 @@ ENVIRONMENT=sandbox
 
 ### Start the Data Ingestion!
 
+Running the following command will use the [ACO TS SDK](https://github.com/adobe-commerce/aco-ts-sdk) to ingest the Carvelo sample data found in the `data` directory.
+
 ```shell
 node index.js
+```
+
+### Resetting the sample data
+
+To reset the sample catalog data in your ACO instance, run the following script to delete the Carvelo catalog data loaded in the `index.js` ingestion script above.
+
+```shell
+node reset.js
 ```
 
 ## Check the API Documentation
@@ -68,21 +78,25 @@ accepts a client configuration object of type `ClientConfig`. The `ClientConfig`
 ```typescript
 import {
   createClient,
+  consoleLogger,
   Client,
   ClientConfig,
   Environment,
+  LogLevel,
   Region,
 } from "@adobe-commerce/aco-ts-sdk";
 
 // Define your configuration
 const config: ClientConfig = {
   credentials: {
-    clientId: "my-client-id",
-    clientSecret: "my-client-secret",
+    clientId: "my-client-id", // Your IMS client id from Dev Console
+    clientSecret: "my-client-secret", // Your IMS client secret from Dev Console
   },
-  tenantId: "my-tenant-id",
-  region: "na1" as Region,
-  environment: "sandbox" as Environment,
+  tenantId: "my-tenant-id", // Your instance's tenant id found in Commerce Cloud Manager UI
+  region: "na1" as Region, // Your instance's region found in Commerce Cloud Manager UI
+  environment: "sandbox" as Environment, // Your instance's environment type: sandbox or production
+  timeoutMs: 30000, // Optional. HTTP timeout override in ms. Default is 10000ms
+  logger: consoleLogger(LogLevel.DEBUG), // Optional. Pass in your existing logger. If not provided, a default console logger is used. See Types -> Logger section below.
 };
 
 // Initialize the client instance
@@ -324,9 +338,161 @@ import { FeedPricesDelete } from "@adobe-commerce/aco-ts-sdk";
 const priceDelete: FeedPricesDelete = {
   sku: "EXAMPLE-SKU-001",
   priceBookId: "default",
-  regular: 84.49,
 };
 
 const response = await client.deletePrices([priceDelete]);
 // response.data: { status: 'ACCEPTED', acceptedCount: 1 }
+```
+
+## Types
+
+See the [types.ts](https://github.com/adobe-commerce/aco-ts-sdk/blob/main/src/types.ts) file for all exported type
+definitions.
+
+### Client Config
+
+The `ClientConfig` object is required to be passed into the `createClient` function. It configures how the SDK client
+will interact with Adobe Commerce Optimizer services.
+
+```typescript
+/**
+ * Client configuration
+ *
+ * @param credentials - Adobe IMS credentials for authentication
+ * @param tenantId - The tenant ID for the API requests
+ * @param region - The region for the API endpoint (e.g., 'us', 'eu')
+ * @param environment - The environment to use ('production' or 'sandbox')
+ * @param timeoutMs - The timeout for the API requests
+ * @param logger - Optional logger for customizing logging behavior
+ */
+export interface ClientConfig {
+  credentials: AdobeCredentials;
+  tenantId: string;
+  region: Region;
+  environment: Environment;
+  timeoutMs?: number;
+  logger?: Logger;
+}
+```
+
+### Logger
+
+The Adobe Commerce Optimizer SDK provides flexible logging capabilities through the `Logger` interface. You can either
+use the default console logger or implement your own logger that matches the interface.
+
+#### Default Logger
+
+The default console logger that can be used like this:
+
+```typescript
+import { consoleLogger, LogLevel } from "@adobe-commerce/aco-ts-sdk";
+
+const config: ClientConfig = {
+  // ... other config options ...
+  logger: consoleLogger(LogLevel.INFO), // Uses default console logger
+};
+```
+
+#### Custom Logger
+
+You can implement your own logger by creating an object that implements the `Logger` interface. This is useful for
+integrating with your existing logging infrastructure and customizing log formats.
+
+```typescript
+/**
+ * Logger interface for customizing logging behavior
+ *
+ * @param debug - Log a debug message
+ * @param info - Log an info message
+ * @param warn - Log a warning message
+ * @param error - Log an error message
+ */
+export interface Logger {
+  debug(message: string, meta?: Record<string, unknown>): void;
+  info(message: string, meta?: Record<string, unknown>): void;
+  warn(message: string, meta?: Record<string, unknown>): void;
+  error(message: string, error?: Error, meta?: Record<string, unknown>): void;
+}
+
+/**
+ * Log level
+ *
+ * @param DEBUG - Debug log level
+ * @param INFO - Info log level
+ * @param WARN - Warning log level
+ * @param ERROR - Error log level
+ */
+export enum LogLevel {
+  DEBUG = 0,
+  INFO = 1,
+  WARN = 2,
+  ERROR = 3,
+}
+```
+
+##### Using Winston
+
+The [Winston Logger](https://github.com/winstonjs/winston) interface matches the SDK's `Logger` interface and is a
+drop-in logger override.
+
+```typescript
+import winston from "winston";
+
+const logger = winston.createLogger({
+  level: "debug",
+  format: winston.format.json(),
+  transports: [new winston.transports.Console()],
+});
+// ...
+const config: ClientConfig = {
+  // ... other config options ...
+  logger, // Uses winston logger from your application
+};
+```
+
+##### Using Pino
+
+The [Pino Logger](https://getpino.io) interface does not exactly match the SDK's `Logger` interface, but can be easily
+adapted to be provided as a logger override.
+
+```typescript
+import pino from "pino";
+
+// Create a simple adaptor for the Pino logger interface
+const createPinoAdapter = (pinoInstance) => {
+  const logWithMetadata = (level, message, ...args) => {
+    const metadata = args[0];
+    if (metadata && typeof metadata === "object" && metadata !== null) {
+      pinoInstance[level](metadata, message);
+    } else {
+      pinoInstance[level](message, ...args);
+    }
+  };
+
+  return {
+    debug: (message, ...args) => logWithMetadata("debug", message, ...args),
+    info: (message, ...args) => logWithMetadata("info", message, ...args),
+    warn: (message, ...args) => logWithMetadata("warn", message, ...args),
+    error: (message, error, ...args) => {
+      if (error instanceof Error) {
+        const metadata = args[0];
+        if (metadata && typeof metadata === "object" && metadata !== null) {
+          pinoInstance.error({ ...metadata, err: error }, message);
+        } else {
+          pinoInstance.error({ err: error }, message);
+        }
+      } else if (error && typeof error === "object") {
+        pinoInstance.error(error, message);
+      } else {
+        pinoInstance.error(message);
+      }
+    },
+  };
+};
+const logger = createPinoAdapter(pino({ level: "debug" }));
+// ...
+const config: ClientConfig = {
+  // ... other config options ...
+  logger, // Uses pino logger from your application
+};
 ```
