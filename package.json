@@ -10,7 +10,7 @@
     "reset": "node reset.js"
   },
   "dependencies": {
-    "@adobe-commerce/aco-ts-sdk": "^0.3.2",
+    "@adobe-commerce/aco-ts-sdk": "^0.3.3",
     "dotenv": "^16.5.0"
   }
 }
