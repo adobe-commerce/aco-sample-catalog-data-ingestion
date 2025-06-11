@@ -1,10 +1,10 @@
 # Adobe Commerce Optimizer - Sample catalog data ingestion
 
-Adobe Commerce Optimizer has a sample data set which emulates the catalog data for an B2B2X Automobile manufacturer. The fictional Automobile conglomerate is called Carvelo. You will need to undertake this catalog data load to execute the tutorial [here](https://experienceleague.adobe.com/en/docs/commerce/optimizer/use-case/admin-use-case).
+Adobe Commerce Optimizer (ACO) has a sample data set which emulates the catalog data for an B2B2X Automobile manufacturer. The fictional Automobile conglomerate is called Carvelo. You will need to undertake this catalog data load to execute the tutorial [here](https://experienceleague.adobe.com/en/docs/commerce/optimizer/use-case/admin-use-case).
 
 This repository will help you execute the catalog data ingestion into your ACO instance. Internally, a devSDK is used to execute these requests. Please reach out to your account manager to know more about getting access to these devSDKs.
 
-**Important:** This repository helps you with the catalog data ingestion, this does not create the Channel and Policies called out in the [tutorial](https://experienceleague.adobe.com/en/docs/commerce/optimizer/use-case/admin-use-case). In your early access on-boarding process you would have received steps on creating these Channels and Policies. Please create them using the ACO UI.
+**Important:** Once you have executed the data load, please create the Channels and Policies as mentioned [here](#create-channels-and-policies-in-aco-ui). Both the catalog data load and creation of Channels/Policies are mandatory to successfully execute the [tutorial](https://experienceleague.adobe.com/en/docs/commerce/optimizer/use-case/admin-use-case)
 
 ## What Will We Do?
 
@@ -16,6 +16,8 @@ Using our new Adobe Commerce Optimizer Typescript/Javascript SDK, we will ingest
 - 1080 Products across our 3 brands (in batches of 100)
 - 5 unique Price Books
 - 6480 Prices across our 5 Price Books (in batches of 100)
+
+Once you have completed the catalog ingestion, this readme will guide you to create the required Channels/Policies for the sample data.
 
 ## Run the Sample Catalog Data Ingestion
 
@@ -59,6 +61,79 @@ node reset.js
 ## Check the API Documentation
 
 [Adobe Developer Docs - API Reference](https://developer-stage.adobe.com/commerce/services/composable-catalog/data-ingestion/api-reference/)
+
+## Create Channels and Policies in ACO UI
+
+Login to your Adobe Commerce Optimizer instance.
+
+### Create policies
+
+Navigate to Catalog > Policies. You will be creating 4 universal policies and 2 exclusive policies. ([Read more](https://experienceleague.adobe.com/en/docs/commerce/optimizer/catalog/policies#value-source-types) about policy types)
+
+**Steps to create 4 universal policies:**
+- Click on 'Add Policy'
+- Add the policy name: `West Coast Inc brands`
+- Click on 'Add Filter' and add the following details:
+  - Attribute: `brand`
+  - Operator: `IN`
+  - Value source: `STATIC`
+  - Value: `Aurora, Bolt, Cruz`
+- The modal should look like the screenshot below. You can then click on `Save`
+![Screenshot 2025-06-11 at 3 39 28 PM](https://github.com/user-attachments/assets/c0779c47-3445-4823-9faa-d545ac1fcdf4)
+- Activate the policy you have just created by clicking on the action dots (…) and select `Enable`.
+- Go back to the policy list page by clicking on the back arrow button.
+
+Repeat the above steps to create 3 more universal policies. Use the following details:
+| Policy Name  | Attribute | Operator | Value source | Value |
+| ------------- | ------------- | ------------- | ------------- | ------------- |
+| East Coast Inc brands  | brand  | IN | STATIC | Bolt, Cruz |
+| Arkbridge part categories  | part_category  | IN | STATIC | tires, brakes, suspension |
+| Kingsbluff part categories | part_category | IN | STATIC | tires, brakes |
+
+**Steps to create 2 exclusive policies:**
+- Click on 'Add Policy'
+- Add the policy name: `Brand`
+- Click on 'Add Trigger' and add the following details:
+  - Name: `AC-Policy-Brand`
+  - Transport type: `HTTP_HEADER`
+- Click on `Save`
+- Click on `Add Filter` and add the following details:
+  - Attribute: `brand`
+  - Operator: `IN`
+  - Value source: `TRIGGER`
+  - Value: `AC-Policy-Brand`
+- Click on `Save`
+- Activate the policy you have just created by clicking on the action dots (…) and select `Enable`.
+
+Repeat the above steps to create 1 more universal policy. Use the following details:
+| Policy Name  | Trigger - Name | Trigger - transport type | Attribute | Operator | Value source | Value |
+| ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
+| Model  | AC-Policy-Model  | HTTP_HEADER | model | IN | TRIGGER | AC-Policy-Model |
+
+After you have created the 6 new policies, your policy list page should look as below - 
+![Screenshot 2025-06-11 at 4 01 34 PM](https://github.com/user-attachments/assets/7a8533dc-1c20-4b9b-9edd-cc1d5ea515c2)
+**Important:** Ensure all your policies have a status of `Enabled`
+
+### Create Channels
+Navigate to Catalog > Channels. You will now create 3 Channels using your newly created policies.
+
+- Click on `Add Channel`
+- Add the following details:
+  - Name: `Global`
+  - Scopes: `en-US` (make sure you hit **enter** button after typing in this value)
+  - Policies: `Brand`, `Model`, `West Coast Inc brands`
+- The modal should look like the screenshot below. You can then click on `Save`
+![Screenshot 2025-06-11 at 4 15 19 PM](https://github.com/user-attachments/assets/23267d3b-390a-42d9-890f-d8d9de2013f5)
+
+
+Repeat the above steps to create 2 more channels. Use the following details:
+
+| Name  | Scopes | Policies |
+| ------------- | ------------- | ------------- |
+| Arkbridge  | en-US  | `Brand` `Model` `West Coast Inc brands` `Arkbridge part categories`|
+| Kingsbluff  | en-US  | `Brand` `Model` `East Coast Inc brands` `Kingsbluff part categories`|
+
+At this point you have created 3 channels and 6 policies. You are now ready to execute the [tutorial](https://experienceleague.adobe.com/en/docs/commerce/optimizer/use-case/admin-use-case).
 
 ## Explore the SDK
 
