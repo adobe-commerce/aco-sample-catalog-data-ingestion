@@ -4,7 +4,7 @@ Adobe Commerce Optimizer has a sample data set that emulates the catalog data fo
 
 This repository provides the tools to ingest the sample data set into your Adobe Commerce Optimizer instance. The process uses the Adobe Commerce Optimizer Data Ingestion APIs and the Adobe Commerce Optimizer SDK.
 
-**Important:** Once you have executed the data load, please create the Channels and Policies as mentioned [here](#create-channels-and-policies-in-aco-ui). Both the catalog data load and creation of Channels/Policies are mandatory to successfully execute the [tutorial](https://experienceleague.adobe.com/en/docs/commerce/optimizer/use-case/admin-use-case)
+**Important:** After you have uploaded the data, you must create the catalog views and policies from the Commerce Optimizer user interface as described in these instructions. Both the catalog data and the catalog views and policies are required to complete the end-to-end use case.
 
 ## What Will We Do?
 
@@ -17,7 +17,7 @@ Using our new Adobe Commerce Optimizer Typescript/Javascript SDK, we will ingest
 - 5 unique Price Books
 - 6480 Prices across our 5 Price Books (in batches of 100)
 
-After you complete the catalog ingestion, this readme guides you to create the channels and polices required to use the sample data with your Commerce storefront.
+After you complete the catalog ingestion, this readme guides you to create the catalog view and polices required to use the sample data with your Commerce storefront.
 
 ## Run the Sample Catalog Data Ingestion
 
@@ -76,7 +76,7 @@ You generate the `client_ID` and `client_secret` credentials from the Adobe Deve
 The `.env` file provides the configuration to instantiate the SDK client and provide secure communication between the client and Adobe Commerce Optimizer.
 
 1. Clone this repository to your local development environment.
-   
+
 1. Open the `.env` file, and add the IMS client id and client secret crendentials from your Adobe I/O developer project.
 
    ```conf
@@ -111,9 +111,9 @@ To reset the sample catalog data in your ACO instance, run the following script 
 
 For detailed information about the Data Ingestion API for Adobe Commerce Optimizer, see the [Data Ingestion API Reference](https://developer-stage.adobe.com/commerce/services/composable-catalog/data-ingestion/api-reference/)
 
-## Create channels and policies
+## Create catalog views and policies
 
-From the Adobe Commerce Optimizer user interface, create the channels and policies required to use the sample data with your storefront.
+From the Adobe Commerce Optimizer user interface, create the catalog views and policies required to use the sample data with your storefront.
 
 ### Create policies
 
@@ -126,12 +126,12 @@ From the Adobe Commerce Optimizer user interface, create the channels and polici
    - Click **Add Policy**
    - Add the policy name: `West Coast Inc brands`
    - Click **Add Filter**, and add the following details:
-    
+
      Attribute: `brand`
      Operator: `IN`
      Value source: `STATIC`
      Value: `Aurora, Bolt, Cruz`
-  
+
      The modal should look like the screenshot below.
 
      ![Screenshot 2025-06-11 at 3 39 28 PM](https://github.com/user-attachments/assets/c0779c47-3445-4823-9faa-d545ac1fcdf4)
@@ -165,44 +165,44 @@ From the Adobe Commerce Optimizer user interface, create the channels and polici
    - Activate the policy by clicking on the action dots (…) and selecting **Enable**.
 
     Repeat the above steps to create one more universal policy. Use the following details:
-   
+
     | Policy Name  | Trigger - Name | Trigger - transport type | Attribute | Operator | Value source | Value |
     | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
     | Model  | AC-Policy-Model  | HTTP_HEADER | model | IN | TRIGGER | AC-Policy-Model |
 
     After you have created these six new policies, your policy list page should look like the following:
-  
+
    ![Screenshot 2025-06-11 at 4 01 34 PM](https://github.com/user-attachments/assets/7a8533dc-1c20-4b9b-9edd-cc1d5ea515c2)
-  
+
   **Important:** Ensure all your policies have a status of `Enabled`.
 
-### Create Channels
+### Create Catalog Views
 
-1. In the Commerce Optimizer interface, navigate to **Catalog > Channels**.
-  
-1. Create three channels that use your newly created policies.
+1. In the Commerce Optimizer interface, navigate to **Catalog > Views**.
 
-   - Click **Add Channel**.
+1. Create three catalog views that use your newly created policies.
+
+   - Click **Add Catalog View**.
    - Add the following details:
      Name: `Global`
-     Scopes: `en-US` (make sure you hit **enter** button after typing in this value)
+     Catalog Sources: `en-US` (make sure you hit **enter** button after typing in this value)
      Policies: `Brand`, `Model`, `West Coast Inc brands`
-    
+
      The modal should look like the screenshot below.
-    
+
      ![Screenshot 2025-06-11 at 4 15 19 PM](https://github.com/user-attachments/assets/23267d3b-390a-42d9-890f-d8d9de2013f5)
 
    - Click **Save**.
 
-   Repeat the above steps to create two more channels. Use the following details:
+   Repeat the above steps to create two more catalog views. Use the following details:
 
-   | Name  | Scopes | Policies |
+   | Name  | Catalog Sources | Policies |
    | ------------- | ------------- | ------------- |
    | Arkbridge  | en-US  | `Brand` `Model` `West Coast Inc brands` `Arkbridge part categories`|
    | Kingsbluff  | en-US  | `Brand` `Model` `East Coast Inc brands` `Kingsbluff part categories`|
 
- At this point you have created three channels and six policies. You are now ready to complete the  [tutorial]  (https://experienceleague.adobe.com/en/docs/commerce/optimizer/use-case/admin-use-case).
- to see how the sample data, channels, and policy configuration work together with your storefront.
+ At this point you have created three catalog views and six policies. You are now ready to complete the [tutorial](https://experienceleague.adobe.com/en/docs/commerce/optimizer/use-case/admin-use-case)
+ to see how the sample data, catalog views, and policy configuration work together with your storefront.
 
 ## Explore the SDK
 
@@ -267,12 +267,11 @@ import {
   FeedProduct,
   FeedProductStatusEnum,
   FeedProductVisibleInEnum,
-  ProductAttributeTypeEnum,
 } from "@adobe-commerce/aco-ts-sdk";
 
 const product1: FeedProduct = {
   sku: "EXAMPLE-SKU-001",
-  scope: { locale: "en-US" },
+  source: { locale: "en-US" },
   name: "Example Product 1",
   slug: "example-product-1",
   description: "This is an example product created via the SDK",
@@ -284,7 +283,6 @@ const product1: FeedProduct = {
   attributes: [
     {
       code: "brand",
-      type: ProductAttributeTypeEnum.String,
       values: ["Example Brand"],
     },
   ],
@@ -292,7 +290,7 @@ const product1: FeedProduct = {
 
 const product2: FeedProduct = {
   sku: "EXAMPLE-SKU-002",
-  scope: { locale: "en-US" },
+  source: { locale: "en-US" },
   name: "Example Product 2",
   slug: "example-product-2",
   description: "This is another example product created via the SDK",
@@ -304,7 +302,6 @@ const product2: FeedProduct = {
   attributes: [
     {
       code: "brand",
-      type: ProductAttributeTypeEnum.String,
       values: ["Example Brand"],
     },
   ],
@@ -321,7 +318,7 @@ import { FeedProductUpdate } from "@adobe-commerce/aco-ts-sdk";
 
 const productUpdate: FeedProductUpdate = {
   sku: "EXAMPLE-SKU-001",
-  scope: { locale: "en-US" },
+  source: { locale: "en-US" },
   name: "Updated Product Name",
 };
 
@@ -336,7 +333,7 @@ import { FeedProductDelete } from "@adobe-commerce/aco-ts-sdk";
 
 const productDelete: FeedProductDelete = {
   sku: "EXAMPLE-SKU-001",
-  scope: { locale: "en-US" },
+  source: { locale: "en-US" },
 };
 
 const response = await client.deleteProducts([productDelete]);
@@ -356,7 +353,7 @@ import {
 
 const metadata: FeedMetadata = {
   code: "color",
-  scope: { locale: "en-US" },
+  source: { locale: "en-US" },
   label: "Color",
   dataType: FeedMetadataDataTypeEnum.Text,
   visibleIn: [FeedMetadataVisibleInEnum.ProductDetail],
@@ -376,7 +373,7 @@ import { FeedMetadataUpdate } from "@adobe-commerce/aco-ts-sdk";
 
 const metadataUpdate: FeedMetadataUpdate = {
   code: "color",
-  scope: { locale: "en-US" },
+  source: { locale: "en-US" },
   label: "Updated Color Label",
 };
 
@@ -391,7 +388,7 @@ import { FeedMetadataDelete } from "@adobe-commerce/aco-ts-sdk";
 
 const metadataDelete: FeedMetadataDelete = {
   code: "color",
-  scope: { locale: "en-US" },
+  source: { locale: "en-US" },
 };
 
 const response = await client.deleteProductMetadata([metadataDelete]);
@@ -640,3 +637,4 @@ const config: ClientConfig = {
   logger, // Uses pino logger from your application
 };
 ```
+
