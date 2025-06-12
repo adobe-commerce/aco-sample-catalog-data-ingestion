@@ -17,7 +17,7 @@ Using our new Adobe Commerce Optimizer Typescript/Javascript SDK, we will ingest
 - 5 unique Price Books
 - 6480 Prices across our 5 Price Books (in batches of 100)
 
-After you complete the catalog ingestion, this readme guides you to create the catalog view and polices required to use the sample data with your Commerce storefront.
+After you complete the catalog ingestion, this readme guides you to create the catalog views and polices required to use the sample data with your Commerce storefront.
 
 ## Run the Sample Catalog Data Ingestion
 
@@ -83,6 +83,7 @@ The `.env` file provides the configuration to instantiate the SDK client and pro
    CLIENT_ID=my-client-id
    CLIENT_SECRET=my-client-secret
    ```
+
 1. Add the tenant Id for your Adobe Commerce Optimizer instance. 
 
    ```conf
@@ -119,7 +120,7 @@ From the Adobe Commerce Optimizer user interface, create the catalog views and p
 
 1. Login to Adobe Commerce Optimizer.
 
-1. Navigate to Catalog > Policies. You will be creating 4 universal policies and 2 exclusive policies. ([Read more](https://experienceleague.adobe.com/en/docs/commerce/optimizer/catalog/policies#value-source-types) about policy types)
+1. Navigate to Catalog > Policies. You will be creating four universal policies and two exclusive policies. ([Read more](https://experienceleague.adobe.com/en/docs/commerce/optimizer/catalog/policies#value-source-types) about policy types).
 
 1. Create four universal policies:
 
@@ -148,7 +149,7 @@ From the Adobe Commerce Optimizer user interface, create the catalog views and p
    | Arkbridge part categories  | part_category  | IN | STATIC | tires, brakes, suspension |
    | Kingsbluff part categories | part_category | IN | STATIC | tires, brakes |
 
-1. Create two exclusive poicies.
+1. Create two exclusive policies.
 
    - Click **Add Policy**
    - Add the policy name: `Brand`
@@ -267,11 +268,12 @@ import {
   FeedProduct,
   FeedProductStatusEnum,
   FeedProductVisibleInEnum,
+  ProductAttributeTypeEnum,
 } from "@adobe-commerce/aco-ts-sdk";
 
 const product1: FeedProduct = {
   sku: "EXAMPLE-SKU-001",
-  source: { locale: "en-US" },
+  scope: { locale: "en-US" },
   name: "Example Product 1",
   slug: "example-product-1",
   description: "This is an example product created via the SDK",
@@ -283,6 +285,7 @@ const product1: FeedProduct = {
   attributes: [
     {
       code: "brand",
+      type: ProductAttributeTypeEnum.String,
       values: ["Example Brand"],
     },
   ],
@@ -290,7 +293,7 @@ const product1: FeedProduct = {
 
 const product2: FeedProduct = {
   sku: "EXAMPLE-SKU-002",
-  source: { locale: "en-US" },
+  scope: { locale: "en-US" },
   name: "Example Product 2",
   slug: "example-product-2",
   description: "This is another example product created via the SDK",
@@ -302,6 +305,7 @@ const product2: FeedProduct = {
   attributes: [
     {
       code: "brand",
+      type: ProductAttributeTypeEnum.String,
       values: ["Example Brand"],
     },
   ],
@@ -318,7 +322,7 @@ import { FeedProductUpdate } from "@adobe-commerce/aco-ts-sdk";
 
 const productUpdate: FeedProductUpdate = {
   sku: "EXAMPLE-SKU-001",
-  source: { locale: "en-US" },
+  scope: { locale: "en-US" },
   name: "Updated Product Name",
 };
 
@@ -333,7 +337,7 @@ import { FeedProductDelete } from "@adobe-commerce/aco-ts-sdk";
 
 const productDelete: FeedProductDelete = {
   sku: "EXAMPLE-SKU-001",
-  source: { locale: "en-US" },
+  scope: { locale: "en-US" },
 };
 
 const response = await client.deleteProducts([productDelete]);
@@ -353,7 +357,7 @@ import {
 
 const metadata: FeedMetadata = {
   code: "color",
-  source: { locale: "en-US" },
+  scope: { locale: "en-US" },
   label: "Color",
   dataType: FeedMetadataDataTypeEnum.Text,
   visibleIn: [FeedMetadataVisibleInEnum.ProductDetail],
@@ -373,7 +377,7 @@ import { FeedMetadataUpdate } from "@adobe-commerce/aco-ts-sdk";
 
 const metadataUpdate: FeedMetadataUpdate = {
   code: "color",
-  source: { locale: "en-US" },
+  scope: { locale: "en-US" },
   label: "Updated Color Label",
 };
 
@@ -388,7 +392,7 @@ import { FeedMetadataDelete } from "@adobe-commerce/aco-ts-sdk";
 
 const metadataDelete: FeedMetadataDelete = {
   code: "color",
-  source: { locale: "en-US" },
+  scope: { locale: "en-US" },
 };
 
 const response = await client.deleteProductMetadata([metadataDelete]);
