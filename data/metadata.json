@@ -1,7 +1,7 @@
 [
   {
     "code": "sku",
-    "scope": {
+    "source": {
       "locale": "en-US"
     },
     "label": "sku",
@@ -20,7 +20,7 @@
   },
   {
     "code": "name",
-    "scope": {
+    "source": {
       "locale": "en-US"
     },
     "label": "Name",
@@ -39,7 +39,7 @@
   },
   {
     "code": "description",
-    "scope": {
+    "source": {
       "locale": "en-US"
     },
     "label": "Description",
@@ -53,7 +53,7 @@
   },
   {
     "code": "shortDescription",
-    "scope": {
+    "source": {
       "locale": "en-US"
     },
     "label": "Short Description",
@@ -67,7 +67,7 @@
   },
   {
     "code": "brand",
-    "scope": {
+    "source": {
       "locale": "en-US"
     },
     "label": "Brand",
@@ -86,7 +86,7 @@
   },
   {
     "code": "model",
-    "scope": {
+    "source": {
       "locale": "en-US"
     },
     "label": "Vehicle Model",
@@ -105,7 +105,7 @@
   },
   {
     "code": "model_year",
-    "scope": {
+    "source": {
       "locale": "en-US"
     },
     "label": "Vehicle Model Year",
@@ -124,7 +124,7 @@
   },
   {
     "code": "country",
-    "scope": {
+    "source": {
       "locale": "en-US"
     },
     "label": "Dealer Country",
@@ -143,7 +143,7 @@
   },
   {
     "code": "part_category",
-    "scope": {
+    "source": {
       "locale": "en-US"
     },
     "label": "Part Category",
@@ -162,7 +162,7 @@
   },
   {
     "code": "price",
-    "scope": {
+    "source": {
       "locale": "en-US"
     },
     "label": "Price",

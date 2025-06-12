@@ -78,7 +78,7 @@ const deleteProducts = async (client) => {
   try {
     // Delete products loaded from data/products.json file
     const products = readFile("products.json");
-    const productKeys = products.map(({ sku, scope }) => ({ sku, scope }));
+    const productKeys = products.map(({ sku, source }) => ({ sku, source }));
     const totalProducts = productKeys.length;
     let totalAccepted = 0;
 
@@ -108,7 +108,7 @@ const deleteMetadata = async (client) => {
   try {
     // Delete product metadata loaded from data/metadata.json file
     const metadata = readFile("metadata.json");
-    const metadataKeys = metadata.map(({ code, scope }) => ({ code, scope }));
+    const metadataKeys = metadata.map(({ code, source }) => ({ code, source }));
     const totalMetadata = metadataKeys.length;
     let totalAccepted = 0;
 
