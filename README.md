@@ -86,7 +86,7 @@ The `.env` file provides the configuration to instantiate the SDK client and pro
 1. Add the tenant Id for your Adobe Commerce Optimizer instance. 
 
    ```conf
-   TENANT_ID=my-instance-id
+   TENANT_ID=my-tenant-id
    REGION=na1
    ENVIRONMENT=sandbox
    ```
