@@ -268,12 +268,11 @@ import {
   FeedProduct,
   FeedProductStatusEnum,
   FeedProductVisibleInEnum,
-  ProductAttributeTypeEnum,
 } from "@adobe-commerce/aco-ts-sdk";
 
 const product1: FeedProduct = {
   sku: "EXAMPLE-SKU-001",
-  scope: { locale: "en-US" },
+  source: { locale: "en-US" },
   name: "Example Product 1",
   slug: "example-product-1",
   description: "This is an example product created via the SDK",
@@ -285,7 +284,6 @@ const product1: FeedProduct = {
   attributes: [
     {
       code: "brand",
-      type: ProductAttributeTypeEnum.String,
       values: ["Example Brand"],
     },
   ],
@@ -293,7 +291,7 @@ const product1: FeedProduct = {
 
 const product2: FeedProduct = {
   sku: "EXAMPLE-SKU-002",
-  scope: { locale: "en-US" },
+  source: { locale: "en-US" },
   name: "Example Product 2",
   slug: "example-product-2",
   description: "This is another example product created via the SDK",
@@ -305,7 +303,6 @@ const product2: FeedProduct = {
   attributes: [
     {
       code: "brand",
-      type: ProductAttributeTypeEnum.String,
       values: ["Example Brand"],
     },
   ],
@@ -322,7 +319,7 @@ import { FeedProductUpdate } from "@adobe-commerce/aco-ts-sdk";
 
 const productUpdate: FeedProductUpdate = {
   sku: "EXAMPLE-SKU-001",
-  scope: { locale: "en-US" },
+  source: { locale: "en-US" },
   name: "Updated Product Name",
 };
 
@@ -337,7 +334,7 @@ import { FeedProductDelete } from "@adobe-commerce/aco-ts-sdk";
 
 const productDelete: FeedProductDelete = {
   sku: "EXAMPLE-SKU-001",
-  scope: { locale: "en-US" },
+  source: { locale: "en-US" },
 };
 
 const response = await client.deleteProducts([productDelete]);
@@ -357,7 +354,7 @@ import {
 
 const metadata: FeedMetadata = {
   code: "color",
-  scope: { locale: "en-US" },
+  source: { locale: "en-US" },
   label: "Color",
   dataType: FeedMetadataDataTypeEnum.Text,
   visibleIn: [FeedMetadataVisibleInEnum.ProductDetail],
@@ -377,7 +374,7 @@ import { FeedMetadataUpdate } from "@adobe-commerce/aco-ts-sdk";
 
 const metadataUpdate: FeedMetadataUpdate = {
   code: "color",
-  scope: { locale: "en-US" },
+  source: { locale: "en-US" },
   label: "Updated Color Label",
 };
 
@@ -392,7 +389,7 @@ import { FeedMetadataDelete } from "@adobe-commerce/aco-ts-sdk";
 
 const metadataDelete: FeedMetadataDelete = {
   code: "color",
-  scope: { locale: "en-US" },
+  source: { locale: "en-US" },
 };
 
 const response = await client.deleteProductMetadata([metadataDelete]);
