@@ -1,8 +1,8 @@
 # Adobe Commerce Optimizer - Sample catalog data ingestion
 
-Adobe Commerce Optimizer (ACO) has a sample data set which emulates the catalog data for an B2B2X Automobile manufacturer. The fictional Automobile conglomerate is called Carvelo. You will need to undertake this catalog data load to execute the tutorial [here](https://experienceleague.adobe.com/en/docs/commerce/optimizer/use-case/admin-use-case).
+Adobe Commerce Optimizer has a sample data set that emulates the catalog data for a fictional B2B2X Automobile conglomerate called Carvelo. This sample data and the Carvelo business structure provide the foundation for the [Storefront and Catalog Administrator end-to-end use case](https://experienceleague.adobe.com/en/docs/commerce/optimizer/use-case/admin-use-case) that demonstrates how to use a single base catalog to create catalog views that match sales operations for a complex business organization.
 
-This repository will help you execute the catalog data ingestion into your ACO instance. Internally, a devSDK is used to execute these requests. Please reach out to your account manager to know more about getting access to these devSDKs.
+This repository provides the tools to ingest the sample data set into your Adobe Commerce Optimizer instance. The process uses the Adobe Commerce Optimizer Data Ingestion APIs and the Adobe Commerce Optimizer SDK.
 
 **Important:** Once you have executed the data load, please create the Channels and Policies as mentioned [here](#create-channels-and-policies-in-aco-ui). Both the catalog data load and creation of Channels/Policies are mandatory to successfully execute the [tutorial](https://experienceleague.adobe.com/en/docs/commerce/optimizer/use-case/admin-use-case)
 
@@ -17,123 +17,192 @@ Using our new Adobe Commerce Optimizer Typescript/Javascript SDK, we will ingest
 - 5 unique Price Books
 - 6480 Prices across our 5 Price Books (in batches of 100)
 
-Once you have completed the catalog ingestion, this readme will guide you to create the required Channels/Policies for the sample data.
+After you complete the catalog ingestion, this readme guides you to create the channels and polices required to use the sample data with your Commerce storefront.
 
 ## Run the Sample Catalog Data Ingestion
 
-### Configure .env
+### Get credentials and tenant ID for your instance
 
-In order to ingest our new data, we first need to configure our environment with our credentials and Adobe Commerce Optimizer instance information. This configuration will be used to instantiate the SDK client and allow us to securely interact with the Adobe Commerce Optimizer APIs.
+You need the following values to authenticate requests to ingest data from the sample data set to your Adobe Commerce Optimizer instance.
 
-Open the `.env` file and add our IMS client id and client secret crendentials.
-The `CLIENT_ID` and `CLIENT_SECRET` values will be provided to you as a part of the early access on-boarding process.
+- **Tenant_ID**—Identifies the Adobe Commerce Optimizer instance targeted for data ingestion.
+- **Adobe IMS `client_id` and `client_secret` credentials**—These authentication credentials are required to authenticate API requests for data ingestion. You create these credentials from the Adobe Developer Console, which requires an Adobe account with developer access to the Adobe Commerce Optimizer.
 
-```conf
-CLIENT_ID=my-client-id
-CLIENT_SECRET=my-client-secret
-```
+#### Get your tenant ID
 
-Next, let's configure our instance information. The region and environment type have already been populated for us.
-Your unique `TENANT_ID` is provided to you as a part of the early access on-boarding.
+Find your tenant ID in the access URLs for your Commerce Optimizer instance in Cloud Manager.
 
-```conf
-TENANT_ID=my-instance-id
-REGION=na1
-ENVIRONMENT=sandbox
-```
+1. Log in to your [Adobe Experience Cloud](https://experience.adobe.com/) account.
 
-### Start the Data Ingestion!
+1. Under **Quick access**, click **Commerce** to open the Commerce Cloud Manager.
 
-Running the following command will use the [ACO TS SDK](https://github.com/adobe-commerce/aco-ts-sdk) to ingest the Carvelo sample data found in the `data` directory.
+   The Commerce Cloud Manager displays a list of instances that are available in your Adobe IMS organization.
 
-```shell
-node index.js
-```
+1. To view the access URLs including the base URL for the REST and GraphQL APIs, click the information icon next to the instance name.
+
+   <img width="895" alt="image" src="https://github.com/user-attachments/assets/2d24bb12-3ac4-46ed-aad5-9e85176da6ef" />
+
+
+1. Your tenant ID is included in the endpoint details. For example, you can see it in the Catalog Endpoint that follows this pattern:
+
+   https://na1-sandbox.api.commerce.adobe.com/{tenantId}/v1/catalog
+
+   **Note:**  If you don't have access to the Commerce Cloud Manager, contact your system administrator.
+
+#### Generate the IMS credentials for API authentication
+
+You generate the `client_ID` and `client_secret` credentials from the Adobe Developer Console. You must have a system administrator or developer role for the Adobe Commerce Optimizer project to complete this configuration. See [User Management](https://helpx.adobe.com/enterprise/using/manage-developers.html) in the *Adobe Commerce Optimizer* documentation.
+
+1. Log in to the [Adobe Developer Console](https://developer.adobe.com/console).
+
+1. Select the Experience Cloud Organization for the integration.
+
+1. Create an API project.
+
+   - Add the **Adobe I/O Events for Adobe Commerce** API to your project. Then, click **Next**.
+
+   - Configure the Client ID and Client Secret credentials by selecting the **OAUTH Server to Server Authentication** option.
+
+   - Click **Save configured API**.
+
+1. In the Connected Credentials section, view API configuration details by selecting **OAUTH Server-to-Server**.
+
+   ![image](https://github.com/user-attachments/assets/34a7e7b2-9816-462b-8453-a28a22d673fa)
+
+1. Copy the Client ID and the Client Secret values to a secure location.
+
+### Configure environment variables
+
+The `.env` file provides the configuration to instantiate the SDK client and provide secure communication between the client and Adobe Commerce Optimizer.
+
+1. Clone this repository to your local development environment.
+   
+1. Open the `.env` file, and add the IMS client id and client secret crendentials from your Adobe I/O developer project.
+
+   ```conf
+   CLIENT_ID=my-client-id
+   CLIENT_SECRET=my-client-secret
+   ```
+1. Add the tenant Id for your Adobe Commerce Optimizer instance. 
+
+   ```conf
+   TENANT_ID=my-tenant-id
+   REGION=na1
+   ENVIRONMENT=sandbox
+   ```
+
+### Start the Data Ingestion
+
+Run the following command to use the [Adobe Commerce Optimizer SDK](https://github.com/adobe-commerce/aco-ts-sdk) to ingest the Carvelo sample data found in the `data` directory.
+
+ ```bash
+ node index.js
+ ```
 
 ### Resetting the sample data
 
-To reset the sample catalog data in your ACO instance, run the following script to delete the Carvelo catalog data loaded in the `index.js` ingestion script above.
+To reset the sample catalog data in your ACO instance, run the following script to delete the Carvelo catalog data loaded by the `index.js` ingestion script.
 
-```shell
-node reset.js
-```
+ ```shell
+ node reset.js
+ ```
 
-## Check the API Documentation
+## Review the API Documentation
 
-[Adobe Developer Docs - API Reference](https://developer-stage.adobe.com/commerce/services/composable-catalog/data-ingestion/api-reference/)
+For detailed information about the Data Ingestion API for Adobe Commerce Optimizer, see the [Data Ingestion API Reference](https://developer-stage.adobe.com/commerce/services/composable-catalog/data-ingestion/api-reference/)
 
-## Create Channels and Policies in ACO UI
+## Create channels and policies
 
-Login to your Adobe Commerce Optimizer instance.
+From the Adobe Commerce Optimizer user interface, create the channels and policies required to use the sample data with your storefront.
 
 ### Create policies
 
-Navigate to Catalog > Policies. You will be creating 4 universal policies and 2 exclusive policies. ([Read more](https://experienceleague.adobe.com/en/docs/commerce/optimizer/catalog/policies#value-source-types) about policy types)
+1. Login to Adobe Commerce Optimizer.
 
-**Steps to create 4 universal policies:**
-- Click on 'Add Policy'
-- Add the policy name: `West Coast Inc brands`
-- Click on 'Add Filter' and add the following details:
-  - Attribute: `brand`
-  - Operator: `IN`
-  - Value source: `STATIC`
-  - Value: `Aurora, Bolt, Cruz`
-- The modal should look like the screenshot below. You can then click on `Save`
-![Screenshot 2025-06-11 at 3 39 28 PM](https://github.com/user-attachments/assets/c0779c47-3445-4823-9faa-d545ac1fcdf4)
-- Activate the policy you have just created by clicking on the action dots (…) and select `Enable`.
-- Go back to the policy list page by clicking on the back arrow button.
+1. Navigate to Catalog > Policies. You will be creating 4 universal policies and 2 exclusive policies. ([Read more](https://experienceleague.adobe.com/en/docs/commerce/optimizer/catalog/policies#value-source-types) about policy types)
 
-Repeat the above steps to create 3 more universal policies. Use the following details:
-| Policy Name  | Attribute | Operator | Value source | Value |
-| ------------- | ------------- | ------------- | ------------- | ------------- |
-| East Coast Inc brands  | brand  | IN | STATIC | Bolt, Cruz |
-| Arkbridge part categories  | part_category  | IN | STATIC | tires, brakes, suspension |
-| Kingsbluff part categories | part_category | IN | STATIC | tires, brakes |
+1. Create four universal policies:
 
-**Steps to create 2 exclusive policies:**
-- Click on 'Add Policy'
-- Add the policy name: `Brand`
-- Click on 'Add Trigger' and add the following details:
-  - Name: `AC-Policy-Brand`
-  - Transport type: `HTTP_HEADER`
-- Click on `Save`
-- Click on `Add Filter` and add the following details:
-  - Attribute: `brand`
-  - Operator: `IN`
-  - Value source: `TRIGGER`
-  - Value: `AC-Policy-Brand`
-- Click on `Save`
-- Activate the policy you have just created by clicking on the action dots (…) and select `Enable`.
+   - Click **Add Policy**
+   - Add the policy name: `West Coast Inc brands`
+   - Click **Add Filter**, and add the following details:
+    
+     Attribute: `brand`
+     Operator: `IN`
+     Value source: `STATIC`
+     Value: `Aurora, Bolt, Cruz`
+  
+     The modal should look like the screenshot below.
 
-Repeat the above steps to create 1 more universal policy. Use the following details:
-| Policy Name  | Trigger - Name | Trigger - transport type | Attribute | Operator | Value source | Value |
-| ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
-| Model  | AC-Policy-Model  | HTTP_HEADER | model | IN | TRIGGER | AC-Policy-Model |
+     ![Screenshot 2025-06-11 at 3 39 28 PM](https://github.com/user-attachments/assets/c0779c47-3445-4823-9faa-d545ac1fcdf4)
 
-After you have created the 6 new policies, your policy list page should look as below - 
-![Screenshot 2025-06-11 at 4 01 34 PM](https://github.com/user-attachments/assets/7a8533dc-1c20-4b9b-9edd-cc1d5ea515c2)
-**Important:** Ensure all your policies have a status of `Enabled`
+   - Click **Save**.
+   - Activate the policy you have just created by clicking the action dots (…) and selecting **Enable**.
+   - Click on the back arrow to return to the policy list page.
+
+   Repeat the above steps to create 3 more universal policies. Use the following details:
+
+   | Policy Name  | Attribute | Operator | Value source | Value |
+   | ------------- | ------------- | ------------- | ------------- | ------------- |
+   | East Coast Inc brands  | brand  | IN | STATIC | Bolt, Cruz |
+   | Arkbridge part categories  | part_category  | IN | STATIC | tires, brakes, suspension |
+   | Kingsbluff part categories | part_category | IN | STATIC | tires, brakes |
+
+1. Create two exclusive poicies.
+
+   - Click **Add Policy**
+   - Add the policy name: `Brand`
+   - Click **Add Trigger**, and add the following details:
+     Name: `AC-Policy-Brand`
+     Transport type: `HTTP_HEADER`
+   - Click **Save**.
+   - Click **Add Filter**, and add the following details:
+     Attribute: `brand`
+     Operator: `IN`
+     Value source: `TRIGGER`
+     Value: `AC-Policy-Brand`
+   - Click **Save**.
+   - Activate the policy by clicking on the action dots (…) and selecting **Enable**.
+
+    Repeat the above steps to create one more universal policy. Use the following details:
+   
+    | Policy Name  | Trigger - Name | Trigger - transport type | Attribute | Operator | Value source | Value |
+    | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
+    | Model  | AC-Policy-Model  | HTTP_HEADER | model | IN | TRIGGER | AC-Policy-Model |
+
+    After you have created these six new policies, your policy list page should look like the following:
+  
+   ![Screenshot 2025-06-11 at 4 01 34 PM](https://github.com/user-attachments/assets/7a8533dc-1c20-4b9b-9edd-cc1d5ea515c2)
+  
+  **Important:** Ensure all your policies have a status of `Enabled`.
 
 ### Create Channels
-Navigate to Catalog > Channels. You will now create 3 Channels using your newly created policies.
 
-- Click on `Add Channel`
-- Add the following details:
-  - Name: `Global`
-  - Scopes: `en-US` (make sure you hit **enter** button after typing in this value)
-  - Policies: `Brand`, `Model`, `West Coast Inc brands`
-- The modal should look like the screenshot below. You can then click on `Save`
-![Screenshot 2025-06-11 at 4 15 19 PM](https://github.com/user-attachments/assets/23267d3b-390a-42d9-890f-d8d9de2013f5)
+1. In the Commerce Optimizer interface, navigate to **Catalog > Channels**.
+  
+1. Create three channels that use your newly created policies.
 
+   - Click **Add Channel**.
+   - Add the following details:
+     Name: `Global`
+     Scopes: `en-US` (make sure you hit **enter** button after typing in this value)
+     Policies: `Brand`, `Model`, `West Coast Inc brands`
+    
+     The modal should look like the screenshot below.
+    
+     ![Screenshot 2025-06-11 at 4 15 19 PM](https://github.com/user-attachments/assets/23267d3b-390a-42d9-890f-d8d9de2013f5)
 
-Repeat the above steps to create 2 more channels. Use the following details:
+   - Click **Save**.
 
-| Name  | Scopes | Policies |
-| ------------- | ------------- | ------------- |
-| Arkbridge  | en-US  | `Brand` `Model` `West Coast Inc brands` `Arkbridge part categories`|
-| Kingsbluff  | en-US  | `Brand` `Model` `East Coast Inc brands` `Kingsbluff part categories`|
+   Repeat the above steps to create two more channels. Use the following details:
 
-At this point you have created 3 channels and 6 policies. You are now ready to execute the [tutorial](https://experienceleague.adobe.com/en/docs/commerce/optimizer/use-case/admin-use-case).
+   | Name  | Scopes | Policies |
+   | ------------- | ------------- | ------------- |
+   | Arkbridge  | en-US  | `Brand` `Model` `West Coast Inc brands` `Arkbridge part categories`|
+   | Kingsbluff  | en-US  | `Brand` `Model` `East Coast Inc brands` `Kingsbluff part categories`|
+
+ At this point you have created three channels and six policies. You are now ready to complete the  [tutorial]  (https://experienceleague.adobe.com/en/docs/commerce/optimizer/use-case/admin-use-case).
+ to see how the sample data, channels, and policy configuration work together with your storefront.
 
 ## Explore the SDK
 
@@ -198,11 +267,12 @@ import {
   FeedProduct,
   FeedProductStatusEnum,
   FeedProductVisibleInEnum,
+  ProductAttributeTypeEnum,
 } from "@adobe-commerce/aco-ts-sdk";
 
 const product1: FeedProduct = {
   sku: "EXAMPLE-SKU-001",
-  source: { locale: "en-US" },
+  scope: { locale: "en-US" },
   name: "Example Product 1",
   slug: "example-product-1",
   description: "This is an example product created via the SDK",
@@ -214,6 +284,7 @@ const product1: FeedProduct = {
   attributes: [
     {
       code: "brand",
+      type: ProductAttributeTypeEnum.String,
       values: ["Example Brand"],
     },
   ],
@@ -221,7 +292,7 @@ const product1: FeedProduct = {
 
 const product2: FeedProduct = {
   sku: "EXAMPLE-SKU-002",
-  source: { locale: "en-US" },
+  scope: { locale: "en-US" },
   name: "Example Product 2",
   slug: "example-product-2",
   description: "This is another example product created via the SDK",
@@ -233,6 +304,7 @@ const product2: FeedProduct = {
   attributes: [
     {
       code: "brand",
+      type: ProductAttributeTypeEnum.String,
       values: ["Example Brand"],
     },
   ],
@@ -249,7 +321,7 @@ import { FeedProductUpdate } from "@adobe-commerce/aco-ts-sdk";
 
 const productUpdate: FeedProductUpdate = {
   sku: "EXAMPLE-SKU-001",
-  source: { locale: "en-US" },
+  scope: { locale: "en-US" },
   name: "Updated Product Name",
 };
 
@@ -264,7 +336,7 @@ import { FeedProductDelete } from "@adobe-commerce/aco-ts-sdk";
 
 const productDelete: FeedProductDelete = {
   sku: "EXAMPLE-SKU-001",
-  source: { locale: "en-US" },
+  scope: { locale: "en-US" },
 };
 
 const response = await client.deleteProducts([productDelete]);
@@ -284,7 +356,7 @@ import {
 
 const metadata: FeedMetadata = {
   code: "color",
-  source: { locale: "en-US" },
+  scope: { locale: "en-US" },
   label: "Color",
   dataType: FeedMetadataDataTypeEnum.Text,
   visibleIn: [FeedMetadataVisibleInEnum.ProductDetail],
@@ -304,7 +376,7 @@ import { FeedMetadataUpdate } from "@adobe-commerce/aco-ts-sdk";
 
 const metadataUpdate: FeedMetadataUpdate = {
   code: "color",
-  source: { locale: "en-US" },
+  scope: { locale: "en-US" },
   label: "Updated Color Label",
 };
 
@@ -319,7 +391,7 @@ import { FeedMetadataDelete } from "@adobe-commerce/aco-ts-sdk";
 
 const metadataDelete: FeedMetadataDelete = {
   code: "color",
-  source: { locale: "en-US" },
+  scope: { locale: "en-US" },
 };
 
 const response = await client.deleteProductMetadata([metadataDelete]);
