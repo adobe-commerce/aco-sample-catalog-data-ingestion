@@ -4,7 +4,7 @@ Adobe Commerce Optimizer has a sample data set that emulates the catalog data fo
 
 This repository provides the tools to ingest the sample data set into your Adobe Commerce Optimizer instance. The process uses the Adobe Commerce Optimizer Data Ingestion APIs and the Adobe Commerce Optimizer SDK.
 
-**Important:** Once you have executed the data load, please create the Channels and Policies as mentioned [here](#create-channels-and-policies-in-aco-ui). Both the catalog data load and creation of Channels/Policies are mandatory to successfully execute the [tutorial](https://experienceleague.adobe.com/en/docs/commerce/optimizer/use-case/admin-use-case)
+**Important:** After you have uploaded the data, you must create the catalog views and policies from the Commerce Optimizer user interface as described in these instructions. Both the catalog data and the catalog views and policies are required to complete the end-to-end use case.
 
 ## What Will We Do?
 
@@ -17,7 +17,7 @@ Using our new Adobe Commerce Optimizer Typescript/Javascript SDK, we will ingest
 - 5 unique Price Books
 - 6480 Prices across our 5 Price Books (in batches of 100)
 
-After you complete the catalog ingestion, this readme guides you to create the channels and polices required to use the sample data with your Commerce storefront.
+After you complete the catalog ingestion, this readme guides you to create the catalog views and polices required to use the sample data with your Commerce storefront.
 
 ## Run the Sample Catalog Data Ingestion
 
@@ -26,9 +26,9 @@ After you complete the catalog ingestion, this readme guides you to create the c
 1. Clone this repository to your local development environment.
 2. Run the following command to install the necessary dependencies to run the sample data ingestion.
 
-```shell
-npm install
-```
+   ```shell
+   npm install
+   ```
 
 ### Get credentials and tenant ID for your instance
 
@@ -55,17 +55,17 @@ Find your tenant ID in the access URLs for your Commerce Optimizer instance in C
 
    https://na1-sandbox.api.commerce.adobe.com/{tenantId}/v1/catalog
 
-   **Note:** If you don't have access to the Commerce Cloud Manager, contact your system administrator.
+   **Note:**  If you don't have access to the Commerce Cloud Manager, contact your system administrator.
 
 #### Generate the IMS credentials for API authentication
 
-You generate the `client_ID` and `client_secret` credentials from the Adobe Developer Console. You must have a system administrator or developer role for the Adobe Commerce Optimizer project to complete this configuration. See [User Management](https://helpx.adobe.com/enterprise/using/manage-developers.html) in the _Adobe Commerce Optimizer_ documentation.
+You generate the `client_ID` and `client_secret` credentials from the Adobe Developer Console. You must have a system administrator or developer role for the Adobe Commerce Optimizer project to complete this configuration. See [User Management](https://helpx.adobe.com/enterprise/using/manage-developers.html) in the *Adobe Commerce Optimizer* documentation.
 
 1. Log in to the [Adobe Developer Console](https://developer.adobe.com/console).
 
-2. Select the Experience Cloud Organization for the integration.
+1. Select the Experience Cloud Organization for the integration.
 
-3. Create an API project.
+1. Create an API project.
 
    - Add the **Adobe I/O Events for Adobe Commerce** API to your project. Then, click **Next**.
 
@@ -73,25 +73,26 @@ You generate the `client_ID` and `client_secret` credentials from the Adobe Deve
 
    - Click **Save configured API**.
 
-4. In the Connected Credentials section, view API configuration details by selecting **OAUTH Server-to-Server**.
+1. In the Connected Credentials section, view API configuration details by selecting **OAUTH Server-to-Server**.
 
    ![image](https://github.com/user-attachments/assets/34a7e7b2-9816-462b-8453-a28a22d673fa)
 
-5. Copy the Client ID and the Client Secret values to a secure location.
+1. Copy the Client ID and the Client Secret values to a secure location.
 
 ### Configure environment variables
 
 The `.env` file provides the configuration to instantiate the SDK client and provide secure communication between the client and Adobe Commerce Optimizer.
 
-1. Copy the provided `.env.dist` file to a new `.env` file.
-2. Open the `.env` file, and add the IMS client id and client secret crendentials from your Adobe I/O developer project.
+1. Clone this repository to your local development environment.
+
+1. Open the `.env` file, and add the IMS client id and client secret crendentials from your Adobe I/O developer project.
 
    ```conf
    CLIENT_ID=my-client-id
    CLIENT_SECRET=my-client-secret
    ```
 
-3. Add the tenant Id for your Adobe Commerce Optimizer instance.
+1. Add the tenant Id for your Adobe Commerce Optimizer instance. 
 
    ```conf
    TENANT_ID=my-tenant-id
@@ -103,33 +104,33 @@ The `.env` file provides the configuration to instantiate the SDK client and pro
 
 Run the following command to use the [Adobe Commerce Optimizer SDK](https://github.com/adobe-commerce/aco-ts-sdk) to ingest the Carvelo sample data found in the `data` directory.
 
-```shell
-node index.js
-```
+ ```shell
+ node index.js
+ ```
 
 ### Resetting the sample data
 
 To reset the sample catalog data in your ACO instance, run the following script to delete the Carvelo catalog data loaded by the `index.js` ingestion script.
 
-```shell
-node reset.js
-```
+ ```shell
+ node reset.js
+ ```
 
 ## Review the API Documentation
 
 For detailed information about the Data Ingestion API for Adobe Commerce Optimizer, see the [Data Ingestion API Reference](https://developer-stage.adobe.com/commerce/services/composable-catalog/data-ingestion/api-reference/)
 
-## Create channels and policies
+## Create catalog views and policies
 
-From the Adobe Commerce Optimizer user interface, create the channels and policies required to use the sample data with your storefront.
+From the Adobe Commerce Optimizer user interface, create the catalog views and policies required to use the sample data with your storefront.
 
 ### Create policies
 
 1. Login to Adobe Commerce Optimizer.
 
-2. Navigate to Catalog > Policies. You will be creating 4 universal policies and 2 exclusive policies. ([Read more](https://experienceleague.adobe.com/en/docs/commerce/optimizer/catalog/policies#value-source-types) about policy types)
+1. Navigate to Catalog > Policies. You will be creating four universal policies and two exclusive policies. ([Read more](https://experienceleague.adobe.com/en/docs/commerce/optimizer/catalog/policies#value-source-types) about policy types).
 
-3. Create four universal policies:
+1. Create four universal policies:
 
    - Click **Add Policy**
    - Add the policy name: `West Coast Inc brands`
@@ -150,13 +151,13 @@ From the Adobe Commerce Optimizer user interface, create the channels and polici
 
    Repeat the above steps to create 3 more universal policies. Use the following details:
 
-   | Policy Name                | Attribute     | Operator | Value source | Value                     |
-   | -------------------------- | ------------- | -------- | ------------ | ------------------------- |
-   | East Coast Inc brands      | brand         | IN       | STATIC       | Bolt, Cruz                |
-   | Arkbridge part categories  | part_category | IN       | STATIC       | tires, brakes, suspension |
-   | Kingsbluff part categories | part_category | IN       | STATIC       | tires, brakes             |
+   | Policy Name  | Attribute | Operator | Value source | Value |
+   | ------------- | ------------- | ------------- | ------------- | ------------- |
+   | East Coast Inc brands  | brand  | IN | STATIC | Bolt, Cruz |
+   | Arkbridge part categories  | part_category  | IN | STATIC | tires, brakes, suspension |
+   | Kingsbluff part categories | part_category | IN | STATIC | tires, brakes |
 
-4. Create two exclusive poicies.
+1. Create two exclusive policies.
 
    - Click **Add Policy**
    - Add the policy name: `Brand`
@@ -172,28 +173,28 @@ From the Adobe Commerce Optimizer user interface, create the channels and polici
    - Click **Save**.
    - Activate the policy by clicking on the action dots (…) and selecting **Enable**.
 
-   Repeat the above steps to create one more universal policy. Use the following details:
+    Repeat the above steps to create one more universal policy. Use the following details:
 
-   | Policy Name | Trigger - Name  | Trigger - transport type | Attribute | Operator | Value source | Value           |
-   | ----------- | --------------- | ------------------------ | --------- | -------- | ------------ | --------------- |
-   | Model       | AC-Policy-Model | HTTP_HEADER              | model     | IN       | TRIGGER      | AC-Policy-Model |
+    | Policy Name  | Trigger - Name | Trigger - transport type | Attribute | Operator | Value source | Value |
+    | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
+    | Model  | AC-Policy-Model  | HTTP_HEADER | model | IN | TRIGGER | AC-Policy-Model |
 
-   After you have created these six new policies, your policy list page should look like the following:
+    After you have created these six new policies, your policy list page should look like the following:
 
    ![Screenshot 2025-06-11 at 4 01 34 PM](https://github.com/user-attachments/assets/7a8533dc-1c20-4b9b-9edd-cc1d5ea515c2)
 
-   **Important:** Ensure all your policies have a status of `Enabled`.
+  **Important:** Ensure all your policies have a status of `Enabled`.
 
-### Create Channels
+### Create Catalog Views
 
-1. In the Commerce Optimizer interface, navigate to **Catalog > Channels**.
+1. In the Commerce Optimizer interface, navigate to **Catalog > Views**.
 
-1. Create three channels that use your newly created policies.
+1. Create three catalog views that use your newly created policies.
 
-   - Click **Add Channel**.
+   - Click **Add Catalog View**.
    - Add the following details:
      Name: `Global`
-     Scopes: `en-US` (make sure you hit **enter** button after typing in this value)
+     Catalog Sources: `en-US` (make sure you hit **enter** button after typing in this value)
      Policies: `Brand`, `Model`, `West Coast Inc brands`
 
      The modal should look like the screenshot below.
@@ -202,15 +203,14 @@ From the Adobe Commerce Optimizer user interface, create the channels and polici
 
    - Click **Save**.
 
-   Repeat the above steps to create two more channels. Use the following details:
+   Repeat the above steps to create two more catalog views. Use the following details:
 
-   | Name       | Scopes | Policies                                                             |
-   | ---------- | ------ | -------------------------------------------------------------------- |
-   | Arkbridge  | en-US  | `Brand` `Model` `West Coast Inc brands` `Arkbridge part categories`  |
-   | Kingsbluff | en-US  | `Brand` `Model` `East Coast Inc brands` `Kingsbluff part categories` |
+   | Name  | Catalog Sources | Policies |
+   | ------------- | ------------- | ------------- |
+   | Arkbridge  | en-US  | `Brand` `Model` `West Coast Inc brands` `Arkbridge part categories`|
+   | Kingsbluff  | en-US  | `Brand` `Model` `East Coast Inc brands` `Kingsbluff part categories`|
 
-At this point you have created three channels and six policies. You are now ready to complete the [tutorial] (https://experienceleague.adobe.com/en/docs/commerce/optimizer/use-case/admin-use-case).
-to see how the sample data, channels, and policy configuration work together with your storefront.
+At this point you have created three catalog views and six policies that reflect the business structure and sales operations flow for the sample Carvelo organization. You are now ready to [set up your storefront](https://experienceleague.adobe.com/en/docs/commerce/optimizer/storefront).
 
 ## Explore the SDK
 
@@ -645,3 +645,4 @@ const config: ClientConfig = {
   logger, // Uses pino logger from your application
 };
 ```
+
