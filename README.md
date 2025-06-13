@@ -21,6 +21,15 @@ After you complete the catalog ingestion, this readme guides you to create the c
 
 ## Run the Sample Catalog Data Ingestion
 
+### Install dependencies
+
+1. Clone this repository to your local development environment.
+2. Run the following command to install the necessary dependencies to run the sample data ingestion.
+
+   ```shell
+   npm install
+   ```
+
 ### Get credentials and tenant ID for your instance
 
 You need the following values to authenticate requests to ingest data from the sample data set to your Adobe Commerce Optimizer instance.
@@ -96,7 +105,7 @@ The `.env` file provides the configuration to instantiate the SDK client and pro
 
 Run the following command to use the [Adobe Commerce Optimizer SDK](https://github.com/adobe-commerce/aco-ts-sdk) to ingest the Carvelo sample data found in the `data` directory.
 
- ```bash
+ ```shell
  node index.js
  ```
 
