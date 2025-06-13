@@ -202,8 +202,7 @@ From the Adobe Commerce Optimizer user interface, create the catalog views and p
    | Arkbridge  | en-US  | `Brand` `Model` `West Coast Inc brands` `Arkbridge part categories`|
    | Kingsbluff  | en-US  | `Brand` `Model` `East Coast Inc brands` `Kingsbluff part categories`|
 
- At this point you have created three catalog views and six policies. You are now ready to complete the [tutorial](https://experienceleague.adobe.com/en/docs/commerce/optimizer/use-case/admin-use-case)
- to see how the sample data, catalog views, and policy configuration work together with your storefront.
+At this point you have created three catalog views and six policies that reflect the business structure and sales operations flow for the sample Carvelo organization. You are now ready to [set up your storefront](https://experienceleague.adobe.com/en/docs/commerce/optimizer/storefront).
 
 ## Explore the SDK
 
