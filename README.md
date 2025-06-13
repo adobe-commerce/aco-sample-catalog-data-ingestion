@@ -51,7 +51,6 @@ Find your tenant ID in the access URLs for your Commerce Optimizer instance in C
 
    <img width="895" alt="image" src="https://github.com/user-attachments/assets/2d24bb12-3ac4-46ed-aad5-9e85176da6ef" />
 
-
 1. Your tenant ID is included in the endpoint details. For example, you can see it in the Catalog Endpoint that follows this pattern:
 
    https://na1-sandbox.api.commerce.adobe.com/{tenantId}/v1/catalog
