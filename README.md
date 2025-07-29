@@ -67,9 +67,9 @@ You generate the `client_ID` and `client_secret` credentials from the Adobe Deve
 
 1. Create an API project.
 
-   - Add the **Adobe I/O Events for Adobe Commerce** API to your project. Then, click **Next**.
+   - Add the **Adobe Commerce Optimizer Ingestion** API to your project. Then, click **Next**.
 
-   - Configure the Client ID and Client Secret credentials by selecting the **OAUTH Server to Server Authentication** option.
+   - Select the **Default - Cloud Manager** profile.
 
    - Click **Save configured API**.
 
