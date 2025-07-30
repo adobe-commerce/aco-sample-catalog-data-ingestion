@@ -81,24 +81,29 @@ You generate the `client_ID` and `client_secret` credentials from the Adobe Deve
 
 ### Configure environment variables
 
-The `.env` file provides the configuration to instantiate the SDK client and provide secure communication between the client and Adobe Commerce Optimizer.
+The `.env.dist` file provides the configuration template to instantiate the SDK client and provide secure communication between the client and Adobe Commerce Optimizer.
 
 1. Clone this repository to your local development environment.
 
-1. Open the `.env` file, and add the IMS client id and client secret crendentials from your Adobe I/O developer project.
+1. Rename the `.env.dist` file to `.env`.
+  
+1. Configure the environment variables for your project by updating the `.env` file.
+ 
+   - Add the IMS client id and client secret credentials from your Adobe Developer project.
 
-   ```conf
-   CLIENT_ID=my-client-id
-   CLIENT_SECRET=my-client-secret
-   ```
+     ```conf
+     CLIENT_ID=my-client-id
+     CLIENT_SECRET=my-client-secret
+     ```
 
-1. Add the tenant Id for your Adobe Commerce Optimizer instance. 
+   - Add the tenant Id for your Adobe Commerce Optimizer instance. 
 
-   ```conf
-   TENANT_ID=my-tenant-id
-   REGION=na1
-   ENVIRONMENT=sandbox
-   ```
+     ```conf
+     TENANT_ID=my-tenant-id
+     REGION=na1
+     ENVIRONMENT=sandbox
+     ```
+1. Save your changes.
 
 ### Start the Data Ingestion
 
