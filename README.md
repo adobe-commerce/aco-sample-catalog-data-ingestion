@@ -1,8 +1,12 @@
 # Adobe Commerce Optimizer - Sample catalog data ingestion
 
-Adobe Commerce Optimizer has a sample data set that emulates the catalog data for a fictional B2B2X Automobile conglomerate called Carvelo. This sample data and the Carvelo business structure provide the foundation for the [Storefront and Catalog Administrator end-to-end use case](https://experienceleague.adobe.com/en/docs/commerce/optimizer/use-case/admin-use-case) that demonstrates how to use a single base catalog to create catalog views that match sales operations for a complex business organization.
+Commerce Optimizer has a sample data set that emulates the catalog data for a fictional B2B2X Automobile conglomerate called Carvelo. When ingested into Commerce Optimizer, this sample data creates a single base catalog that can be configured and filtered to deliver custom catalogs for different sales channels, locales, and customer segments.
 
-This repository provides the tools to ingest the sample data set into your Adobe Commerce Optimizer instance. The process uses the Adobe Commerce Optimizer Data Ingestion APIs and the Adobe Commerce Optimizer SDK.
+The sample catalog data ingestion process described here is a prerequisite for completing the [Storefront and Catalog Administrator end-to-end use case](https://experienceleague.adobe.com/en/docs/commerce/optimizer/use-case/admin-use-case) that demonstrates how to create custom catalogs to support sales operations for a complex business organization.
+
+## About this repository
+
+This repository provides the tools to ingest the sample data set into your Commerce Optimizer instance. The process uses the Commerce Optimizer Data Ingestion APIs and the [Commerce Optimizer SDK](https://github.com/adobe-commerce/aco-ts-sdk/). You can use this repository as an example for ingesting your own commerce data into a Commerce Optimizer instance.
 
 **Important:** After you have uploaded the data, you must create the catalog views and policies from the Commerce Optimizer user interface as described in these instructions. Both the catalog data and the catalog views and policies are required to complete the end-to-end use case.
 
@@ -10,7 +14,7 @@ This repository provides the tools to ingest the sample data set into your Adobe
 
 You will ingest `Product Metadata`, `Product`, `Price Book`, and `Price` data for our Carvelo Automotive demo dataset.
 
-Using our new Adobe Commerce Optimizer Typescript/Javascript SDK, we will ingest:
+Using our Commerce Optimizer Typescript SDK, we will ingest:
 
 - Metadata for our Product attributes
 - 1080 Products across our 3 brands (in batches of 100)
@@ -32,9 +36,9 @@ After you complete the catalog ingestion, this readme guides you to create the c
 
 ### Get credentials and tenant ID for your instance
 
-You need the following values to authenticate requests to ingest data from the sample data set to your Adobe Commerce Optimizer instance.
+You need the following values to authenticate requests to ingest data from the sample data set to your Commerce Optimizer instance.
 
-- **Tenant_ID**—Identifies the Adobe Commerce Optimizer instance targeted for data ingestion.
+- **Tenant_ID**—Identifies the Commerce Optimizer instance targeted for data ingestion.
 - **Adobe IMS `client_id` and `client_secret` credentials**—These authentication credentials are required to authenticate API requests for data ingestion. You create these credentials from the Adobe Developer Console, which requires an Adobe account with developer access to the Adobe Commerce Optimizer.
 
 #### Get your tenant ID
@@ -59,7 +63,7 @@ Find your tenant ID in the access URLs for your Commerce Optimizer instance in C
 
 #### Generate the IMS credentials for API authentication
 
-You generate the `client_ID` and `client_secret` credentials from the Adobe Developer Console. You must have a system administrator or developer role for the Adobe Commerce Optimizer project to complete this configuration. See [User Management](https://helpx.adobe.com/enterprise/using/manage-developers.html) in the *Adobe Commerce Optimizer* documentation.
+You generate the `client_ID` and `client_secret` credentials from the Adobe Developer Console. You must have a system administrator or developer role for the Commerce Optimizer project to complete this configuration. See [User Management](https://helpx.adobe.com/enterprise/using/manage-developers.html) in the *Commerce Optimizer* documentation.
 
 1. Log in to the [Adobe Developer Console](https://developer.adobe.com/console).
 
@@ -81,7 +85,7 @@ You generate the `client_ID` and `client_secret` credentials from the Adobe Deve
 
 ### Configure environment variables
 
-The `.env.dist` file provides the configuration template to instantiate the SDK client and provide secure communication between the client and Adobe Commerce Optimizer.
+The `.env.dist` file provides the configuration template to instantiate the SDK client and provide secure communication between the client and Commerce Optimizer.
 
 1. Clone this repository to your local development environment.
 
@@ -96,7 +100,7 @@ The `.env.dist` file provides the configuration template to instantiate the SDK 
      CLIENT_SECRET=my-client-secret
      ```
 
-   - Add the tenant Id for your Adobe Commerce Optimizer instance. 
+   - Add the tenant Id for your Commerce Optimizer instance. 
 
      ```conf
      TENANT_ID=my-tenant-id
@@ -107,7 +111,7 @@ The `.env.dist` file provides the configuration template to instantiate the SDK 
 
 ### Start the Data Ingestion
 
-Run the following command to use the [Adobe Commerce Optimizer SDK](https://github.com/adobe-commerce/aco-ts-sdk) to ingest the Carvelo sample data found in the `data` directory.
+Run the following command to use the [Commerce Optimizer SDK](https://github.com/adobe-commerce/aco-ts-sdk) to ingest the Carvelo sample data found in the `data` directory.
 
  ```shell
  node index.js
@@ -115,7 +119,7 @@ Run the following command to use the [Adobe Commerce Optimizer SDK](https://gith
 
 ### Resetting the sample data
 
-To reset the sample catalog data in your ACO instance, run the following script to delete the Carvelo catalog data loaded by the `index.js` ingestion script.
+To reset the sample catalog data in your Commerce Optimizer instance, run the following script to delete the Carvelo catalog data loaded by the `index.js` ingestion script.
 
  ```shell
  node reset.js
@@ -123,17 +127,19 @@ To reset the sample catalog data in your ACO instance, run the following script 
 
 ## Review the API Documentation
 
-For detailed information about the Data Ingestion API for Adobe Commerce Optimizer, see the [Data Ingestion API Reference](https://developer-stage.adobe.com/commerce/services/composable-catalog/data-ingestion/api-reference/)
+For detailed information about the Data Ingestion API, see the [Data Ingestion API Reference](https://developer-stage.adobe.com/commerce/services/composable-catalog/data-ingestion/api-reference/)
 
 ## Create catalog views and policies
 
-From the Adobe Commerce Optimizer user interface, create the catalog views and policies required to use the sample data with your storefront.
+From the Commerce Optimizer user interface, create the catalog views and policies required to use the sample data with your storefront.
+
+**Note:** See the documentation to learn more about [catalog views](https://experienceleague.adobe.com/en/docs/commerce/optimizer/setup/catalog-view), [policies](https://experienceleague.adobe.com/en/docs/commerce/optimizer/setup/policies), and policy types[policy types](https://experienceleague.adobe.com/en/docs/commerce/optimizer/catalog/policies#value-source-types).
 
 ### Create policies
 
-1. Login to Adobe Commerce Optimizer.
+1. Log in to Commerce Optimizer.
 
-1. Navigate to Catalog > Policies. You will be creating four universal policies and two exclusive policies. ([Read more](https://experienceleague.adobe.com/en/docs/commerce/optimizer/catalog/policies#value-source-types) about policy types).
+1. Navigate to **Catalog > Policies**.
 
 1. Create four universal policies:
 
@@ -188,7 +194,7 @@ From the Adobe Commerce Optimizer user interface, create the catalog views and p
 
    ![Screenshot 2025-06-11 at 4 01 34 PM](https://github.com/user-attachments/assets/7a8533dc-1c20-4b9b-9edd-cc1d5ea515c2)
 
-  **Important:** Ensure all your policies have a status of `Enabled`.
+  **Important:** Ensure that all of your policies have a status of `Enabled`.
 
 ### Create Catalog Views
 
