@@ -1,12 +1,12 @@
-# Adobe Commerce Optimizer - Sample catalog data ingestion
+# Sample catalog data ingestion
 
-Commerce Optimizer has a sample data set that emulates the catalog data for a fictional B2B2X Automobile conglomerate called Carvelo. When ingested into Commerce Optimizer, this sample data creates a single base catalog that can be configured and filtered to deliver custom catalogs for different sales channels, locales, and customer segments.
+This sample data set that emulates the catalog data for a fictional B2B2X Automobile conglomerate called Carvelo. When ingested, this sample data creates a single base catalog that can be configured and filtered to deliver custom catalogs for different sales channels, locales, and customer segments.
 
 The sample catalog data ingestion process described here is a prerequisite for completing the [Storefront and Catalog Administrator end-to-end use case](https://experienceleague.adobe.com/en/docs/commerce/optimizer/use-case/admin-use-case) that demonstrates how to create custom catalogs to support sales operations for a complex business organization.
 
 ## About this repository
 
-This repository provides the tools to ingest the sample data set into your Commerce Optimizer instance. The process uses the Commerce Optimizer Data Ingestion APIs and the [Commerce Optimizer SDK](https://github.com/adobe-commerce/aco-ts-sdk/). You can use this repository as an example for ingesting your own commerce data into a Commerce Optimizer instance.
+This repository provides the tools to ingest the sample data set into a Commerce Optimizer instance. The process uses the Data Ingestion APIs and the [Commerce Optimizer SDK](https://github.com/adobe-commerce/aco-ts-sdk/). You can use this repository as an example for ingesting your own commerce data to create a single base catalog to power any Commerce front end.
 
 **Important:** After you have uploaded the data, you must create the catalog views and policies from the Commerce Optimizer user interface as described in these instructions. Both the catalog data and the catalog views and policies are required to complete the end-to-end use case.
 
