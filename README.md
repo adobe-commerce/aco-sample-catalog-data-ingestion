@@ -6,7 +6,13 @@ The sample catalog data ingestion process described here is a prerequisite for c
 
 ## About this repository
 
-This repository provides the tools to ingest the sample data set into a Commerce Optimizer instance. The process uses the Data Ingestion APIs and the [Commerce Optimizer SDK](https://github.com/adobe-commerce/aco-ts-sdk/). You can use this repository as an example for ingesting your own commerce data to create a single base catalog to power any Commerce front end.
+This repository provides the tools to ingest the sample data set into a Commerce Optimizer instance. The process uses the Data Ingestion APIs and the [Commerce Optimizer SDK](https://github.com/adobe-commerce/aco-ts-sdk/).
+
+Also, you can use this repository to load your own commerce data to create a single base catalog to power any Commerce front end.
+
+- Update the metadata, products, price books, and prices data in the [data files](https://github.com/adobe-commerce/aco-sample-catalog-data-ingestion/tree/main/data) with your own commerce data.
+- Run the script to load the sample data.
+- Use the Merchandising GraphQL APIs to retrieve catalog data for your frontend.
 
 **Important:** After you have uploaded the data, you must create the catalog views and policies from the Commerce Optimizer user interface as described in these instructions. Both the catalog data and the catalog views and policies are required to complete the end-to-end use case.
 
