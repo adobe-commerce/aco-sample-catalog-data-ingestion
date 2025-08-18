@@ -147,7 +147,7 @@ From the Commerce Optimizer user interface, create the catalog views and policie
 
 1. Navigate to **Catalog > Policies**.
 
-1. Create four universal policies:
+1. Create four universal policies: `West Coast Inc brands`, `East Coast Inc brands`, `Arkbridge part categories`
 
    - Click **Add Policy**
    - Add the policy name: `West Coast Inc brands`
@@ -162,10 +162,10 @@ From the Commerce Optimizer user interface, create the catalog views and policie
 
      ![Screenshot 2025-06-11 at 3 39 28 PM](https://github.com/user-attachments/assets/c0779c47-3445-4823-9faa-d545ac1fcdf4)
 
-   - Click **Save**.
+   - Apply configuration changes: Click **Save**.
    - Activate the policy you have just created by clicking the action dots (…) and selecting **Enable**.
-   - Click on the back arrow to return to the policy list page.
-
+   - Save the policy: Click **Save**.
+     
    Repeat the above steps to create 3 more universal policies. Use the following details:
 
    | Policy Name  | Attribute | Operator | Value source | Value |
@@ -174,7 +174,7 @@ From the Commerce Optimizer user interface, create the catalog views and policie
    | Arkbridge part categories  | part_category  | IN | STATIC | tires, brakes, suspension |
    | Kingsbluff part categories | part_category | IN | STATIC | tires, brakes |
 
-1. Create two exclusive policies.
+1. Create two exclusive policies: Brand and Policy
 
    - Click **Add Policy**
    - Add the policy name: `Brand`
