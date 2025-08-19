@@ -139,28 +139,43 @@ For detailed information about the Data Ingestion API, see the [Data Ingestion A
 
 From the Commerce Optimizer user interface, create the catalog views and policies required to use the sample data with your storefront.
 
-**Note:** See the documentation to learn more about [catalog views](https://experienceleague.adobe.com/en/docs/commerce/optimizer/setup/catalog-view), [policies](https://experienceleague.adobe.com/en/docs/commerce/optimizer/setup/policies), and policy types[policy types](https://experienceleague.adobe.com/en/docs/commerce/optimizer/catalog/policies#value-source-types).
+**Note:** See the documentation to learn more about [catalog views](https://experienceleague.adobe.com/en/docs/commerce/optimizer/setup/catalog-view), [policies](https://experienceleague.adobe.com/en/docs/commerce/optimizer/setup/policies), and policy types [policy types](https://experienceleague.adobe.com/en/docs/commerce/optimizer/catalog/policies#value-source-types).
 
-### Create policies
+### Create universal policies
+
+Use these instructions to create four universal policies with the following configuration:
+
+| Policy Name  | Attribute | Operator | Value source | Value |
+| ------------- | ------------- | ------------- | ------------- | ------------- |
+| West Coast Inc brands | brand | IN | STATIC | Aurora, Bolt, Cruze
+| East Coast Inc brands  | brand  | IN | STATIC | Bolt, Cruz |
+| Arkbridge part categories  | part_category  | IN | STATIC | tires, brakes, suspension |
+| Kingsbluff part categories | part_category | IN | STATIC | tires, brakes |
+
+**Create each policy**
 
 1. Log in to Commerce Optimizer.
 
 1. Navigate to **Catalog > Policies**.
 
-1. Create four universal policies: `West Coast Inc brands`, `East Coast Inc brands`, `Arkbridge part categories`
+1. Click **Add Policy**.
 
-   - Click **Add Policy**
-   - Add the policy name: `West Coast Inc brands`
-   - Click **Add Filter**, and add the following details:
+1. Enter the policy name.
 
-     Attribute: `brand`
-     Operator: `IN`
-     Value source: `STATIC`
-     Value: `Aurora, Bolt, Cruz`
+1. Configure the static filter: Click **Add Filter**.
 
-     The modal should look like the screenshot below.
+1. Add the filter details
+   
+   - Click **Add Filter**
+   - For **Attribute**, enter the attribute name from the table.
+   - For **Operator**, select `IN`
+   - For **Value source**, select `STATIC`
+   - For **value**, add the values one at a time, then press enter.
 
-     ![Screenshot 2025-06-11 at 3 39 28 PM](https://github.com/user-attachments/assets/c0779c47-3445-4823-9faa-d545ac1fcdf4)
+
+   The modal should look like the screenshot below.
+
+   ![Screenshot 2025-06-11 at 3 39 28 PM](https://github.com/user-attachments/assets/c0779c47-3445-4823-9faa-d545ac1fcdf4)
 
    - Apply configuration changes: Click **Save**.
    - Activate the policy you have just created by clicking the action dots (…) and selecting **Enable**.
@@ -168,11 +183,6 @@ From the Commerce Optimizer user interface, create the catalog views and policie
      
    Repeat the above steps to create 3 more universal policies. Use the following details:
 
-   | Policy Name  | Attribute | Operator | Value source | Value |
-   | ------------- | ------------- | ------------- | ------------- | ------------- |
-   | East Coast Inc brands  | brand  | IN | STATIC | Bolt, Cruz |
-   | Arkbridge part categories  | part_category  | IN | STATIC | tires, brakes, suspension |
-   | Kingsbluff part categories | part_category | IN | STATIC | tires, brakes |
 
 1. Create two exclusive policies: Brand and Policy
 
