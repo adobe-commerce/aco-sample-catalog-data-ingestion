@@ -143,7 +143,7 @@ From the Commerce Optimizer user interface, create the catalog views and policie
 
 ### Create universal policies
 
-Use these instructions to create four universal policies with the following configuration:
+Create four universal (STATIC) policies with the following configuration settings:
 
 | Policy Name  | Attribute | Operator | Value source | Value |
 | ------------- | ------------- | ------------- | ------------- | ------------- |
@@ -152,7 +152,7 @@ Use these instructions to create four universal policies with the following conf
 | Arkbridge part categories  | part_category  | IN | STATIC | tires, brakes, suspension |
 | Kingsbluff part categories | part_category | IN | STATIC | tires, brakes |
 
-**Create each policy**
+**Create each universal policy**
 
 1. Log in to Commerce Optimizer.
 
@@ -177,40 +177,51 @@ Use these instructions to create four universal policies with the following conf
 
    ![Screenshot 2025-06-11 at 3 39 28 PM](https://github.com/user-attachments/assets/c0779c47-3445-4823-9faa-d545ac1fcdf4)
 
-   - Apply configuration changes: Click **Save**.
-   - Activate the policy you have just created by clicking the action dots (…) and selecting **Enable**.
-   - Save the policy: Click **Save**.
+1. Apply configuration changes: Click **Save**.
+
+1. Activate the policy you have just created by clicking the action dots (…) and selecting **Enable**.
+
+1. Save the policy: Click **Save**.
      
-   Repeat the above steps to create 3 more universal policies. Use the following details:
+### Create exclusive (TRIGGER) policies
 
+Create two exclusive policies with the following configuration settings:
 
-1. Create two exclusive policies: Brand and Policy
+| Policy Name  | Trigger - Name | Trigger - transport type | Attribute | Operator | Value source | Value |
+| ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
+| Brand  | AC-Policy-Brand  | HTTP_HEADER | model | IN | TRIGGER | AC-Policy-Brand
+| Model  | AC-Policy-Model  | HTTP_HEADER | model | IN | TRIGGER | AC-Policy-Model |
 
-   - Click **Add Policy**
-   - Add the policy name: `Brand`
-   - Click **Add Trigger**, and add the following details:
-     Name: `AC-Policy-Brand`
-     Transport type: `HTTP_HEADER`
-   - Click **Save**.
-   - Click **Add Filter**, and add the following details:
-     Attribute: `brand`
-     Operator: `IN`
-     Value source: `TRIGGER`
-     Value: `AC-Policy-Brand`
+**Create each exclusive policy**
+
+Use the values from the table to create each policy.
+
+1. From the **Catalog > Policies** page, click **Add Policy**
+
+1. Enter the policy name.
+
+1. Configure the Trigger details: Click **Add Trigger**.
+   
+   - For **Name**, add the trigger name value, for example `AC-Policy-Brand`
+   - For **Transport type**, select `HTTP_HEADER`
+   - Click **Save**
+
+1. Add the filter details for the trigger: Click **Add Filter**
+
+   - For **Attribute**, enter the attribute name from the table.
+   - For **Operator**, select **IN**.
+   - For **Value source**, select **TRIGGER**.
+   - For **Value**, enter the trigger name, for example `AC-Policy-Brand`
    - Click **Save**.
    - Activate the policy by clicking on the action dots (…) and selecting **Enable**.
 
-    Repeat the above steps to create one more universal policy. Use the following details:
+### Verify policies
 
-    | Policy Name  | Trigger - Name | Trigger - transport type | Attribute | Operator | Value source | Value |
-    | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
-    | Model  | AC-Policy-Model  | HTTP_HEADER | model | IN | TRIGGER | AC-Policy-Model |
+After you have created the six policies, your policy list page should look like the following:
 
-    After you have created these six new policies, your policy list page should look like the following:
+![Screenshot 2025-06-11 at 4 01 34 PM](https://github.com/user-attachments/assets/7a8533dc-1c20-4b9b-9edd-cc1d5ea515c2)
 
-   ![Screenshot 2025-06-11 at 4 01 34 PM](https://github.com/user-attachments/assets/7a8533dc-1c20-4b9b-9edd-cc1d5ea515c2)
-
-  **Important:** Ensure that all of your policies have a status of `Enabled`.
+**Important:** Ensure that all of your policies have a status of `Enabled`.
 
 ### Create Catalog Views
 
