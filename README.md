@@ -1,24 +1,24 @@
 # Sample catalog data ingestion
 
-This sample data set that emulates the catalog data for a fictional B2B2X Automobile conglomerate called Carvelo. When ingested, this sample data creates a single base catalog that can be configured and filtered to deliver custom catalogs for different sales channels, locales, and customer segments.
+This sample data set emulates the catalog data for a fictional B2B2X Automobile conglomerate called Carvelo. When ingested, this sample data creates a single base catalog that can be configured and filtered to deliver custom catalogs for different sales channels, locales, and customer segments.
 
 The sample catalog data ingestion process described here is a prerequisite for completing the [Storefront and Catalog Administrator end-to-end use case](https://experienceleague.adobe.com/en/docs/commerce/optimizer/use-case/admin-use-case) that demonstrates how to create custom catalogs to support sales operations for a complex business organization.
 
+
 ## About this repository
 
-This repository provides the tools to ingest the sample data set into a Commerce Optimizer instance. The process uses the Data Ingestion APIs and the [Commerce Optimizer SDK](https://github.com/adobe-commerce/aco-ts-sdk/).
+This repository provides the tools to ingest the sample data set into a Commerce Optimizer instance. The process uses the [Commerce Optimizer SDK](https://github.com/adobe-commerce/aco-ts-sdk/) which is based on the [Data Ingestion API](https://developer.adobe.com/commerce/services/optimizer/data-ingestion/).
 
-Also, you can use this repository to load your own commerce data to create a single base catalog to power any Commerce front end.
+Also, you can use this repository code as the basis for loading your own commerce data to create a single base catalog to power any Commerce front end:
 
 - Update the metadata, products, price books, and prices data in the [data files](https://github.com/adobe-commerce/aco-sample-catalog-data-ingestion/tree/main/data) with your own commerce data.
 - Run the script to load the sample data.
 - Use the Merchandising GraphQL APIs to retrieve catalog data for your frontend.
 
-**Important:** After you have uploaded the data, you must create the catalog views and policies from the Commerce Optimizer user interface as described in these instructions. Both the catalog data and the catalog views and policies are required to complete the end-to-end use case.
 
-## What Will We Do?
+## What will you do?
 
-You will ingest `Product Metadata`, `Product`, `Price Book`, and `Price` data for our Carvelo Automotive demo dataset.
+You will ingest `Product Metadata`, `Product`, `Price Book`, and `Price` data for the Carvelo Automotive demo dataset.
 
 Using our Commerce Optimizer Typescript SDK, we will ingest:
 
@@ -27,14 +27,22 @@ Using our Commerce Optimizer Typescript SDK, we will ingest:
 - 5 unique Price Books
 - 6480 Prices across our 5 Price Books (in batches of 100)
 
-After you complete the catalog ingestion, this readme guides you to create the catalog views and polices required to use the sample data with your Commerce storefront.
+After you ingest the data, setup Adobe Commerce Optimizer by [defining catalog views and policies](#create-catalog-views-and-policies) to filter the base catalog data. Then, you can integrate with an Adobe Commerce Edge Delivery Services storefront to deliver custom catalogs for your business use cases.
 
-## Run the Sample Catalog Data Ingestion
+## Environment setup
+
+Make sure you have the following prerequisites installed in your local development environment:
+
+- Node.js version 20.14.0 or higher
+- Access to Adobe Commerce Optimizer instance
+- Developer access to Adobe Developer Console to create IMS credentials
+- Basic familiarity with Commerce Optimizer concepts
 
 ### Install dependencies
 
 1. Clone this repository to your local development environment.
-2. Run the following command to install the necessary dependencies to run the sample data ingestion.
+
+1. Run the following command to install the necessary dependencies to run the sample data ingestion.
 
    ```shell
    npm install
@@ -95,10 +103,14 @@ The `.env.dist` file provides the configuration template to instantiate the SDK 
 
 1. Clone this repository to your local development environment.
 
-1. Rename the `.env.dist` file to `.env`.
-  
-1. Configure the environment variables for your project by updating the `.env` file.
- 
+1. **Create environment file**
+
+   ```shell
+   cp .env.dist .env
+   ```
+
+1. Edit the .env file to add your credentials.
+
    - Add the IMS client id and client secret credentials from your Adobe Developer project.
 
      ```conf
@@ -106,24 +118,66 @@ The `.env.dist` file provides the configuration template to instantiate the SDK 
      CLIENT_SECRET=my-client-secret
      ```
 
-   - Add the tenant Id for your Commerce Optimizer instance. 
+   - Add the tenant Id for your Commerce Optimizer instance.
 
      ```conf
      TENANT_ID=my-tenant-id
      REGION=na1
      ENVIRONMENT=sandbox
      ```
+
 1. Save your changes.
 
-### Start the Data Ingestion
+## Ingest the data into Commerce Optimizer
 
-Run the following command to use the [Commerce Optimizer SDK](https://github.com/adobe-commerce/aco-ts-sdk) to ingest the Carvelo sample data found in the `data` directory.
+ The ingestion process handles data in the following order:
+
+ 1. Product Metadata (10 items)
+ 1. Products (1080 items in batches of 100)
+ 1. Price Books (5 items)
+ 1. Prices (6480 items in batches of 100)
+
+Run the following command to ingest the Carvelo sample data found in the `data` directory.
 
  ```shell
  node index.js
  ```
 
-### Resetting the sample data
+You should see output similar to the following:
+
+ ```shell
+> $ node index.js
+Ingesting metadata batch 1 containing 10 items                  #  Ingesting the metadata for the product attributes
+
+...
+
+Metadata batch 1 response: { status: 'ACCEPTED', acceptedCount: 10 }
+Successfully ingested 10 out of 10 items
+Ingesting products batch 1 containing 100 products
+Products batch 1 response: { status: 'ACCEPTED', acceptedCount: 100 }  # Ingesting product data
+Ingesting products batch 2 containing 100 products
+
+...
+
+Successfully ingested 1080 out of 1080 products
+Ingesting price books batch 1 containing 5 price books                    # Ingesting price books data
+Price books batch 1 response: { status: 'ACCEPTED', acceptedCount: 5 }
+Successfully ingested 5 out of 5 price books
+Ingesting prices batch 1 containing 100 prices                         # Ingesting price data
+Prices batch 1 response: { status: 'ACCEPTED', acceptedCount: 100 }
+Ingesting prices batch 2 containing 100 prices
+Prices batch 2 response: { status: 'ACCEPTED', acceptedCount: 100 }
+Ingesting prices batch 3 containing 100 prices
+Prices batch 3 response: { status: 'ACCEPTED', acceptedCount: 100 }
+
+...
+
+Successfully ingested 6480 out of 6480 prices
+
+```
+
+
+## Reset the sample data
 
 To reset the sample catalog data in your Commerce Optimizer instance, run the following script to delete the Carvelo catalog data loaded by the `index.js` ingestion script.
 
@@ -131,76 +185,97 @@ To reset the sample catalog data in your Commerce Optimizer instance, run the fo
  node reset.js
  ```
 
-## Review the API Documentation
+ ## Configure Commerce Optimizer catalog views and policies
 
-For detailed information about the Data Ingestion API, see the [Data Ingestion API Reference](https://developer-stage.adobe.com/commerce/services/composable-catalog/data-ingestion/api-reference/)
+Set up the catalog view and polices required to filter the base catalog data to create custom catalogs and pricing based on business use cases.
 
 ## Create catalog views and policies
 
 From the Commerce Optimizer user interface, create the catalog views and policies required to use the sample data with your storefront.
 
-**Note:** See the documentation to learn more about [catalog views](https://experienceleague.adobe.com/en/docs/commerce/optimizer/setup/catalog-view), [policies](https://experienceleague.adobe.com/en/docs/commerce/optimizer/setup/policies), and policy types[policy types](https://experienceleague.adobe.com/en/docs/commerce/optimizer/catalog/policies#value-source-types).
+**Note:** See the documentation to learn more about [catalog views](https://experienceleague.adobe.com/en/docs/commerce/optimizer/setup/catalog-view), [policies](https://experienceleague.adobe.com/en/docs/commerce/optimizer/setup/policies), and policy types [policy types](https://experienceleague.adobe.com/en/docs/commerce/optimizer/catalog/policies#value-source-types).
 
-### Create policies
+### Create universal policies
+
+Create four universal (STATIC) policies with the following configuration settings:
+
+| Policy Name  | Attribute | Operator | Value source | Value |
+| ------------- | ------------- | ------------- | ------------- | ------------- |
+| West Coast Inc brands | brand | IN | STATIC | Aurora, Bolt, Cruz |
+| East Coast Inc brands  | brand  | IN | STATIC | Bolt, Cruz |
+| Arkbridge part categories  | part_category  | IN | STATIC | tires, brakes, suspension |
+| Kingsbluff part categories | part_category | IN | STATIC | tires, brakes |
+
+**Create each universal policy**
 
 1. Log in to Commerce Optimizer.
 
 1. Navigate to **Catalog > Policies**.
 
-1. Create four universal policies:
+1. Click **Add Policy**.
 
-   - Click **Add Policy**
-   - Add the policy name: `West Coast Inc brands`
-   - Click **Add Filter**, and add the following details:
+1. Enter the policy name.
 
-     Attribute: `brand`
-     Operator: `IN`
-     Value source: `STATIC`
-     Value: `Aurora, Bolt, Cruz`
+1. Configure the static filter: Click **Add Filter**.
 
-     The modal should look like the screenshot below.
+1. Add the filter details
 
-     ![Screenshot 2025-06-11 at 3 39 28 PM](https://github.com/user-attachments/assets/c0779c47-3445-4823-9faa-d545ac1fcdf4)
+   - Click **Add Filter**
+   - For **Attribute**, enter the attribute name from the table.
+   - For **Operator**, select `IN`
+   - For **Value source**, select `STATIC`
+   - For **value**, add the values one at a time, then press enter.
 
-   - Click **Save**.
-   - Activate the policy you have just created by clicking the action dots (…) and selecting **Enable**.
-   - Click on the back arrow to return to the policy list page.
 
-   Repeat the above steps to create 3 more universal policies. Use the following details:
+   The modal should look like the screenshot below.
 
-   | Policy Name  | Attribute | Operator | Value source | Value |
-   | ------------- | ------------- | ------------- | ------------- | ------------- |
-   | East Coast Inc brands  | brand  | IN | STATIC | Bolt, Cruz |
-   | Arkbridge part categories  | part_category  | IN | STATIC | tires, brakes, suspension |
-   | Kingsbluff part categories | part_category | IN | STATIC | tires, brakes |
+   ![Commerce Optimizer universal (static) policy configuration](./assets/aco-sample-data-setup-create-static-policy.png)
 
-1. Create two exclusive policies.
+1. Apply configuration changes: Click **Save**.
 
-   - Click **Add Policy**
-   - Add the policy name: `Brand`
-   - Click **Add Trigger**, and add the following details:
-     Name: `AC-Policy-Brand`
-     Transport type: `HTTP_HEADER`
-   - Click **Save**.
-   - Click **Add Filter**, and add the following details:
-     Attribute: `brand`
-     Operator: `IN`
-     Value source: `TRIGGER`
-     Value: `AC-Policy-Brand`
+1. Activate the policy you have just created by clicking the action dots (…) and selecting **Enable**.
+
+1. Save the policy: Click **Save**.
+
+### Create exclusive (TRIGGER) policies
+
+Create two exclusive policies with the following configuration settings:
+
+| Policy Name  | Trigger - Name | Trigger - transport type | Attribute | Operator | Value source | Value |
+| ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
+| Brand  | AC-Policy-Brand  | HTTP_HEADER | model | IN | TRIGGER | AC-Policy-Brand |
+| Model  | AC-Policy-Model  | HTTP_HEADER | model | IN | TRIGGER | AC-Policy-Model |
+
+**Create each exclusive policy**
+
+Use the values from the table to create each policy.
+
+1. From the **Catalog > Policies** page, click **Add Policy**
+
+1. Enter the policy name.
+
+1. Configure the Trigger details: Click **Add Trigger**.
+
+   - For **Name**, add the trigger name value, for example `AC-Policy-Brand`
+   - For **Transport type**, select `HTTP_HEADER`
+   - Click **Save**
+
+1. Add the filter details for the trigger: Click **Add Filter**
+
+   - For **Attribute**, enter the attribute name from the table.
+   - For **Operator**, select **IN**.
+   - For **Value source**, select **TRIGGER**.
+   - For **Value**, enter the trigger name, for example `AC-Policy-Brand`
    - Click **Save**.
    - Activate the policy by clicking on the action dots (…) and selecting **Enable**.
 
-    Repeat the above steps to create one more universal policy. Use the following details:
+### Verify policies
 
-    | Policy Name  | Trigger - Name | Trigger - transport type | Attribute | Operator | Value source | Value |
-    | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
-    | Model  | AC-Policy-Model  | HTTP_HEADER | model | IN | TRIGGER | AC-Policy-Model |
+After you create the six policies, verify that the policy list page includes all the policies.
 
-    After you have created these six new policies, your policy list page should look like the following:
+![Composable Catalog policies for sample data](./assets/aco-sample-data-setup-policies-created.png)
 
-   ![Screenshot 2025-06-11 at 4 01 34 PM](https://github.com/user-attachments/assets/7a8533dc-1c20-4b9b-9edd-cc1d5ea515c2)
-
-  **Important:** Ensure that all of your policies have a status of `Enabled`.
+**Important:** Ensure that all of your policies have a status of `Enabled`.
 
 ### Create Catalog Views
 
