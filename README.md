@@ -185,7 +185,9 @@ To reset the sample catalog data in your Commerce Optimizer instance, run the fo
  node reset.js
  ```
 
- ## Configure Commerce Optimizer c
+ ## Configure Commerce Optimizer catalog views and policies
+
+Set up the catalog view and polices required to filter the base catalog data to create custom catalogs and pricing based on business use cases.
 
 ## Create catalog views and policies
 
