@@ -176,7 +176,6 @@ Successfully ingested 6480 out of 6480 prices
 
 ```
 
-
 ## Reset the sample data
 
 To reset the sample catalog data in your Commerce Optimizer instance, run the following script to delete the Carvelo catalog data loaded by the `index.js` ingestion script.
@@ -185,7 +184,7 @@ To reset the sample catalog data in your Commerce Optimizer instance, run the fo
  node reset.js
  ```
 
- ## Configure Commerce Optimizer catalog views and policies
+ ## Configure Commerce Optimizer
 
 Set up the catalog view and polices required to filter the base catalog data to create custom catalogs and pricing based on business use cases.
 
