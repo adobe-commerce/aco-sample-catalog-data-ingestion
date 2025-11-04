@@ -13,7 +13,7 @@
     "node": ">=20.14.0"
   },
   "dependencies": {
-    "@adobe-commerce/aco-ts-sdk": "^1.0.0",
+    "@adobe-commerce/aco-ts-sdk": "^1.2.0",
     "dotenv": "^16.5.0"
   }
 }
