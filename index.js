@@ -168,10 +168,10 @@ const main = async () => {
 
   const client = createClient(clientConfig);
 
-  // await ingestMetadata(client);
-  // await ingestProducts(client);
-  // await ingestPriceBooks(client);
-  // await ingestPrices(client);
+  await ingestMetadata(client);
+  await ingestProducts(client);
+  await ingestPriceBooks(client);
+  await ingestPrices(client);
   await ingestCategories(client);
 };
 
