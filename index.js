@@ -125,6 +125,34 @@ const ingestPrices = async (client) => {
   }
 };
 
+const ingestCategories = async (client) => {
+  try {
+    const categories = readFile("categories.json");
+    const totalCategories = categories.length;
+    let totalAccepted = 0;
+
+    // Ingest categories in batches of 100
+    for (let i = 0; i < totalCategories; i += BATCH_SIZE) {
+      const batch = categories.slice(i, i + BATCH_SIZE);
+      const batchNumber = getBatchNumber(i);
+      console.info(
+          `Ingesting categories batch ${batchNumber} containing ${batch.length} categories`
+      );
+
+      const response = await client.createCategories(batch);
+      totalAccepted += response.data.acceptedCount || 0;
+
+      console.info(`Categories batch ${batchNumber} response:`, response.data);
+    }
+
+    console.info(
+        `Successfully ingested ${totalAccepted} out of ${totalCategories} products`
+    );
+  } catch (error) {
+    console.error("Error ingesting categories:", error);
+  }
+};
+
 const main = async () => {
   const envConfig = loadConfig();
   const clientConfig = {
@@ -144,6 +172,7 @@ const main = async () => {
   await ingestProducts(client);
   await ingestPriceBooks(client);
   await ingestPrices(client);
+  await ingestCategories(client);
 };
 
 main().catch(console.error);
