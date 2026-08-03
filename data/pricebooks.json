@@ -1,27 +1,32 @@
 [
   {
-    "priceBookId": "west_coast_inc",
-    "name": "West coast Inc. price book",
+    "priceBookId": "base-usd",
+    "name": "USD Base",
     "currency": "USD"
   },
   {
-    "priceBookId": "vip_west_coast_inc",
-    "name": "West coast Inc. VIP customer price book",
-    "currency": "USD"
+    "priceBookId": "public-usd",
+    "name": "Public USD",
+    "parentId": "base-usd"
   },
   {
-    "priceBookId": "east_coast_inc",
-    "name": "East coast Inc. price book",
-    "currency": "USD"
+    "priceBookId": "vip-usd",
+    "name": "VIP USD",
+    "parentId": "base-usd"
   },
   {
-    "priceBookId": "vip_east_coast_inc",
-    "name": "East coast Inc. VIP customer price book",
-    "currency": "USD"
+    "priceBookId": "base-eur",
+    "name": "EUR Base",
+    "currency": "EUR"
   },
   {
-    "priceBookId": "global_visibility",
-    "name": "Global visibility price book",
-    "currency": "USD"
+    "priceBookId": "public-eur",
+    "name": "Public EUR",
+    "parentId": "base-eur"
+  },
+  {
+    "priceBookId": "vip-eur",
+    "name": "VIP EUR",
+    "parentId": "base-eur"
   }
 ]

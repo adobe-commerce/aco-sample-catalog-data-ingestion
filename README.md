@@ -16,18 +16,62 @@ Also, you can use this repository code as the basis for loading your own commerc
 - Use the Merchandising GraphQL APIs to retrieve catalog data for your frontend.
 
 
+## The Carvelo 2.0 catalog model
+
+This dataset models an auto-parts catalog whose headline feature is **"shop by vehicle"
+fitment**: parts are matched to vehicles through a dedicated `fitment` attribute rather than
+through the category tree.
+
+- **Vehicles are reference-only configurable products.** Each model line (e.g.
+  `veh-aurora-flux`) is a configurable product whose variants are its `trim` × `year`
+  combinations. Vehicles are never sold or shown (`visibleIn: []`, no prices); they exist
+  only as fitment targets.
+- **Parts** carry a multi-valued `fitment` attribute listing the vehicle SKUs (or the
+  `UNIVERSAL` sentinel) they fit. Parts are either configurable (an option axis such as
+  brake-pad `grade` produces sellable variants) or simple.
+- **Categories** form a functional tree (brakes, suspension, tires, …); products may belong
+  to several leaf categories.
+- **Pricing** spans two currency anchors (USD, EUR), each with a Public and a VIP child, plus
+  quantity-tier discounts on consumables.
+
 ## What will you do?
 
-You will ingest `Product Metadata`, `Product`, `Price Book`, and `Price` data for the Carvelo Automotive demo dataset.
+You can ingest this catalog into **either** target — or both — from the same `data/*.json`:
 
-Using our Commerce Optimizer Typescript SDK, we will ingest:
+1. **Directly into Adobe Commerce Optimizer (ACO)** via the Commerce Optimizer TypeScript SDK
+   (`npm run ingest`) — Product Metadata (22), Products (2446), Price Books (6), Prices (10158),
+   Category Metadata, and Categories (34). See [aco/ACO_DIRECT.md](aco/ACO_DIRECT.md).
+2. **Into Adobe Commerce (PaaS)** via the Admin REST API (`npm run ingest:paas`), so the
+   [PaaS → ACO connector](https://experienceleague.adobe.com/en/docs/commerce/aco-optimizer-connector/connector-sync-pipeline)
+   re-exports the catalog to Commerce Optimizer. See [paas/PAAS_TO_ACO.md](paas/PAAS_TO_ACO.md).
 
-- Metadata for our Product attributes
-- 1080 Products across our 3 brands (in batches of 100)
-- 5 unique Price Books
-- 6480 Prices across our 5 Price Books (in batches of 100)
+After you ingest the data, set up Adobe Commerce Optimizer by [defining catalog views and policies](#create-catalog-views-and-policies) to filter the base catalog data. Then, you can integrate with an Adobe Commerce Edge Delivery Services storefront to deliver custom catalogs for your business use cases.
 
-After you ingest the data, setup Adobe Commerce Optimizer by [defining catalog views and policies](#create-catalog-views-and-policies) to filter the base catalog data. Then, you can integrate with an Adobe Commerce Edge Delivery Services storefront to deliver custom catalogs for your business use cases.
+## Repository layout
+
+```
+data/          the dataset (source of truth for both targets) + images/ (served via jsDelivr)
+aco/           ACO-direct loader (SDK): ingest.js, reset.js  +  ACO_DIRECT.md (guide)
+paas/          Adobe Commerce adapter: ingest.js, reset.js, client.js, config.js, dto.js  +  PAAS_TO_ACO.md (guide)
+  build-uploads.js   generates the CSV-fallback files
+  uploads/     ready-to-import Adobe Commerce files (carvelo_products.csv, carvelo_attributes.json)
+scripts/       ACO dataset generator: generate.js + copy-deck.js
+lib/           shared helpers: env.js (config), data.js (dataset reads)
+```
+
+| Command | Does |
+| --- | --- |
+| `npm run ingest` (`ingest:aco`) | Load `data/*.json` into ACO via the SDK |
+| `npm run ingest:paas` | Load into Adobe Commerce (PaaS): structure via REST + products via import/json (`-- --smoke` first) |
+| `npm run reset` (`reset:aco`) / `npm run reset:paas` | Delete the ingested data |
+| `npm run generate` | Regenerate `data/*.json` |
+| `npm run generate:paas:uploads` | Regenerate `paas/uploads/*` |
+
+> **Attribute naming:** two intentional namespaces — **camelCase** for ACO SDK schema fields
+> (`visibleIn`, `shortDescription`, `priceBookId`, `variantReferenceId`), **snake_case** for the
+> custom attribute codes (`part_category`, `sold_by_third_party`, `bolt_pattern`). Don't normalize
+> one into the other; the camelCase names are the SDK contract and the snake_case codes are also
+> what Adobe Commerce expects.
 
 ## Environment setup
 
@@ -128,63 +172,49 @@ The `.env.dist` file provides the configuration template to instantiate the SDK 
 
 1. Save your changes.
 
-## Ingest the data into Commerce Optimizer
+## Choose your path
 
- The ingestion process handles data in the following order:
+Both paths load the same `data/*.json`. Pick one:
 
- 1. Product Metadata (10 items)
- 1. Products (1080 items in batches of 100)
- 1. Price Books (5 items)
- 1. Prices (6480 items in batches of 100)
+### Directly into Commerce Optimizer (SDK)
 
-Run the following command to ingest the Carvelo sample data found in the `data` directory.
-
- ```shell
- node index.js
- ```
-
-You should see output similar to the following:
-
- ```shell
-> $ node index.js
-Ingesting metadata batch 1 containing 10 items                  #  Ingesting the metadata for the product attributes
-
-...
-
-Metadata batch 1 response: { status: 'ACCEPTED', acceptedCount: 10 }
-Successfully ingested 10 out of 10 items
-Ingesting products batch 1 containing 100 products
-Products batch 1 response: { status: 'ACCEPTED', acceptedCount: 100 }  # Ingesting product data
-Ingesting products batch 2 containing 100 products
-
-...
-
-Successfully ingested 1080 out of 1080 products
-Ingesting price books batch 1 containing 5 price books                    # Ingesting price books data
-Price books batch 1 response: { status: 'ACCEPTED', acceptedCount: 5 }
-Successfully ingested 5 out of 5 price books
-Ingesting prices batch 1 containing 100 prices                         # Ingesting price data
-Prices batch 1 response: { status: 'ACCEPTED', acceptedCount: 100 }
-Ingesting prices batch 2 containing 100 prices
-Prices batch 2 response: { status: 'ACCEPTED', acceptedCount: 100 }
-Ingesting prices batch 3 containing 100 prices
-Prices batch 3 response: { status: 'ACCEPTED', acceptedCount: 100 }
-
-...
-
-Successfully ingested 6480 out of 6480 prices
-
+```shell
+npm run ingest      # load data/*.json into ACO via the SDK
+npm run reset       # delete it
 ```
 
-## Reset the sample data
+Full guide — ingestion order, expected output, and how to validate:
+**[aco/ACO_DIRECT.md](aco/ACO_DIRECT.md)**.
 
-To reset the sample catalog data in your Commerce Optimizer instance, run the following script to delete the Carvelo catalog data loaded by the `index.js` ingestion script.
+### Into Adobe Commerce (PaaS) → connector → Commerce Optimizer
 
- ```shell
- node reset.js
- ```
+Stand the same catalog up in Adobe Commerce (PaaS) over the Admin REST API; the
+[PaaS → ACO connector](https://experienceleague.adobe.com/en/docs/commerce/aco-optimizer-connector/connector-sync-pipeline)
+re-exports it into Commerce Optimizer. One synchronous pass, no Admin UI (products load via
+`POST /V1/import/json`), and it runs on a fresh instance with zero setup (USD on the default
+`base` website; add an EUR website for multi-currency).
 
- ## Configure Commerce Optimizer
+```shell
+npm run ingest:paas -- --smoke   # small slice first — verify
+npm run ingest:paas              # the full catalog (~2446 products)
+npm run reset:paas               # tear down
+```
+
+Full guide — prerequisites, image config, CSV fallback, and validation:
+**[paas/PAAS_TO_ACO.md](paas/PAAS_TO_ACO.md)**.
+
+How the Carvelo axes map onto Commerce (and what the connector emits):
+
+| Carvelo dataset | Adobe Commerce (PaaS) | Connector → ACO |
+| --- | --- | --- |
+| USD / EUR price anchors | one **website** per currency | catalog scope |
+| Public / VIP price books | **base price** / **VIP customer-group price** | price books named `<website>::<SHA1(customer group id)>` |
+| Quantity tiers | ALL GROUPS tier discounts | tier prices |
+| `en-US` locale | a **store view** | one **catalog source** per store view |
+| Configurable vehicle / part | Commerce configurable product (`trim`+`year`, `grade`, …) | configurable product |
+| `fitment` (multi-value) | multiselect product attribute | fitment attribute |
+
+## Configure Commerce Optimizer
 
 Set up the catalog view and polices required to filter the base catalog data to create custom catalogs and pricing based on business use cases.
 
@@ -354,6 +384,8 @@ Supported Entities:
 
 - Products
 - Product Metadata
+- Categories
+- Category Metadata
 - Price Books
 - Prices
 

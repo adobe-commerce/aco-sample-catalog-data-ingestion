@@ -1,712 +1,112 @@
 [
   {
-    "name": "Battery",
-    "slug": "battery",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Battery - Aurora",
-    "slug": "battery/aurora",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Battery - Aurora - Flux",
-    "slug": "battery/aurora/flux",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Battery - Aurora - Nexus",
-    "slug": "battery/aurora/nexus",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Battery - Aurora - Nova",
-    "slug": "battery/aurora/nova",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Battery - Aurora - Prism",
-    "slug": "battery/aurora/prism",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Battery - Aurora - Pulse",
-    "slug": "battery/aurora/pulse",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Battery - Bolt",
-    "slug": "battery/bolt",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Battery - Bolt - Atlas",
-    "slug": "battery/bolt/atlas",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Battery - Bolt - Mammoth",
-    "slug": "battery/bolt/mammoth",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Battery - Bolt - Ranger",
-    "slug": "battery/bolt/ranger",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Battery - Bolt - Scout",
-    "slug": "battery/bolt/scout",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Battery - Bolt - Terrain",
-    "slug": "battery/bolt/terrain",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Battery - Cruz",
-    "slug": "battery/cruz",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Battery - Cruz - Breeze",
-    "slug": "battery/cruz/breeze",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Battery - Cruz - Echo",
-    "slug": "battery/cruz/echo",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Battery - Cruz - Element",
-    "slug": "battery/cruz/element",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Battery - Cruz - Harmony",
-    "slug": "battery/cruz/harmony",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Battery - Cruz - Verde",
-    "slug": "battery/cruz/verde",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
     "name": "Brakes",
     "slug": "brakes",
     "source": {
       "locale": "en-US"
     },
-    "families": [
-      "menu"
+    "description": "Everything that brings your Carvelo to a stop, from pads and rotors to calipers and fluid.",
+    "families": ["menu"],
+    "position": 0,
+    "metaTags": {
+      "title": "Brakes | Carvelo Parts",
+      "description": "Everything that brings your Carvelo to a stop, from pads and rotors to calipers and fluid.",
+      "keywords": ["carvelo", "auto", "parts", "brakes"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/c62828/ffffff.png?text=Brakes",
+        "label": "Brakes",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
     ]
   },
   {
-    "name": "Brakes - Aurora",
-    "slug": "brakes/aurora",
+    "name": "Brake Pads",
+    "slug": "brakes/pads",
     "source": {
       "locale": "en-US"
     },
-    "families": [
-      "menu"
+    "description": "Replacement and upgrade brake pads for confident, quiet stops.",
+    "families": ["menu"],
+    "position": 1,
+    "metaTags": {
+      "title": "Brake Pads | Carvelo Parts",
+      "description": "Replacement and upgrade brake pads for confident, quiet stops.",
+      "keywords": ["carvelo", "auto", "parts", "brake pads"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/c62828/ffffff.png?text=Brake+Pads",
+        "label": "Brake Pads",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
     ]
   },
   {
-    "name": "Brakes - Aurora - Flux",
-    "slug": "brakes/aurora/flux",
+    "name": "Brake Rotors",
+    "slug": "brakes/rotors",
     "source": {
       "locale": "en-US"
     },
-    "families": [
-      "menu"
+    "description": "Brake rotors that shed heat for steady, fade-free braking.",
+    "families": ["menu"],
+    "position": 2,
+    "metaTags": {
+      "title": "Brake Rotors | Carvelo Parts",
+      "description": "Brake rotors that shed heat for steady, fade-free braking.",
+      "keywords": ["carvelo", "auto", "parts", "brake rotors"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/c62828/ffffff.png?text=Brake+Rotors",
+        "label": "Brake Rotors",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
     ]
   },
   {
-    "name": "Brakes - Aurora - Nexus",
-    "slug": "brakes/aurora/nexus",
+    "name": "Brake Calipers",
+    "slug": "brakes/calipers",
     "source": {
       "locale": "en-US"
     },
-    "families": [
-      "menu"
+    "description": "Brake calipers that clamp the pads with even, reliable force.",
+    "families": ["menu"],
+    "position": 3,
+    "metaTags": {
+      "title": "Brake Calipers | Carvelo Parts",
+      "description": "Brake calipers that clamp the pads with even, reliable force.",
+      "keywords": ["carvelo", "auto", "parts", "brake calipers"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/c62828/ffffff.png?text=Brake+Calipers",
+        "label": "Brake Calipers",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
     ]
   },
   {
-    "name": "Brakes - Aurora - Nova",
-    "slug": "brakes/aurora/nova",
+    "name": "Brake Fluid",
+    "slug": "brakes/fluid",
     "source": {
       "locale": "en-US"
     },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Brakes - Aurora - Prism",
-    "slug": "brakes/aurora/prism",
-    "source": {
-      "locale": "en-US"
+    "description": "Brake fluid to keep pedal feel firm and braking responsive.",
+    "families": ["menu"],
+    "position": 4,
+    "metaTags": {
+      "title": "Brake Fluid | Carvelo Parts",
+      "description": "Brake fluid to keep pedal feel firm and braking responsive.",
+      "keywords": ["carvelo", "auto", "parts", "brake fluid"]
     },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Brakes - Aurora - Pulse",
-    "slug": "brakes/aurora/pulse",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Brakes - Bolt",
-    "slug": "brakes/bolt",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Brakes - Bolt - Atlas",
-    "slug": "brakes/bolt/atlas",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Brakes - Bolt - Mammoth",
-    "slug": "brakes/bolt/mammoth",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Brakes - Bolt - Ranger",
-    "slug": "brakes/bolt/ranger",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Brakes - Bolt - Scout",
-    "slug": "brakes/bolt/scout",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Brakes - Bolt - Terrain",
-    "slug": "brakes/bolt/terrain",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Brakes - Cruz",
-    "slug": "brakes/cruz",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Brakes - Cruz - Breeze",
-    "slug": "brakes/cruz/breeze",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Brakes - Cruz - Echo",
-    "slug": "brakes/cruz/echo",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Brakes - Cruz - Element",
-    "slug": "brakes/cruz/element",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Brakes - Cruz - Harmony",
-    "slug": "brakes/cruz/harmony",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Brakes - Cruz - Verde",
-    "slug": "brakes/cruz/verde",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Charging System",
-    "slug": "chargingsystem",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Charging System - Aurora",
-    "slug": "chargingsystem/aurora",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Charging System - Aurora - Flux",
-    "slug": "chargingsystem/aurora/flux",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Charging System - Aurora - Nexus",
-    "slug": "chargingsystem/aurora/nexus",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Charging System - Aurora - Nova",
-    "slug": "chargingsystem/aurora/nova",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Charging System - Aurora - Prism",
-    "slug": "chargingsystem/aurora/prism",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Charging System - Aurora - Pulse",
-    "slug": "chargingsystem/aurora/pulse",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Hybrid System",
-    "slug": "hybridsystem",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Hybrid System - Cruz",
-    "slug": "hybridsystem/cruz",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Hybrid System - Cruz - Breeze",
-    "slug": "hybridsystem/cruz/breeze",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Hybrid System - Cruz - Echo",
-    "slug": "hybridsystem/cruz/echo",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Hybrid System - Cruz - Element",
-    "slug": "hybridsystem/cruz/element",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Hybrid System - Cruz - Harmony",
-    "slug": "hybridsystem/cruz/harmony",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Hybrid System - Cruz - Verde",
-    "slug": "hybridsystem/cruz/verde",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Motor",
-    "slug": "motor",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Motor - Aurora",
-    "slug": "motor/aurora",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Motor - Aurora - Flux",
-    "slug": "motor/aurora/flux",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Motor - Aurora - Nexus",
-    "slug": "motor/aurora/nexus",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Motor - Aurora - Nova",
-    "slug": "motor/aurora/nova",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Motor - Aurora - Prism",
-    "slug": "motor/aurora/prism",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Motor - Aurora - Pulse",
-    "slug": "motor/aurora/pulse",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Motor - Bolt",
-    "slug": "motor/bolt",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Motor - Bolt - Atlas",
-    "slug": "motor/bolt/atlas",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Motor - Bolt - Mammoth",
-    "slug": "motor/bolt/mammoth",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Motor - Bolt - Ranger",
-    "slug": "motor/bolt/ranger",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Motor - Bolt - Scout",
-    "slug": "motor/bolt/scout",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Motor - Bolt - Terrain",
-    "slug": "motor/bolt/terrain",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Motor - Cruz",
-    "slug": "motor/cruz",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Motor - Cruz - Breeze",
-    "slug": "motor/cruz/breeze",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Motor - Cruz - Echo",
-    "slug": "motor/cruz/echo",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Motor - Cruz - Element",
-    "slug": "motor/cruz/element",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Motor - Cruz - Harmony",
-    "slug": "motor/cruz/harmony",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Motor - Cruz - Verde",
-    "slug": "motor/cruz/verde",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/c62828/ffffff.png?text=Brake+Fluid",
+        "label": "Brake Fluid",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
     ]
   },
   {
@@ -715,188 +115,108 @@
     "source": {
       "locale": "en-US"
     },
-    "families": [
-      "menu"
+    "description": "Suspension parts that control the ride and keep the tires planted.",
+    "families": ["menu"],
+    "position": 5,
+    "metaTags": {
+      "title": "Suspension | Carvelo Parts",
+      "description": "Suspension parts that control the ride and keep the tires planted.",
+      "keywords": ["carvelo", "auto", "parts", "suspension"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/6a1b9a/ffffff.png?text=Suspension",
+        "label": "Suspension",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
     ]
   },
   {
-    "name": "Suspension - Aurora",
-    "slug": "suspension/aurora",
+    "name": "Shocks",
+    "slug": "suspension/shocks",
     "source": {
       "locale": "en-US"
     },
-    "families": [
-      "menu"
+    "description": "Shock absorbers for a composed ride over any road.",
+    "families": ["menu"],
+    "position": 6,
+    "metaTags": {
+      "title": "Shocks | Carvelo Parts",
+      "description": "Shock absorbers for a composed ride over any road.",
+      "keywords": ["carvelo", "auto", "parts", "shocks"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/6a1b9a/ffffff.png?text=Shocks",
+        "label": "Shocks",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
     ]
   },
   {
-    "name": "Suspension - Aurora - Flux",
-    "slug": "suspension/aurora/flux",
+    "name": "Springs",
+    "slug": "suspension/springs",
     "source": {
       "locale": "en-US"
     },
-    "families": [
-      "menu"
+    "description": "Coil springs that set ride height and carry the load.",
+    "families": ["menu"],
+    "position": 7,
+    "metaTags": {
+      "title": "Springs | Carvelo Parts",
+      "description": "Coil springs that set ride height and carry the load.",
+      "keywords": ["carvelo", "auto", "parts", "springs"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/6a1b9a/ffffff.png?text=Springs",
+        "label": "Springs",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
     ]
   },
   {
-    "name": "Suspension - Aurora - Nexus",
-    "slug": "suspension/aurora/nexus",
+    "name": "Control Arms",
+    "slug": "suspension/control-arms",
     "source": {
       "locale": "en-US"
     },
-    "families": [
-      "menu"
+    "description": "Control arms that locate the wheels and hold alignment true.",
+    "families": ["menu"],
+    "position": 8,
+    "metaTags": {
+      "title": "Control Arms | Carvelo Parts",
+      "description": "Control arms that locate the wheels and hold alignment true.",
+      "keywords": ["carvelo", "auto", "parts", "control arms"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/6a1b9a/ffffff.png?text=Control+Arms",
+        "label": "Control Arms",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
     ]
   },
   {
-    "name": "Suspension - Aurora - Nova",
-    "slug": "suspension/aurora/nova",
+    "name": "Sway Bars",
+    "slug": "suspension/sway-bars",
     "source": {
       "locale": "en-US"
     },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Suspension - Aurora - Prism",
-    "slug": "suspension/aurora/prism",
-    "source": {
-      "locale": "en-US"
+    "description": "Sway bars that reduce body roll through the corners.",
+    "families": ["menu"],
+    "position": 9,
+    "metaTags": {
+      "title": "Sway Bars | Carvelo Parts",
+      "description": "Sway bars that reduce body roll through the corners.",
+      "keywords": ["carvelo", "auto", "parts", "sway bars"]
     },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Suspension - Aurora - Pulse",
-    "slug": "suspension/aurora/pulse",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Suspension - Bolt",
-    "slug": "suspension/bolt",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Suspension - Bolt - Atlas",
-    "slug": "suspension/bolt/atlas",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Suspension - Bolt - Mammoth",
-    "slug": "suspension/bolt/mammoth",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Suspension - Bolt - Ranger",
-    "slug": "suspension/bolt/ranger",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Suspension - Bolt - Scout",
-    "slug": "suspension/bolt/scout",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Suspension - Bolt - Terrain",
-    "slug": "suspension/bolt/terrain",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Suspension - Cruz",
-    "slug": "suspension/cruz",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Suspension - Cruz - Breeze",
-    "slug": "suspension/cruz/breeze",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Suspension - Cruz - Echo",
-    "slug": "suspension/cruz/echo",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Suspension - Cruz - Element",
-    "slug": "suspension/cruz/element",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Suspension - Cruz - Harmony",
-    "slug": "suspension/cruz/harmony",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Suspension - Cruz - Verde",
-    "slug": "suspension/cruz/verde",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/6a1b9a/ffffff.png?text=Sway+Bars",
+        "label": "Sway Bars",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
     ]
   },
   {
@@ -905,188 +225,20 @@
     "source": {
       "locale": "en-US"
     },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Tires - Aurora",
-    "slug": "tires/aurora",
-    "source": {
-      "locale": "en-US"
+    "description": "Tires for every Carvelo, tuned for grip, comfort, and quiet.",
+    "families": ["menu"],
+    "position": 10,
+    "metaTags": {
+      "title": "Tires | Carvelo Parts",
+      "description": "Tires for every Carvelo, tuned for grip, comfort, and quiet.",
+      "keywords": ["carvelo", "auto", "parts", "tires"]
     },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Tires - Aurora - Flux",
-    "slug": "tires/aurora/flux",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Tires - Aurora - Nexus",
-    "slug": "tires/aurora/nexus",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Tires - Aurora - Nova",
-    "slug": "tires/aurora/nova",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Tires - Aurora - Prism",
-    "slug": "tires/aurora/prism",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Tires - Aurora - Pulse",
-    "slug": "tires/aurora/pulse",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Tires - Bolt",
-    "slug": "tires/bolt",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Tires - Bolt - Atlas",
-    "slug": "tires/bolt/atlas",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Tires - Bolt - Mammoth",
-    "slug": "tires/bolt/mammoth",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Tires - Bolt - Ranger",
-    "slug": "tires/bolt/ranger",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Tires - Bolt - Scout",
-    "slug": "tires/bolt/scout",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Tires - Bolt - Terrain",
-    "slug": "tires/bolt/terrain",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Tires - Cruz",
-    "slug": "tires/cruz",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Tires - Cruz - Breeze",
-    "slug": "tires/cruz/breeze",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Tires - Cruz - Echo",
-    "slug": "tires/cruz/echo",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Tires - Cruz - Element",
-    "slug": "tires/cruz/element",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Tires - Cruz - Harmony",
-    "slug": "tires/cruz/harmony",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
-    ]
-  },
-  {
-    "name": "Tires - Cruz - Verde",
-    "slug": "tires/cruz/verde",
-    "source": {
-      "locale": "en-US"
-    },
-    "families": [
-      "menu"
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/263238/ffffff.png?text=Tires",
+        "label": "Tires",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
     ]
   },
   {
@@ -1095,128 +247,504 @@
     "source": {
       "locale": "en-US"
     },
-    "families": [
-      "menu"
+    "description": "Driveline parts that keep shifts smooth and power flowing.",
+    "families": ["menu"],
+    "position": 11,
+    "metaTags": {
+      "title": "Transmission | Carvelo Parts",
+      "description": "Driveline parts that keep shifts smooth and power flowing.",
+      "keywords": ["carvelo", "auto", "parts", "transmission"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/00838f/ffffff.png?text=Transmission",
+        "label": "Transmission",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
     ]
   },
   {
-    "name": "Transmission - Bolt",
-    "slug": "transmission/bolt",
+    "name": "Transmission Fluid",
+    "slug": "transmission/fluid",
     "source": {
       "locale": "en-US"
     },
-    "families": [
-      "menu"
+    "description": "Transmission fluid for crisp, cool, reliable shifts.",
+    "families": ["menu"],
+    "position": 12,
+    "metaTags": {
+      "title": "Transmission Fluid | Carvelo Parts",
+      "description": "Transmission fluid for crisp, cool, reliable shifts.",
+      "keywords": ["carvelo", "auto", "parts", "transmission fluid"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/00838f/ffffff.png?text=Transmission+Fluid",
+        "label": "Transmission Fluid",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
     ]
   },
   {
-    "name": "Transmission - Bolt - Atlas",
-    "slug": "transmission/bolt/atlas",
+    "name": "Clutch",
+    "slug": "transmission/clutch",
     "source": {
       "locale": "en-US"
     },
-    "families": [
-      "menu"
+    "description": "Clutch kits that couple engine to gearbox with a positive bite.",
+    "families": ["menu"],
+    "position": 13,
+    "metaTags": {
+      "title": "Clutch | Carvelo Parts",
+      "description": "Clutch kits that couple engine to gearbox with a positive bite.",
+      "keywords": ["carvelo", "auto", "parts", "clutch"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/00838f/ffffff.png?text=Clutch",
+        "label": "Clutch",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
     ]
   },
   {
-    "name": "Transmission - Bolt - Mammoth",
-    "slug": "transmission/bolt/mammoth",
+    "name": "Flywheel",
+    "slug": "transmission/flywheel",
     "source": {
       "locale": "en-US"
     },
-    "families": [
-      "menu"
+    "description": "Flywheels that give the clutch a flat, balanced surface to grip.",
+    "families": ["menu"],
+    "position": 14,
+    "metaTags": {
+      "title": "Flywheel | Carvelo Parts",
+      "description": "Flywheels that give the clutch a flat, balanced surface to grip.",
+      "keywords": ["carvelo", "auto", "parts", "flywheel"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/00838f/ffffff.png?text=Flywheel",
+        "label": "Flywheel",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
     ]
   },
   {
-    "name": "Transmission - Bolt - Ranger",
-    "slug": "transmission/bolt/ranger",
+    "name": "Charging System",
+    "slug": "charging-system",
     "source": {
       "locale": "en-US"
     },
-    "families": [
-      "menu"
+    "description": "The parts that store and replenish your vehicle's electrical energy.",
+    "families": ["menu"],
+    "position": 15,
+    "metaTags": {
+      "title": "Charging System | Carvelo Parts",
+      "description": "The parts that store and replenish your vehicle's electrical energy.",
+      "keywords": ["carvelo", "auto", "parts", "charging system"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/2e7d32/ffffff.png?text=Charging+System",
+        "label": "Charging System",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
     ]
   },
   {
-    "name": "Transmission - Bolt - Scout",
-    "slug": "transmission/bolt/scout",
+    "name": "Charger",
+    "slug": "charging-system/charger",
     "source": {
       "locale": "en-US"
     },
-    "families": [
-      "menu"
+    "description": "Onboard chargers that top up the battery safely and efficiently.",
+    "families": ["menu"],
+    "position": 16,
+    "metaTags": {
+      "title": "Charger | Carvelo Parts",
+      "description": "Onboard chargers that top up the battery safely and efficiently.",
+      "keywords": ["carvelo", "auto", "parts", "charger"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/2e7d32/ffffff.png?text=Charger",
+        "label": "Charger",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
     ]
   },
   {
-    "name": "Transmission - Bolt - Terrain",
-    "slug": "transmission/bolt/terrain",
+    "name": "Batteries",
+    "slug": "charging-system/batteries",
     "source": {
       "locale": "en-US"
     },
-    "families": [
-      "menu"
+    "description": "Batteries that start the vehicle and steady the electrical system.",
+    "families": ["menu"],
+    "position": 17,
+    "metaTags": {
+      "title": "Batteries | Carvelo Parts",
+      "description": "Batteries that start the vehicle and steady the electrical system.",
+      "keywords": ["carvelo", "auto", "parts", "batteries"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/2e7d32/ffffff.png?text=Batteries",
+        "label": "Batteries",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
     ]
   },
   {
-    "name": "Transmission - Cruz",
-    "slug": "transmission/cruz",
+    "name": "Wheels",
+    "slug": "wheels",
     "source": {
       "locale": "en-US"
     },
-    "families": [
-      "menu"
+    "description": "Wheels that carry the load and set the stance of your Carvelo.",
+    "families": ["menu"],
+    "position": 18,
+    "metaTags": {
+      "title": "Wheels | Carvelo Parts",
+      "description": "Wheels that carry the load and set the stance of your Carvelo.",
+      "keywords": ["carvelo", "auto", "parts", "wheels"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/37474f/ffffff.png?text=Wheels",
+        "label": "Wheels",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
     ]
   },
   {
-    "name": "Transmission - Cruz - Breeze",
-    "slug": "transmission/cruz/breeze",
+    "name": "Electrical",
+    "slug": "electrical",
     "source": {
       "locale": "en-US"
     },
-    "families": [
-      "menu"
+    "description": "Electrical parts that start the vehicle and keep the power flowing.",
+    "families": ["menu"],
+    "position": 19,
+    "metaTags": {
+      "title": "Electrical | Carvelo Parts",
+      "description": "Electrical parts that start the vehicle and keep the power flowing.",
+      "keywords": ["carvelo", "auto", "parts", "electrical"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/f9a825/ffffff.png?text=Electrical",
+        "label": "Electrical",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
     ]
   },
   {
-    "name": "Transmission - Cruz - Echo",
-    "slug": "transmission/cruz/echo",
+    "name": "Alternators",
+    "slug": "electrical/alternators",
     "source": {
       "locale": "en-US"
     },
-    "families": [
-      "menu"
+    "description": "Alternators that keep the battery charged on the move.",
+    "families": ["menu"],
+    "position": 20,
+    "metaTags": {
+      "title": "Alternators | Carvelo Parts",
+      "description": "Alternators that keep the battery charged on the move.",
+      "keywords": ["carvelo", "auto", "parts", "alternators"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/f9a825/ffffff.png?text=Alternators",
+        "label": "Alternators",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
     ]
   },
   {
-    "name": "Transmission - Cruz - Element",
-    "slug": "transmission/cruz/element",
+    "name": "Starters",
+    "slug": "electrical/starters",
     "source": {
       "locale": "en-US"
     },
-    "families": [
-      "menu"
+    "description": "Starter motors that crank the engine to life every time.",
+    "families": ["menu"],
+    "position": 21,
+    "metaTags": {
+      "title": "Starters | Carvelo Parts",
+      "description": "Starter motors that crank the engine to life every time.",
+      "keywords": ["carvelo", "auto", "parts", "starters"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/f9a825/ffffff.png?text=Starters",
+        "label": "Starters",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
     ]
   },
   {
-    "name": "Transmission - Cruz - Harmony",
-    "slug": "transmission/cruz/harmony",
+    "name": "Batteries",
+    "slug": "electrical/batteries",
     "source": {
       "locale": "en-US"
     },
-    "families": [
-      "menu"
+    "description": "Batteries that start the vehicle and steady the electrical system.",
+    "families": ["menu"],
+    "position": 22,
+    "metaTags": {
+      "title": "Batteries | Carvelo Parts",
+      "description": "Batteries that start the vehicle and steady the electrical system.",
+      "keywords": ["carvelo", "auto", "parts", "batteries"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/f9a825/ffffff.png?text=Batteries",
+        "label": "Batteries",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
     ]
   },
   {
-    "name": "Transmission - Cruz - Verde",
-    "slug": "transmission/cruz/verde",
+    "name": "Fluids",
+    "slug": "fluids",
     "source": {
       "locale": "en-US"
     },
-    "families": [
-      "menu"
+    "description": "Oils and fluids that keep every system running clean and cool.",
+    "families": ["menu"],
+    "position": 23,
+    "metaTags": {
+      "title": "Fluids | Carvelo Parts",
+      "description": "Oils and fluids that keep every system running clean and cool.",
+      "keywords": ["carvelo", "auto", "parts", "fluids"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/1565c0/ffffff.png?text=Fluids",
+        "label": "Fluids",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
+    ]
+  },
+  {
+    "name": "Oil",
+    "slug": "fluids/oil",
+    "source": {
+      "locale": "en-US"
+    },
+    "description": "Motor oil that lubricates, cools, and protects the engine.",
+    "families": ["menu"],
+    "position": 24,
+    "metaTags": {
+      "title": "Oil | Carvelo Parts",
+      "description": "Motor oil that lubricates, cools, and protects the engine.",
+      "keywords": ["carvelo", "auto", "parts", "oil"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/1565c0/ffffff.png?text=Oil",
+        "label": "Oil",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
+    ]
+  },
+  {
+    "name": "Transmission Fluid",
+    "slug": "fluids/transmission",
+    "source": {
+      "locale": "en-US"
+    },
+    "description": "Transmission fluid for crisp, cool, reliable shifts.",
+    "families": ["menu"],
+    "position": 25,
+    "metaTags": {
+      "title": "Transmission Fluid | Carvelo Parts",
+      "description": "Transmission fluid for crisp, cool, reliable shifts.",
+      "keywords": ["carvelo", "auto", "parts", "transmission fluid"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/1565c0/ffffff.png?text=Transmission+Fluid",
+        "label": "Transmission Fluid",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
+    ]
+  },
+  {
+    "name": "Brake Fluid",
+    "slug": "fluids/brake-fluid",
+    "source": {
+      "locale": "en-US"
+    },
+    "description": "Brake fluid to keep pedal feel firm and braking responsive.",
+    "families": ["menu"],
+    "position": 26,
+    "metaTags": {
+      "title": "Brake Fluid | Carvelo Parts",
+      "description": "Brake fluid to keep pedal feel firm and braking responsive.",
+      "keywords": ["carvelo", "auto", "parts", "brake fluid"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/1565c0/ffffff.png?text=Brake+Fluid",
+        "label": "Brake Fluid",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
+    ]
+  },
+  {
+    "name": "Wiper Fluid",
+    "slug": "fluids/wiper-fluid",
+    "source": {
+      "locale": "en-US"
+    },
+    "description": "Washer fluid for a clear windshield in any weather.",
+    "families": ["menu"],
+    "position": 27,
+    "metaTags": {
+      "title": "Wiper Fluid | Carvelo Parts",
+      "description": "Washer fluid for a clear windshield in any weather.",
+      "keywords": ["carvelo", "auto", "parts", "wiper fluid"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/1565c0/ffffff.png?text=Wiper+Fluid",
+        "label": "Wiper Fluid",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
+    ]
+  },
+  {
+    "name": "Engine",
+    "slug": "engine",
+    "source": {
+      "locale": "en-US"
+    },
+    "description": "Engine parts that keep combustion clean, fed, and breathing.",
+    "families": ["menu"],
+    "position": 28,
+    "metaTags": {
+      "title": "Engine | Carvelo Parts",
+      "description": "Engine parts that keep combustion clean, fed, and breathing.",
+      "keywords": ["carvelo", "auto", "parts", "engine"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/ef6c00/ffffff.png?text=Engine",
+        "label": "Engine",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
+    ]
+  },
+  {
+    "name": "Fuel Pump",
+    "slug": "engine/fuel-pump",
+    "source": {
+      "locale": "en-US"
+    },
+    "description": "Fuel pumps that deliver steady pressure under any load.",
+    "families": ["menu"],
+    "position": 29,
+    "metaTags": {
+      "title": "Fuel Pump | Carvelo Parts",
+      "description": "Fuel pumps that deliver steady pressure under any load.",
+      "keywords": ["carvelo", "auto", "parts", "fuel pump"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/ef6c00/ffffff.png?text=Fuel+Pump",
+        "label": "Fuel Pump",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
+    ]
+  },
+  {
+    "name": "Fuel Filters",
+    "slug": "engine/fuel-filters",
+    "source": {
+      "locale": "en-US"
+    },
+    "description": "Fuel filters that screen out grit before it reaches the injectors.",
+    "families": ["menu"],
+    "position": 30,
+    "metaTags": {
+      "title": "Fuel Filters | Carvelo Parts",
+      "description": "Fuel filters that screen out grit before it reaches the injectors.",
+      "keywords": ["carvelo", "auto", "parts", "fuel filters"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/ef6c00/ffffff.png?text=Fuel+Filters",
+        "label": "Fuel Filters",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
+    ]
+  },
+  {
+    "name": "Air Filters",
+    "slug": "engine/air-filters",
+    "source": {
+      "locale": "en-US"
+    },
+    "description": "Air filters that keep the engine breathing clean air.",
+    "families": ["menu"],
+    "position": 31,
+    "metaTags": {
+      "title": "Air Filters | Carvelo Parts",
+      "description": "Air filters that keep the engine breathing clean air.",
+      "keywords": ["carvelo", "auto", "parts", "air filters"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/ef6c00/ffffff.png?text=Air+Filters",
+        "label": "Air Filters",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
+    ]
+  },
+  {
+    "name": "Oil Filters",
+    "slug": "engine/oil-filters",
+    "source": {
+      "locale": "en-US"
+    },
+    "description": "Oil filters that trap the particles motor oil picks up.",
+    "families": ["menu"],
+    "position": 32,
+    "metaTags": {
+      "title": "Oil Filters | Carvelo Parts",
+      "description": "Oil filters that trap the particles motor oil picks up.",
+      "keywords": ["carvelo", "auto", "parts", "oil filters"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/ef6c00/ffffff.png?text=Oil+Filters",
+        "label": "Oil Filters",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
+    ]
+  },
+  {
+    "name": "Spark Plugs",
+    "slug": "engine/spark-plugs",
+    "source": {
+      "locale": "en-US"
+    },
+    "description": "Spark plugs for a clean, reliable spark and sharp response.",
+    "families": ["menu"],
+    "position": 33,
+    "metaTags": {
+      "title": "Spark Plugs | Carvelo Parts",
+      "description": "Spark plugs for a clean, reliable spark and sharp response.",
+      "keywords": ["carvelo", "auto", "parts", "spark plugs"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/ef6c00/ffffff.png?text=Spark+Plugs",
+        "label": "Spark Plugs",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
     ]
   }
 ]

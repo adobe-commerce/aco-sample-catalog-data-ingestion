@@ -1,19 +1,25 @@
 {
   "name": "@adobe-commerce/aco-sample-catalog-data-ingestion",
   "description": "Example repo for how to use the Adobe Commerce Optimizer SDK to ingest catalog data.",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "author": "Ross Brandon <wbrandon@adobe.com>",
   "type": "module",
-  "main": "index.js",
+  "main": "aco/ingest.js",
   "scripts": {
-    "ingest": "node index.js",
-    "reset": "node reset.js"
+    "ingest": "npm run ingest:aco",
+    "ingest:aco": "node aco/ingest.js",
+    "ingest:paas": "node paas/ingest.js",
+    "reset": "npm run reset:aco",
+    "reset:aco": "node aco/reset.js",
+    "reset:paas": "node paas/reset.js",
+    "generate": "node scripts/generate.js",
+    "generate:paas:uploads": "node paas/build-uploads.js"
   },
   "engines": {
     "node": ">=20.14.0"
   },
   "dependencies": {
-    "@adobe-commerce/aco-ts-sdk": "^1.2.0",
-    "dotenv": "^16.5.0"
+    "@adobe-commerce/aco-ts-sdk": "^2.0.0",
+    "dotenv": "^17.4.2"
   }
 }

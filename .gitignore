@@ -1,5 +1,8 @@
 node_modules/
 dist/
+out/
+tmp/
 .env*
 !.env.dist
 .DS_Store
+CLAUDE.md
