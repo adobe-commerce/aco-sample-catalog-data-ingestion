@@ -25,7 +25,7 @@ export class PaasClient {
     return this.token;
   }
 
-  headers() {
+  getHeaders() {
     return {
       Authorization: `Bearer ${this.token}`,
       "Content-Type": "application/json",
@@ -37,7 +37,7 @@ export class PaasClient {
   async request(method, path, body, { tolerate = [] } = {}) {
     const res = await fetch(`${this.baseUrl}/rest${path}`, {
       method,
-      headers: this.headers(),
+      headers: this.getHeaders(),
       body: body === undefined ? undefined : JSON.stringify(body),
     });
 

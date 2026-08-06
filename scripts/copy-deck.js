@@ -6,30 +6,30 @@
 
 // One sentence on what each part is / does. Keyed by PART_SPECS "key".
 export const PART_INTRO = {
-  "brake-pads": "Brake pads press against the rotor to slow the vehicle and are the first thing to check at any brake service.",
-  "brake-rotors": "Brake rotors are the discs the pads clamp onto, shedding heat to keep braking steady stop after stop.",
-  "brake-calipers": "The brake caliper holds the pistons that squeeze the pads against the rotor, and it is the muscle behind every stop.",
-  "shocks": "Shock absorbers damp the springs to keep the tires planted and the ride composed over rough pavement.",
-  "springs": "Coil springs carry the weight of the vehicle and set its ride height and stance.",
-  "control-arms": "Control arms locate the wheel and let the suspension move through its travel while keeping alignment true.",
-  "sway-bars": "The sway bar ties the left and right suspension together to cut body roll through corners.",
-  "clutch": "The clutch kit couples the engine to the transmission, and wear here shows up as slipping or a heavy pedal.",
-  "flywheel": "The flywheel stores rotational energy and gives the clutch a flat, balanced surface to grip.",
-  "charger": "The onboard charger converts incoming power to top up the battery safely and efficiently.",
-  "alternator": "The alternator keeps the battery charged and the electrical system powered while the engine runs.",
-  "starter": "The starter motor cranks the engine to life every time the key is turned.",
-  "fuel-pump": "The fuel pump delivers a steady supply of fuel from the tank to the engine under all conditions.",
-  "tires": "Tires are the only contact between the vehicle and the road, so they shape grip, comfort, and noise.",
-  "wheels": "Wheels carry the tires and the weight of the vehicle while setting much of its stance and character.",
-  "battery": "The battery supplies the power to start the vehicle and steadies the electrical system on the move.",
-  "oil": "Motor oil lubricates and cools the moving parts of the engine and carries away the debris of daily running.",
-  "brake-fluid": "Brake fluid carries pedal pressure to the calipers, and its condition directly affects braking feel.",
-  "trans-fluid": "Transmission fluid lubricates and cools the gearbox while carrying the pressure that makes shifts crisp.",
-  "wiper-fluid": "Washer fluid clears the windshield of grime, bugs, and winter salt for safe visibility.",
-  "spark-plugs": "Spark plugs ignite the air and fuel in each cylinder, and fresh plugs sharpen response and economy.",
-  "air-filter": "The air filter keeps grit out of the engine while letting it breathe freely.",
-  "oil-filter": "The oil filter traps the particles that motor oil picks up, protecting the engine between changes.",
-  "fuel-filter": "The fuel filter screens out contaminants before they reach the injectors.",
+  "brake-pads": "Where confidence meets the road: brake pads with firm, fade-resistant bite that keep every stop short, quiet, and sure.",
+  "brake-rotors": "Cool-running brake rotors that shrug off heat and resist fade, so stopping stays sharp from the gentlest slowdown to the hardest.",
+  "brake-calipers": "The clamping muscle behind every confident stop: a brake caliper that applies smooth, even, reliable force mile after mile.",
+  "shocks": "Composed control over broken pavement: shock absorbers that soak up the rough stuff and keep the ride flat, settled, and sure.",
+  "springs": "Coil springs that set the stance and carry the load, dialed for the right ride height and a planted, confident feel.",
+  "control-arms": "The quiet backbone of precise handling: control arms that keep the suspension located, aligned, and true through every mile.",
+  "sway-bars": "Flatter, more confident cornering: a sway bar that ties the suspension together and reins in body roll when the road turns.",
+  "clutch": "Crisp, positive engagement every time: a clutch kit built to grab cleanly and hold, from the daily commute to spirited driving.",
+  "flywheel": "A flat, precisely balanced flywheel that gives the clutch a true surface to grip, for smoother launches and steadier power.",
+  "charger": "Reliable, efficient charging that keeps the electrical system topped up and ready: an onboard charger you can set and forget.",
+  "alternator": "Steady power on the move: an alternator that keeps the electrical system charged and everything running, revs high or low.",
+  "starter": "First-turn starts, every time: a starter motor that cranks strong in heat, cold, and everything in between.",
+  "fuel-pump": "Steady fuel delivery under any load: a fuel pump that holds pressure constant so the engine never goes hungry.",
+  "tires": "Where every drive really happens: tires tuned for confident grip, a quiet ride, and the miles to back it up.",
+  "wheels": "The first thing anyone notices: wheels engineered to be light, strong, and unmistakable at the curb.",
+  "battery": "Dependable cranking power and steady voltage: a battery that starts strong and holds up through every season.",
+  "oil": "Cleaner, cooler running from every quart: motor oil that lubricates, protects, and keeps the engine performing like new.",
+  "brake-fluid": "Firm, confident pedal feel: brake fluid engineered to resist heat and moisture so braking stays crisp and responsive.",
+  "trans-fluid": "Crisp, cool, consistent shifts: transmission fluid that protects the gearbox and keeps power flowing smoothly.",
+  "wiper-fluid": "A clear view in any weather: washer fluid that cuts through grime, bugs, and winter salt in a single pass.",
+  "spark-plugs": "Sharper throttle response and smoother economy: spark plugs that light every cylinder cleanly, start after start.",
+  "air-filter": "Clean air and freer breathing: an air filter that keeps grit out while letting the engine inhale deeply.",
+  "oil-filter": "Long-lasting engine protection: an oil filter that traps the fine particles so clean oil keeps circulating.",
+  "fuel-filter": "Protects what matters most: a fuel filter that screens out contaminants before they ever reach the injectors.",
 };
 
 // The differentiator clause for a "character" option value. Dimensional options
@@ -37,31 +37,31 @@ export const PART_INTRO = {
 // read in the name instead. Missing key -> no clause.
 export const OPTION_BENEFIT = {
   // grade (brakes / suspension)
-  "Eco": "The Eco grade is tuned for quiet, low-dust daily driving and long life.",
-  "Performance": "The Performance grade uses a higher-spec build for stronger, steadier work when pushed hard.",
-  "Luxury": "The Luxury grade is tuned for a soft, quiet, refined ride.",
+  "Eco": "The Eco grade is tuned for quiet, low-dust daily driving and a long, worry-free life.",
+  "Performance": "The Performance grade steps up to a higher-spec build for stronger, steadier bite when you push hard.",
+  "Luxury": "The Luxury grade is tuned for a soft, hushed, refined ride that takes the edge off every mile.",
   // battery lines
-  "Economy": "The Economy line covers the essentials at a value price.",
-  "Standard": "The Standard line is a balanced choice for everyday driving.",
-  "AGM": "The AGM build resists vibration and handles heavy electrical loads and frequent restarts.",
+  "Economy": "The Economy line covers the essentials at a smart, no-surprises price.",
+  "Standard": "The Standard line is a balanced, do-it-all choice for everyday driving.",
+  "AGM": "The AGM build resists vibration and shrugs off heavy electrical loads and frequent restarts.",
   // oil viscosity
-  "0W-20": "A 0W-20 weight flows fast on cold starts for modern low-friction engines.",
-  "5W-30": "A 5W-30 weight suits a wide range of engines and climates.",
-  "10W-40": "A 10W-40 weight holds up under heat and in higher-mileage engines.",
+  "0W-20": "A 0W-20 weight flows fast on cold starts for modern, low-friction engines.",
+  "5W-30": "A 5W-30 weight is the versatile pick, at home across a wide range of engines and climates.",
+  "10W-40": "A 10W-40 weight holds its film under heat and in higher-mileage engines.",
   // filter media
   "High-Flow": "The high-flow media opens up airflow for a freer-breathing intake.",
   "Extended": "The extended-life media stretches the interval between changes.",
   // spark plug lines
-  "Copper": "Copper electrodes deliver a strong spark at a value price.",
-  "Iridium": "Iridium electrodes hold their edge far longer for a fine, reliable spark.",
+  "Copper": "Copper electrodes deliver a strong, dependable spark at a value price.",
+  "Iridium": "Iridium electrodes hold their fine edge far longer for a precise, reliable spark.",
   // tire lines
-  "All-Season": "The all-season tread balances grip in dry, wet, and light winter conditions.",
+  "All-Season": "The all-season tread balances grip in the dry, the wet, and light winter.",
   "Sport": "The sport compound trades a little tread life for sharper dry and wet grip.",
   "Off-Road": "The off-road tread bites into loose surfaces and shrugs off trail abuse.",
   // wheel lines
-  "Aero": "The aero design smooths airflow for a clean, modern look.",
-  "Mesh": "The mesh spokes are light and show off the brakes behind them.",
-  "Forged": "Forged construction is lighter and stronger than a cast wheel.",
+  "Aero": "The aero face is smooth and sculpted for a clean, modern look.",
+  "Mesh": "The light, open mesh spokes give an airy face with plenty of attitude.",
+  "Forged": "Forged construction is lighter and stronger than a cast wheel, the enthusiast's pick.",
   // tire speed rating
   "Z": "The Z speed rating is built for sustained high-speed stability.",
 };
@@ -99,7 +99,7 @@ export const FITMENT_PHRASE = {
   "direct_fit": "A direct-fit replacement for the {make} {model} {year}.",
   "direct_fit_perf": "A direct-fit upgrade for the {make} {model} Performance {year}.",
   "universal": "Universal fit across Aurora, Bolt, and Cruz vehicles.",
-  "broad": "Fits a wide range of Aurora, Bolt, and Cruz vehicles.",
+  "broad": "Fits a range of {makes} vehicles.",
 };
 
 // Category descriptions, keyed by slug. Used for description + meta description.
@@ -109,10 +109,10 @@ export const CATEGORY_BLURB = {
   "brakes/rotors": "Brake rotors that shed heat for steady, fade-free braking.",
   "brakes/calipers": "Brake calipers that clamp the pads with even, reliable force.",
   "brakes/fluid": "Brake fluid to keep pedal feel firm and braking responsive.",
-  "suspension": "Suspension parts that control the ride and keep the tires planted.",
+  "suspension": "Suspension parts that control the ride and keep the vehicle planted and composed.",
   "suspension/shocks": "Shock absorbers for a composed ride over any road.",
   "suspension/springs": "Coil springs that set ride height and carry the load.",
-  "suspension/control-arms": "Control arms that locate the wheels and hold alignment true.",
+  "suspension/control-arms": "Control arms that keep the suspension located and hold alignment true.",
   "suspension/sway-bars": "Sway bars that reduce body roll through the corners.",
   "tires": "Tires for every Carvelo, tuned for grip, comfort, and quiet.",
   "transmission": "Driveline parts that keep shifts smooth and power flowing.",

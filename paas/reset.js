@@ -17,7 +17,7 @@ import {
   deriveAttributeSpec,
 } from "./dto.js";
 
-const section = (title) => console.info(`\n=== ${title} ===`);
+const printSection = (title) => console.info(`\n=== ${title} ===`);
 
 const USAGE = `Usage: npm run reset:paas [-- <options>]
 
@@ -44,15 +44,10 @@ const parseArgs = (argv) => {
 };
 
 const deleteProducts = async (client, products) => {
-  section(`Delete products (${products.length})`);
-  // Configurables first so variant links are removed before the variants.
-  const ordered = [
-    ...products.filter(isConfigurable),
-    ...products.filter((p) => !isConfigurable(p)),
-  ];
+  printSection(`Delete products (${products.length})`);
   let ok = 0;
   let failed = 0;
-  await mapWithConcurrency(ordered, PRODUCT_CONCURRENCY, async (p) => {
+  const delOne = async (p) => {
     try {
       await client.del(`/V1/products/${encodeURIComponent(p.sku)}`, {
         tolerate: [404],
@@ -62,13 +57,21 @@ const deleteProducts = async (client, products) => {
       failed++;
       console.error(`  ${p.sku}: ${err.message}`);
     }
-  });
+  };
+  // Two phases with a barrier: remove every configurable parent before any of its variants,
+  // so a parent is never deleted concurrently with a child it still references (a 400).
+  await mapWithConcurrency(products.filter(isConfigurable), PRODUCT_CONCURRENCY, delOne);
+  await mapWithConcurrency(
+    products.filter((p) => !isConfigurable(p)),
+    PRODUCT_CONCURRENCY,
+    delOne,
+  );
   console.info(`Products: ${ok} deleted (or already gone), ${failed} failed.`);
 };
 
 // Delete our top-level categories by id; Commerce cascades the subtree.
 const deleteCategories = async (client, categories) => {
-  section("Delete categories");
+  printSection("Delete categories");
   try {
     const topSlugs = new Set(
       categories.map((c) => c.slug).filter((s) => !s.includes("/")),
@@ -100,7 +103,7 @@ const deleteCategories = async (client, categories) => {
 };
 
 const deleteAttributeSet = async (client) => {
-  section("Delete attribute set");
+  printSection("Delete attribute set");
   try {
     const params = new URLSearchParams({
       "searchCriteria[filterGroups][0][filters][0][field]":
@@ -127,7 +130,7 @@ const deleteAttributeSet = async (client) => {
 };
 
 const deleteAttributes = async (client, spec) => {
-  section(`Delete attributes (${spec.length})`);
+  printSection(`Delete attributes (${spec.length})`);
   let ok = 0;
   for (const entry of spec) {
     try {
@@ -144,7 +147,7 @@ const deleteAttributes = async (client, spec) => {
 };
 
 const deleteCustomerGroup = async (client) => {
-  section("Delete customer group");
+  printSection("Delete customer group");
   try {
     const params = new URLSearchParams({
       "searchCriteria[filterGroups][0][filters][0][field]": "code",
@@ -168,7 +171,7 @@ const main = async () => {
   const config = loadPaasConfig();
   const client = new PaasClient(config);
 
-  section("Preflight");
+  printSection("Preflight");
   await client.authenticate();
   console.info(`Authenticated to ${config.baseUrl}`);
 
@@ -190,7 +193,7 @@ const main = async () => {
     await deleteCustomerGroup(client);
   }
 
-  section("Done");
+  printSection("Done");
 };
 
 main().catch((err) => {

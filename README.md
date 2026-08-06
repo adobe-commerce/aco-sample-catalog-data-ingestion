@@ -22,13 +22,22 @@ This dataset models an auto-parts catalog whose headline feature is **"shop by v
 fitment**: parts are matched to vehicles through a dedicated `fitment` attribute rather than
 through the category tree.
 
-- **Vehicles are reference-only configurable products.** Each model line (e.g.
-  `veh-aurora-flux`) is a configurable product whose variants are its `trim` × `year`
-  combinations. Vehicles are never sold or shown (`visibleIn: []`, no prices); they exist
-  only as fitment targets.
-- **Parts** carry a multi-valued `fitment` attribute listing the vehicle SKUs (or the
-  `UNIVERSAL` sentinel) they fit. Parts are either configurable (an option axis such as
-  brake-pad `grade` produces sellable variants) or simple.
+- **Vehicles are reference configurable products.** Each model line (e.g. `veh-aurora-flux`)
+  is a configurable product whose variants are its `trim` × `year` combinations, carrying
+  `make` / `model` / `trim` / `year` attributes that power the vehicle-picker widget. They are
+  indexed (`visibleIn: ["CATALOG","SEARCH"]`) so the picker can query them, but are marked
+  `object_type: "vehicle"`, never priced, and imported out-of-stock — so a policy keeps them
+  out of the shopper experience and they are never purchasable.
+- **Parts** are marked `object_type: "part"` and carry a multi-valued `fitment` attribute — on
+  the **parent/simple only** — listing the vehicle variant SKUs (plus the `UNIVERSAL` marker for
+  truly-universal parts) they fit. Configurable **variants are Not Visible Individually**
+  (`visibleIn: []`): a shopper finds the parent in search and picks options on the PDP.
+- **Fitment-neutral options vs. hard-fit split.** A configurable's option axis is always a
+  *preference* that fits the same vehicle (grade, size, volume, profile, rating). A dimension that
+  actually determines fit — wheel `bolt_pattern`, tire `size`, battery `group_size`, spark-plug
+  thread — instead **splits into separate products**, each scoped to the vehicles that accept it
+  (via generator-internal maps in `scripts/generate.js`; never a vehicle attribute). So every
+  option a shopper can pick genuinely fits their vehicle.
 - **Categories** form a functional tree (brakes, suspension, tires, …); products may belong
   to several leaf categories.
 - **Pricing** spans two currency anchors (USD, EUR), each with a Public and a VIP child, plus
@@ -224,7 +233,45 @@ From the Commerce Optimizer user interface, create the catalog views and policie
 
 **Note:** See the documentation to learn more about [catalog views](https://experienceleague.adobe.com/en/docs/commerce/optimizer/setup/catalog-view), [policies](https://experienceleague.adobe.com/en/docs/commerce/optimizer/setup/policies), and policy types [policy types](https://experienceleague.adobe.com/en/docs/commerce/optimizer/catalog/policies#value-source-types).
 
+### Shop by vehicle: object_type policies + fitment trigger
+
+The catalog carries both shopper-facing **parts** and reference **vehicles** (the vehicle-picker's
+data source), distinguished by the `object_type` attribute. Two catalog views separate them:
+
+| Catalog view | Policies | Purpose |
+| ------------- | ------------- | ------------- |
+| **English Storefront** | `Parts` (static) + `Vehicle` (trigger) | Shopper browse/search — parts only, narrowed to a selected vehicle |
+| **Vehicle Picker** | `Vehicles` (static) | Feeds the vehicle-picker widget (make → model → year → trim) |
+
+Create these policies:
+
+| Policy Name | Type | Trigger name / transport | Attribute | Operator | Value source | Value |
+| ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
+| Parts | universal (STATIC) | — | object_type | IN | STATIC | part |
+| Vehicles | universal (STATIC) | — | object_type | IN | STATIC | vehicle |
+| Vehicle | exclusive (TRIGGER) | AC-Policy-Vehicle / HTTP_HEADER | fitment | IN | TRIGGER | AC-Policy-Vehicle |
+
+(Use the same **Add Policy** steps as the sections below.) Then create the two catalog views
+(**Catalog > Views > Add Catalog View**) with the catalog source for your store view — `default`
+on the PaaS → connector path, `en-US` on the ACO-direct path — and the policies from the first table.
+
+When a shopper selects a vehicle, the storefront sends the vehicle at every fitment granularity plus
+the universal sentinel, e.g.:
+
+```
+AC-Policy-Vehicle: veh-cruz-verde-base-2026,veh-cruz-verde,UNIVERSAL
+```
+
+`fitment IN {…}` then returns the parts that fit that vehicle (per-model-year parts match the trim
+variant, broad parts like batteries match the model parent) plus `UNIVERSAL` parts. With no header,
+the storefront shows all parts. Because the **English Storefront** view always applies `Parts`,
+vehicles never appear in browse/search or get a PDP.
+
 ### Create universal policies
+
+The policies and views below are a separate B2B2X **brand / part-category segmentation** example
+(three regional views). They're independent of the shop-by-vehicle setup above; if you build them,
+add the `Parts` policy to each so vehicles stay out of those views too.
 
 Create four universal (STATIC) policies with the following configuration settings:
 

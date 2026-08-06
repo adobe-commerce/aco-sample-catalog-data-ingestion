@@ -41,9 +41,12 @@ Categories: ingested 34 of 34
 - In the ACO catalog, a configurable vehicle (e.g. `veh-aurora-flux`) resolves to its trim × year
   variants, and a configurable part (e.g. `pad-aur-flu-2021`) resolves to its grade variants.
 - Filtering parts by the `fitment` attribute returns the parts that fit a chosen vehicle.
+- Vehicles are marked `object_type: "vehicle"` and are visible/indexed so the vehicle-picker view
+  can query them; parts are `object_type: "part"`. Policies separate the two (see below).
 
-Then configure catalog views and policies in the ACO UI to filter the base catalog — see the
-README's ["Configure Commerce Optimizer"](../README.md#configure-commerce-optimizer) section.
+Then configure catalog views and policies in the ACO UI to filter the base catalog — including the
+shop-by-vehicle `object_type` policies and the `AC-Policy-Vehicle` fitment trigger — see the
+README's ["Create catalog views and policies"](../README.md#create-catalog-views-and-policies) section.
 
 ## Adapting with your own data
 

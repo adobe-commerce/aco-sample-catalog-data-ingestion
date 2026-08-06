@@ -1,10 +1,35 @@
 [
   {
+    "attribute_code": "object_type",
+    "default_frontend_label": "Object Type",
+    "frontend_input": "select",
+    "scope": "global",
+    "is_required": false,
+    "is_filterable": 1,
+    "is_filterable_in_search": true,
+    "used_in_product_listing": true,
+    "is_searchable": false,
+    "used_for_sort_by": false,
+    "options": [
+      {
+        "label": "vehicle"
+      },
+      {
+        "label": "part"
+      }
+    ]
+  },
+  {
     "attribute_code": "make",
     "default_frontend_label": "Vehicle Make",
     "frontend_input": "select",
     "scope": "global",
     "is_required": false,
+    "is_filterable": 1,
+    "is_filterable_in_search": true,
+    "used_in_product_listing": true,
+    "is_searchable": true,
+    "used_for_sort_by": false,
     "options": [
       {
         "label": "Aurora"
@@ -23,6 +48,11 @@
     "frontend_input": "select",
     "scope": "global",
     "is_required": false,
+    "is_filterable": 1,
+    "is_filterable_in_search": true,
+    "used_in_product_listing": true,
+    "is_searchable": true,
+    "used_for_sort_by": false,
     "options": [
       {
         "label": "Flux"
@@ -77,6 +107,11 @@
     "frontend_input": "select",
     "scope": "global",
     "is_required": false,
+    "is_filterable": 1,
+    "is_filterable_in_search": true,
+    "used_in_product_listing": true,
+    "is_searchable": false,
+    "used_for_sort_by": false,
     "options": [
       {
         "label": "Base"
@@ -98,6 +133,11 @@
     "frontend_input": "select",
     "scope": "global",
     "is_required": false,
+    "is_filterable": 1,
+    "is_filterable_in_search": true,
+    "used_in_product_listing": true,
+    "is_searchable": false,
+    "used_for_sort_by": false,
     "options": [
       {
         "label": "2021"
@@ -125,6 +165,11 @@
     "frontend_input": "select",
     "scope": "global",
     "is_required": false,
+    "is_filterable": 1,
+    "is_filterable_in_search": true,
+    "used_in_product_listing": true,
+    "is_searchable": true,
+    "used_for_sort_by": false,
     "options": [
       {
         "label": "brakes"
@@ -161,6 +206,11 @@
     "frontend_input": "select",
     "scope": "global",
     "is_required": false,
+    "is_filterable": 1,
+    "is_filterable_in_search": true,
+    "used_in_product_listing": true,
+    "is_searchable": true,
+    "used_for_sort_by": false,
     "options": [
       {
         "label": "Halden"
@@ -218,6 +268,11 @@
     "frontend_input": "select",
     "scope": "global",
     "is_required": false,
+    "is_filterable": 1,
+    "is_filterable_in_search": true,
+    "used_in_product_listing": true,
+    "is_searchable": false,
+    "used_for_sort_by": false,
     "options": [
       {
         "label": "Meridian Components"
@@ -242,6 +297,11 @@
     "frontend_input": "multiselect",
     "scope": "global",
     "is_required": false,
+    "is_filterable": 1,
+    "is_filterable_in_search": true,
+    "used_in_product_listing": true,
+    "is_searchable": true,
+    "used_for_sort_by": false,
     "options": [
       {
         "label": "veh-aurora-flux-base-2021"
@@ -1325,51 +1385,6 @@
       },
       {
         "label": "UNIVERSAL"
-      },
-      {
-        "label": "veh-aurora-flux"
-      },
-      {
-        "label": "veh-aurora-prism"
-      },
-      {
-        "label": "veh-aurora-pulse"
-      },
-      {
-        "label": "veh-aurora-nexus"
-      },
-      {
-        "label": "veh-aurora-nova"
-      },
-      {
-        "label": "veh-bolt-atlas"
-      },
-      {
-        "label": "veh-bolt-mammoth"
-      },
-      {
-        "label": "veh-bolt-ranger"
-      },
-      {
-        "label": "veh-bolt-scout"
-      },
-      {
-        "label": "veh-bolt-terrain"
-      },
-      {
-        "label": "veh-cruz-breeze"
-      },
-      {
-        "label": "veh-cruz-echo"
-      },
-      {
-        "label": "veh-cruz-element"
-      },
-      {
-        "label": "veh-cruz-harmony"
-      },
-      {
-        "label": "veh-cruz-verde"
       }
     ]
   },
@@ -1378,7 +1393,12 @@
     "default_frontend_label": "Sold by Third Party",
     "frontend_input": "boolean",
     "scope": "global",
-    "is_required": false
+    "is_required": false,
+    "is_filterable": 1,
+    "is_filterable_in_search": true,
+    "used_in_product_listing": true,
+    "is_searchable": false,
+    "used_for_sort_by": false
   },
   {
     "attribute_code": "grade",
@@ -1386,6 +1406,11 @@
     "frontend_input": "select",
     "scope": "global",
     "is_required": false,
+    "is_filterable": 1,
+    "is_filterable_in_search": true,
+    "used_in_product_listing": true,
+    "is_searchable": false,
+    "used_for_sort_by": false,
     "options": [
       {
         "label": "Eco"
@@ -1404,6 +1429,11 @@
     "frontend_input": "select",
     "scope": "global",
     "is_required": false,
+    "is_filterable": 1,
+    "is_filterable_in_search": true,
+    "used_in_product_listing": true,
+    "is_searchable": false,
+    "used_for_sort_by": false,
     "options": [
       {
         "label": "17\""
@@ -1416,12 +1446,6 @@
       },
       {
         "label": "20\""
-      },
-      {
-        "label": "14mm"
-      },
-      {
-        "label": "16mm"
       },
       {
         "label": "Standard"
@@ -1440,6 +1464,11 @@
     "frontend_input": "select",
     "scope": "global",
     "is_required": false,
+    "is_filterable": 1,
+    "is_filterable_in_search": true,
+    "used_in_product_listing": true,
+    "is_searchable": false,
+    "used_for_sort_by": false,
     "options": [
       {
         "label": "35"
@@ -1458,6 +1487,11 @@
     "frontend_input": "select",
     "scope": "global",
     "is_required": false,
+    "is_filterable": 1,
+    "is_filterable_in_search": true,
+    "used_in_product_listing": true,
+    "is_searchable": false,
+    "used_for_sort_by": false,
     "options": [
       {
         "label": "H"
@@ -1476,14 +1510,12 @@
     "frontend_input": "select",
     "scope": "global",
     "is_required": false,
-    "options": [
-      {
-        "label": "5x114.3"
-      },
-      {
-        "label": "5x120"
-      }
-    ]
+    "is_filterable": 1,
+    "is_filterable_in_search": true,
+    "used_in_product_listing": true,
+    "is_searchable": false,
+    "used_for_sort_by": false,
+    "options": []
   },
   {
     "attribute_code": "group_size",
@@ -1491,17 +1523,12 @@
     "frontend_input": "select",
     "scope": "global",
     "is_required": false,
-    "options": [
-      {
-        "label": "GRP-24"
-      },
-      {
-        "label": "GRP-48"
-      },
-      {
-        "label": "GRP-65"
-      }
-    ]
+    "is_filterable": 1,
+    "is_filterable_in_search": true,
+    "used_in_product_listing": true,
+    "is_searchable": false,
+    "used_for_sort_by": false,
+    "options": []
   },
   {
     "attribute_code": "volume",
@@ -1509,6 +1536,11 @@
     "frontend_input": "select",
     "scope": "global",
     "is_required": false,
+    "is_filterable": 1,
+    "is_filterable_in_search": true,
+    "used_in_product_listing": true,
+    "is_searchable": false,
+    "used_for_sort_by": false,
     "options": [
       {
         "label": "1L"
@@ -1530,6 +1562,11 @@
     "frontend_input": "select",
     "scope": "global",
     "is_required": false,
+    "is_filterable": 1,
+    "is_filterable_in_search": true,
+    "used_in_product_listing": true,
+    "is_searchable": false,
+    "used_for_sort_by": false,
     "options": [
       {
         "label": "0W-20"

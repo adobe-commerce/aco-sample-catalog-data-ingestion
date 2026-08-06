@@ -85,6 +85,25 @@
     "searchTypes": []
   },
   {
+    "code": "object_type",
+    "source": {
+      "locale": "en-US"
+    },
+    "label": "Object Type",
+    "dataType": "TEXT",
+    "visibleIn": [
+      "PRODUCT_DETAIL",
+      "PRODUCT_LISTING",
+      "SEARCH_RESULTS",
+      "PRODUCT_COMPARE"
+    ],
+    "filterable": true,
+    "sortable": false,
+    "searchable": false,
+    "searchWeight": 1,
+    "searchTypes": []
+  },
+  {
     "code": "make",
     "source": {
       "locale": "en-US"
@@ -230,6 +249,20 @@
     "searchable": true,
     "searchWeight": 2,
     "searchTypes": ["AUTOCOMPLETE"]
+  },
+  {
+    "code": "fitment_drives",
+    "source": {
+      "locale": "en-US"
+    },
+    "label": "Drives",
+    "dataType": "TEXT",
+    "visibleIn": ["PRODUCT_DETAIL"],
+    "filterable": false,
+    "sortable": false,
+    "searchable": false,
+    "searchWeight": 1,
+    "searchTypes": []
   },
   {
     "code": "sold_by_third_party",

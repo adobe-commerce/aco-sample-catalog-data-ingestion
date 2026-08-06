@@ -115,12 +115,12 @@
     "source": {
       "locale": "en-US"
     },
-    "description": "Suspension parts that control the ride and keep the tires planted.",
+    "description": "Suspension parts that control the ride and keep the vehicle planted and composed.",
     "families": ["menu"],
     "position": 5,
     "metaTags": {
       "title": "Suspension | Carvelo Parts",
-      "description": "Suspension parts that control the ride and keep the tires planted.",
+      "description": "Suspension parts that control the ride and keep the vehicle planted and composed.",
       "keywords": ["carvelo", "auto", "parts", "suspension"]
     },
     "images": [
@@ -181,12 +181,12 @@
     "source": {
       "locale": "en-US"
     },
-    "description": "Control arms that locate the wheels and hold alignment true.",
+    "description": "Control arms that keep the suspension located and hold alignment true.",
     "families": ["menu"],
     "position": 8,
     "metaTags": {
       "title": "Control Arms | Carvelo Parts",
-      "description": "Control arms that locate the wheels and hold alignment true.",
+      "description": "Control arms that keep the suspension located and hold alignment true.",
       "keywords": ["carvelo", "auto", "parts", "control arms"]
     },
     "images": [
@@ -638,6 +638,26 @@
     ]
   },
   {
+    "name": "Timing",
+    "slug": "engine/timing",
+    "source": {
+      "locale": "en-US"
+    },
+    "families": ["menu"],
+    "position": 29,
+    "metaTags": {
+      "title": "Timing | Carvelo Parts",
+      "keywords": ["carvelo", "auto", "parts", "timing"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/ef6c00/ffffff.png?text=Timing",
+        "label": "Timing",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
+    ]
+  },
+  {
     "name": "Fuel Pump",
     "slug": "engine/fuel-pump",
     "source": {
@@ -645,7 +665,7 @@
     },
     "description": "Fuel pumps that deliver steady pressure under any load.",
     "families": ["menu"],
-    "position": 29,
+    "position": 30,
     "metaTags": {
       "title": "Fuel Pump | Carvelo Parts",
       "description": "Fuel pumps that deliver steady pressure under any load.",
@@ -667,7 +687,7 @@
     },
     "description": "Fuel filters that screen out grit before it reaches the injectors.",
     "families": ["menu"],
-    "position": 30,
+    "position": 31,
     "metaTags": {
       "title": "Fuel Filters | Carvelo Parts",
       "description": "Fuel filters that screen out grit before it reaches the injectors.",
@@ -689,7 +709,7 @@
     },
     "description": "Air filters that keep the engine breathing clean air.",
     "families": ["menu"],
-    "position": 31,
+    "position": 32,
     "metaTags": {
       "title": "Air Filters | Carvelo Parts",
       "description": "Air filters that keep the engine breathing clean air.",
@@ -711,7 +731,7 @@
     },
     "description": "Oil filters that trap the particles motor oil picks up.",
     "families": ["menu"],
-    "position": 32,
+    "position": 33,
     "metaTags": {
       "title": "Oil Filters | Carvelo Parts",
       "description": "Oil filters that trap the particles motor oil picks up.",
@@ -733,7 +753,7 @@
     },
     "description": "Spark plugs for a clean, reliable spark and sharp response.",
     "families": ["menu"],
-    "position": 33,
+    "position": 34,
     "metaTags": {
       "title": "Spark Plugs | Carvelo Parts",
       "description": "Spark plugs for a clean, reliable spark and sharp response.",

@@ -59,6 +59,59 @@ function* model_years() {
   for (const mk of MAKES) for (const md of MODELS[mk]) for (const yr of YEARS) yield [mk, md, yr];
 }
 
+function all_vehicle_variants() {
+  const out = [];
+  for (const [mk, md, yr] of model_years()) out.push(...model_year_all_trims(mk, md, yr));
+  return out;
+}
+
+// Physical-fit dimensions: which vehicles accept which hard-fit spec. Generator-internal ONLY —
+// never emitted as a vehicle attribute; used to scope the fitment of parts whose variants would
+// otherwise not all fit the same vehicle (wheels, tires, batteries, spark plugs; see fit_axis in
+// PART_SPECS). Values must match the corresponding PART_SPECS axis values.
+const BOLT_PATTERN_BY_MAKE = { "Aurora": "5x114.3", "Bolt": "5x120", "Cruz": "5x114.3" };
+const BATTERY_GROUP_BY_MAKE = { "Aurora": "GRP-24", "Bolt": "GRP-65", "Cruz": "GRP-48" };
+const PLUG_THREAD_BY_MAKE = { "Aurora": "14mm", "Bolt": "16mm", "Cruz": "14mm" };
+const WHEEL_SIZES = ['17"', '18"', '19"', '20"'];
+const WHEEL_SIZE_BY_MODEL = (() => {
+  const m = {};
+  let i = 0;
+  for (const mk of MAKES) for (const md of MODELS[mk]) m[`${mk}/${md}`] = WHEEL_SIZES[i++ % WHEEL_SIZES.length];
+  return m;
+})();
+const BATTERY_COVERAGE = { "Economy": ["Aurora", "Bolt"], "Standard": MAKES, "AGM": ["Bolt", "Cruz"] };
+
+function vehicle_fit_value(dim, mk, md) {
+  if (dim === "bolt_pattern") return BOLT_PATTERN_BY_MAKE[mk];
+  if (dim === "battery_group") return BATTERY_GROUP_BY_MAKE[mk];
+  if (dim === "plug_thread") return PLUG_THREAD_BY_MAKE[mk];
+  if (dim === "wheel_size") return WHEEL_SIZE_BY_MODEL[`${mk}/${md}`];
+  throw new Error("unknown fit dimension " + dim);
+}
+
+// Vehicle variant SKUs whose fit-dimension value equals fitVal, optionally limited to makesFilter.
+function vehicles_matching(dim, fitVal, makesFilter = null) {
+  const out = [];
+  for (const [mk, md, yr] of model_years()) {
+    if (makesFilter && !makesFilter.includes(mk)) continue;
+    if (vehicle_fit_value(dim, mk, md) !== fitVal) continue;
+    for (const t of TRIMS) out.push(veh_variant_sku(mk, md, t, yr));
+  }
+  return out;
+}
+
+// The distinct makes (in canonical order) covered by a fitment SKU list, for accurate copy.
+function makes_in_fitment(fitment) {
+  const seen = new Set(fitment.filter((v) => v.startsWith("veh-")).map((v) => v.split("-")[1]));
+  return MAKES.filter((m) => seen.has(slugify(m)));
+}
+
+function human_list(items) {
+  if (items.length <= 1) return items[0] || "";
+  if (items.length === 2) return `${items[0]} and ${items[1]}`;
+  return `${items.slice(0, -1).join(", ")}, and ${items[items.length - 1]}`;
+}
+
 // Deterministic 32-bit FNV-1a string hash -> non-negative int, for stable
 // pseudo-variety. (The Python original used md5+bigint; this reshuffles only
 // brand/description copy, nothing that affects SKUs/prices/structure/images.)
@@ -130,6 +183,7 @@ const CATEGORY_TREE = [
   ["fluids/wiper-fluid", "Wiper Fluid", "fluids", "fluid", true],
 
   ["engine", "Engine", "engine", "engine", false],
+  ["engine/timing", "Timing", "engine", "engine", true],
   ["engine/fuel-pump", "Fuel Pump", "engine", "engine", true],
   ["engine/fuel-filters", "Fuel Filters", "engine", "filter", true],
   ["engine/air-filters", "Air Filters", "engine", "filter", true],
@@ -244,18 +298,21 @@ const PART_SPECS = [
     axes: [["size", ['17"', '18"', '19"', '20"']],
       ["profile", ["35", "45", "55"]],
       ["rating", ["H", "V", "Z"]]],
-    fitment: "universal", base_usd: 120.00, lines: ["All-Season", "Sport", "Off-Road"] },
+    fitment: "universal", fit_axis: "size", fit_dim: "wheel_size",
+    line_coverage: { "Off-Road": ["Bolt"] },
+    base_usd: 120.00, lines: ["All-Season", "Sport", "Off-Road"] },
   { key: "wheels", name: "Wheel", part_code: "whl",
     category: "wheels", scope: "universal", type: "configurable",
     axes: [["size", ['17"', '18"', '19"', '20"']],
       ["bolt_pattern", ["5x114.3", "5x120"]]],
-    fitment: "universal", base_usd: 180.00, lines: ["Aero", "Mesh", "Forged"] },
+    fitment: "universal", fit_axis: "bolt_pattern", fit_dim: "bolt_pattern",
+    base_usd: 180.00, lines: ["Aero", "Mesh", "Forged"] },
   { key: "battery", name: "Battery", part_code: "bat",
     category: "electrical/batteries", extra_cats: ["charging-system/batteries"],
     scope: "universal", type: "configurable",
     axes: [["group_size", ["GRP-24", "GRP-48", "GRP-65"]]],
-    fitment: "battery_lines", base_usd: 159.99,
-    lines: ["Economy", "Standard", "AGM"] },
+    fitment: "battery_lines", fit_axis: "group_size", fit_dim: "battery_group",
+    base_usd: 159.99, lines: ["Economy", "Standard", "AGM"] },
   { key: "oil", name: "Motor Oil", part_code: "oil",
     category: "fluids/oil", scope: "universal", type: "configurable",
     axes: [["viscosity", ["0W-20", "5W-30", "10W-40"]],
@@ -274,7 +331,8 @@ const PART_SPECS = [
     axes: [["volume", ["1L", "4L"]]], fitment: "universal", base_usd: 6.99 },
   { key: "spark-plugs", name: "Spark Plug", part_code: "spk",
     category: "engine/spark-plugs", scope: "universal", type: "configurable",
-    axes: [["size", ['14mm', '16mm']]], fitment: "universal", base_usd: 6.99,
+    axes: [["size", ['14mm', '16mm']]],
+    fitment: "universal", fit_axis: "size", fit_dim: "plug_thread", base_usd: 6.99,
     lines: ["Copper", "Iridium"] },
   { key: "air-filter", name: "Air Filter", part_code: "afl",
     category: "engine/air-filters", scope: "universal", type: "configurable",
@@ -446,14 +504,15 @@ function clean(text) {
 }
 
 function compose_description(sku, part_key, brand, adjective, benefit_value, fitment_key,
-  make = null, model = null, year = null) {
+  make = null, model = null, year = null, makesText = null) {
   const intro = cd.PART_INTRO[part_key];
   const benefit = benefit_value ? getOr(cd.OPTION_BENEFIT, benefit_value, "") : "";
   const voice = getOr(cd.BRAND_VOICE, brand, "");
   const fit = cd.FITMENT_PHRASE[fitment_key]
     .replace("{make}", make)
     .replace("{model}", model)
-    .replace("{year}", String(year));
+    .replace("{year}", String(year))
+    .replace("{makes}", makesText ?? "");
   // Three sentence orderings, chosen deterministically to avoid identical strings
   // across the 90 model-years of the same part.
   const orderings = [
@@ -501,10 +560,12 @@ function build_product_metadata() {
   });
   return [
     m("sku", "SKU", { search: true, stypes: ["AUTOCOMPLETE"], vis: ALL }),
-    m("name", "Name", { sort: true, search: true, vis: ALL }),
+    m("name", "Name", { sort: true, search: true, weight: 5, vis: ALL }),
     m("description", "Description", { vis: ["PRODUCT_DETAIL"] }),
     m("shortDescription", "Short Description", { search: true, vis: ["PRODUCT_DETAIL"] }),
     m("price", "Price", { dt: "DECIMAL", filt: true, sort: true, vis: ALL, stypes: [] }),
+    // record kind: "vehicle" (picker) vs "part" (shopper) — drives ACO object_type policies
+    m("object_type", "Object Type", { filt: true, vis: ALL, stypes: [] }),
     // vehicle attributes
     m("make", "Vehicle Make", { filt: true, search: true, weight: 2, vis: ALL }),
     m("model", "Vehicle Model", { filt: true, search: true, weight: 2, vis: ALL }),
@@ -515,6 +576,10 @@ function build_product_metadata() {
     m("brand", "Brand", { filt: true, search: true, weight: 2, vis: ALL }),
     m("manufacturer", "Manufacturer", { filt: true, vis: ALL }),
     m("fitment", "Fitment", { filt: true, search: true, weight: 2, vis: ["PRODUCT_DETAIL", "SEARCH_RESULTS"] }),
+    // Per-vehicle attribute override: "{vehicle-sku}::{full text}" display tokens, read on the PDP for
+    // the selected vehicle. Any fitment_* attribute is vehicle-keyed and display-only -- not filterable,
+    // because ACO can't scope a facet to the selected vehicle (docs/per-vehicle-attributes.md).
+    m("fitment_drives", "Drives", { vis: ["PRODUCT_DETAIL"], stypes: [] }),
     m("sold_by_third_party", "Sold by Third Party", { dt: "BOOLEAN", filt: true, vis: ALL, stypes: [] }),
     // configurable option axes
     m("grade", "Grade", { filt: true, vis: ALL }),
@@ -575,8 +640,8 @@ function build_vehicles() {
         status: "ENABLED",
         description: `Reference vehicle line: ${mk} ${md}. Not sold; used for parts fitment.`,
         shortDescription: `${mk} ${md} (reference vehicle)`,
-        visibleIn: [], // reference-only: not shoppable, not searchable
-        attributes: [attr("make", mk), attr("model", md)],
+        visibleIn: ["CATALOG", "SEARCH"], // indexed for the vehicle picker; kept out of shopping by the object_type policy
+        attributes: [attr("object_type", "vehicle"), attr("make", mk), attr("model", md)],
         configurations: [
           { attributeCode: "trim", label: "Trim", type: "CONFIGURABLE",
             values: TRIMS.map((t) => ({ variantReferenceId: vref("trim", t), label: t })) },
@@ -595,8 +660,9 @@ function build_vehicles() {
             status: "ENABLED",
             description: `Reference vehicle: ${mk} ${md} ${t} ${y}.`,
             shortDescription: `${mk} ${md} ${t} ${y}`,
-            visibleIn: [],
+            visibleIn: ["CATALOG", "SEARCH"],
             attributes: [
+              attr("object_type", "vehicle"),
               attr("make", mk), attr("model", md),
               vattr("trim", t), vattr("year", y),
             ],
@@ -612,13 +678,17 @@ function build_vehicles() {
 const ADD_TIERS = true;
 
 function resolve_fitment(kind, { mk = null, md = null, yr = null, line = null } = {}) {
-  if (kind === "universal") return ["UNIVERSAL"];
+  // ACO trigger policies send a single vehicle SKU and can't OR in a UNIVERSAL sentinel, so parts
+  // enumerate every variant SKU they fit. Universal parts also keep the UNIVERSAL marker so a
+  // no-vehicle query can still list "fits anything" parts via a static fitment=UNIVERSAL filter.
+  if (kind === "universal") return ["UNIVERSAL", ...all_vehicle_variants()];
   if (kind === "mmy_all_trims") return model_year_all_trims(mk, md, yr);
   if (kind === "resolved_performance") return [veh_variant_sku(mk, md, PERFORMANCE_TRIM, yr)];
   if (kind === "battery_lines") {
     const cov = { "Economy": ["Aurora", "Bolt"], "Standard": MAKES, "AGM": ["Bolt", "Cruz"] }[line];
     const out = [];
-    for (const m of cov) for (const d of MODELS[m]) out.push(veh_parent_sku(m, d));
+    for (const m of cov) for (const d of MODELS[m]) for (const t of TRIMS) for (const y of YEARS)
+      out.push(veh_variant_sku(m, d, t, y));
     return out;
   }
   throw new Error(String(kind));
@@ -631,12 +701,15 @@ function part_routes(spec) {
 
 function part_attrs(spec, brand, mfr, tp, fitment, extra = null) {
   const a = [
+    attr("object_type", "part"),
     attr("part_category", spec.category.split("/")[0]),
     attr("brand", brand),
     attr("manufacturer", mfr),
     attr("sold_by_third_party", tp ? "true" : "false"),
-    attr("fitment", ...fitment),
   ];
+  // Fitment lives on parents/simples only; configurable variants are Not Visible Individually and
+  // are reached through the parent, so they carry no fitment (callers pass [] for variants).
+  if (fitment && fitment.length) a.push(attr("fitment", ...fitment));
   if (extra) a.push(...extra);
   return a;
 }
@@ -679,7 +752,7 @@ function _part_name(brand_disp, adjective, noun, mk, md, yr, paren_tokens) {
 
 function _short(spec, adjective, noun, mk, md, yr, paren_tokens) {
   if (mk) return clean(`${adjective || ""} ${noun} for ${mk} ${md} ${yr}`);
-  const tail = spec.fitment === "battery_lines" ? "fits many vehicles" : "universal fit";
+  const tail = spec.fit_axis || spec.fitment === "battery_lines" ? "fits many vehicles" : "universal fit";
   const paren = paren_tokens.length ? ` (${paren_tokens.join(", ")})` : "";
   return clean(`${adjective || ""} ${noun}${paren}, ${tail}`);
 }
@@ -701,7 +774,7 @@ function build_parts() {
     const routes = part_routes(spec);
     const pk = spec.key;
     const noun = spec.name;
-    const fit_key = FITMENT_KEY[spec.fitment];
+    const fit_key = spec.fit_axis ? "broad" : FITMENT_KEY[spec.fitment];
 
     if (spec.scope === "per_model_year") {
       for (const [mk, md, yr] of model_years()) {
@@ -765,8 +838,8 @@ function build_parts() {
               status: "ENABLED",
               description: compose_description(vsku, pk, brand, adj, bv, fit_key, mk, md, yr),
               shortDescription: _short(spec, adj, noun, mk, md, yr, paren),
-              visibleIn: ["SEARCH"],
-              attributes: part_attrs(spec, brand, mfr, tp, fitment,
+              visibleIn: [], // Not Visible Individually — reached via the configurable parent
+              attributes: part_attrs(spec, brand, mfr, tp, [],
                 axes.map(([c]) => vattr(c, combo[c]))),
               images: img_block(color, `${bdisp} ${noun}`,
                 ["BASE", "SMALL", "THUMBNAIL"], image_key_for(pk, null, combo)),
@@ -776,61 +849,151 @@ function build_parts() {
           }
         }
       }
-    } else { // universal
+    } else { // universal — optionally split by a hard-fit axis (spec.fit_axis) into scoped products
       const lines = spec.lines || [null];
-      const axes = spec.axes;
+      const allAxes = spec.axes || [];
+      const fitAxis = spec.fit_axis || null;
+      const prefAxes = fitAxis ? allAxes.filter(([c]) => c !== fitAxis) : allAxes;
+      const fitValues = fitAxis ? allAxes.find(([c]) => c === fitAxis)[1] : [null];
+      // Line -> allowed makes. Battery lines cover specific makes; other specs can restrict a line
+      // via spec.line_coverage (e.g. Off-Road tires -> Bolt). Unlisted lines fit every make.
+      const lineCoverage = spec.line_coverage || (spec.fitment === "battery_lines" ? BATTERY_COVERAGE : null);
+
       for (const line of lines) {
         const brand = pick(brands, pk, line);
         const [mfr, tp] = BRANDS[brand];
         const bdisp = brand_display(brand, noun);
-        const fitment = resolve_fitment(spec.fitment, { line });
-        const base_sku = spec.part_code + (line ? "-" + seg(line) : "");
-        const img = img_block(color, `${bdisp} ${noun}`, ["BASE", "SMALL", "THUMBNAIL"],
-          image_key_for(pk, line, {}));
         const p_bv = Object.prototype.hasOwnProperty.call(cd.OPTION_BENEFIT, line) ? line : null;
-        products.push({
-          sku: base_sku, source: { locale: LOCALE },
-          name: _part_name(bdisp, line, noun, null, null, null, []),
-          slug: slugify(pk, line),
-          status: "ENABLED",
-          description: compose_description(base_sku, pk, brand, line, p_bv, fit_key),
-          shortDescription: _short(spec, line, noun, null, null, null, []),
-          visibleIn: ["CATALOG", "SEARCH"],
-          attributes: part_attrs(spec, brand, mfr, tp, fitment),
-          images: img,
-          routes,
-          configurations: axes.map(([code, vals]) => ({
-            attributeCode: code, label: title(code.split("_").join(" ")),
-            type: "CONFIGURABLE",
-            values: vals.map((v) => ({ variantReferenceId: vref(code, v), label: v })),
-          })),
-        });
-        for (const combo of cartesian(axes)) {
-          const vsku = base_sku + "-" + axes.map(([c]) => seg(combo[c])).join("-");
-          const adj = _adjective(spec, line, combo);
-          const paren = _paren_tokens(spec, combo);
-          const bv = _benefit_value(spec, line, combo);
-          products.push({
-            sku: vsku, source: { locale: LOCALE },
-            name: _part_name(bdisp, adj, noun, null, null, null, paren),
-            slug: slugify(pk, line, ...axes.map(([c]) => combo[c])),
+
+        for (const fitVal of fitValues) {
+          // A fit_axis part fits only the vehicles that physically accept fitVal (intersected with
+          // any line coverage, e.g. battery makes); a plain universal part fits everything.
+          const makesFilter = lineCoverage ? (lineCoverage[line] ?? null) : null;
+          const fitment = fitAxis
+            ? vehicles_matching(spec.fit_dim, fitVal, makesFilter)
+            : resolve_fitment(spec.fitment, { line });
+          if (fitAxis && !fitment.length) continue; // no vehicle accepts this fit value
+          const makesText = human_list(makes_in_fitment(fitment));
+
+          const base_sku = [spec.part_code, line && seg(line), fitAxis && seg(fitVal)]
+            .filter(Boolean).join("-");
+          const slugFit = fitAxis ? [fitVal] : [];
+          const parenFit = fitAxis ? [opt_label(fitVal)] : [];
+          const img = img_block(color, `${bdisp} ${noun}`, ["BASE", "SMALL", "THUMBNAIL"],
+            image_key_for(pk, line, {}));
+          const common = {
+            source: { locale: LOCALE },
             status: "ENABLED",
-            description: compose_description(vsku, pk, brand, adj, bv, fit_key),
-            shortDescription: _short(spec, adj, noun, null, null, null, paren),
-            visibleIn: ["SEARCH"],
-            attributes: part_attrs(spec, brand, mfr, tp, fitment,
-              axes.map(([c]) => vattr(c, combo[c]))),
-            images: img_block(color, `${bdisp} ${noun}`,
-              ["BASE", "SMALL", "THUMBNAIL"], image_key_for(pk, line, combo)),
-            links: [{ type: "VARIANT_OF", sku: base_sku }],
-          });
-          add_price(vsku, spec, line, combo);
+            visibleIn: ["CATALOG", "SEARCH"],
+            attributes: part_attrs(spec, brand, mfr, tp, fitment),
+            images: img,
+            routes,
+          };
+
+          if (prefAxes.length === 0) { // hard-fit split leaves no options -> simple product
+            products.push({
+              sku: base_sku,
+              name: _part_name(bdisp, line, noun, null, null, null, parenFit),
+              slug: slugify(pk, line, ...slugFit),
+              description: compose_description(base_sku, pk, brand, line, p_bv, fit_key, null, null, null, makesText),
+              shortDescription: _short(spec, line, noun, null, null, null, parenFit),
+              ...common,
+            });
+            add_price(base_sku, spec, line, fitAxis ? { [fitAxis]: fitVal } : {});
+          } else { // configurable parent on the preference axes
+            products.push({
+              sku: base_sku,
+              name: _part_name(bdisp, line, noun, null, null, null, parenFit),
+              slug: slugify(pk, line, ...slugFit),
+              description: compose_description(base_sku, pk, brand, line, p_bv, fit_key, null, null, null, makesText),
+              shortDescription: _short(spec, line, noun, null, null, null, parenFit),
+              ...common,
+              configurations: prefAxes.map(([code, vals]) => ({
+                attributeCode: code, label: title(code.split("_").join(" ")),
+                type: "CONFIGURABLE",
+                values: vals.map((v) => ({ variantReferenceId: vref(code, v), label: v })),
+              })),
+            });
+            for (const combo of cartesian(prefAxes)) {
+              const vsku = base_sku + "-" + prefAxes.map(([c]) => seg(combo[c])).join("-");
+              const adj = _adjective(spec, line, combo);
+              const paren = [...parenFit,
+                ...prefAxes.filter(([c]) => c !== "grade").map(([c]) => opt_label(combo[c]))];
+              const bv = _benefit_value(spec, line, combo);
+              products.push({
+                sku: vsku, source: { locale: LOCALE },
+                name: _part_name(bdisp, adj, noun, null, null, null, paren),
+                slug: slugify(pk, line, ...slugFit, ...prefAxes.map(([c]) => combo[c])),
+                status: "ENABLED",
+                description: compose_description(vsku, pk, brand, adj, bv, fit_key, null, null, null, makesText),
+                shortDescription: _short(spec, adj, noun, null, null, null, paren),
+                visibleIn: [], // Not Visible Individually — reached via the configurable parent
+                attributes: part_attrs(spec, brand, mfr, tp, [],
+                  prefAxes.map(([c]) => vattr(c, combo[c]))),
+                images: img_block(color, `${bdisp} ${noun}`,
+                  ["BASE", "SMALL", "THUMBNAIL"], image_key_for(pk, line, combo)),
+                links: [{ type: "VARIANT_OF", sku: base_sku }],
+              });
+              add_price(vsku, spec, line, { ...combo, ...(fitAxis ? { [fitAxis]: fitVal } : {}) });
+            }
+          }
         }
       }
     }
   }
 
   return { products, sellable };
+}
+
+// ----------------------------------------------------------------------------
+// Per-vehicle attribute overrides (single illustrative part)
+// ----------------------------------------------------------------------------
+// Auto-parts catalogs carry specs whose value depends on the (product, vehicle) pair -- e.g. the
+// same timing kit drives a different set of shafts depending on the fitted engine. ACO models this
+// on a single sellable SKU as vehicle-keyed DISPLAY tokens: each fitment_* value is
+// "{vehicle-sku}::{full text}", read on the PDP by stripping the "{sku}::" prefix for the selected
+// vehicle. These attributes are display-only and deliberately not facetable -- a per-vehicle-scoped
+// facet is not something ACO can express (see docs/per-vehicle-attributes.md).
+function build_fitment_overrides() {
+  const sku = "tmk-halden-tbk-100";
+  const brand = "Halden";
+  const [mfr, tp] = BRANDS[brand];
+  const fitment = [
+    "veh-aurora-flux-base-2021", "veh-aurora-flux-premium-2021",
+    "veh-aurora-prism-base-2021", "veh-aurora-prism-premium-2022",
+  ];
+  // Genuinely per-vehicle: the Flux engine drives the camshaft only; the Prism also drives a balance shaft.
+  const drives = [
+    "veh-aurora-flux-base-2021::Camshaft",
+    "veh-aurora-flux-premium-2021::Camshaft",
+    "veh-aurora-prism-base-2021::Camshaft, balance shaft",
+    "veh-aurora-prism-premium-2022::Camshaft, balance shaft",
+  ];
+  const color = SYS_COLOR[top_system("engine/timing")];
+  const product = {
+    sku, source: { locale: LOCALE },
+    name: "Halden Timing Belt Kit TBK-100",
+    slug: "timing-belt-kit-halden-tbk-100",
+    status: "ENABLED",
+    description: "Complete timing belt kit for select Aurora engines. Includes a reinforced toothed "
+      + "timing belt, tensioner damper, and tension pulley for a reliable, quiet valvetrain drive, "
+      + "engineered as a direct-fit replacement for the original timing system.",
+    shortDescription: "Complete timing belt kit for select Aurora engines.",
+    visibleIn: ["CATALOG", "SEARCH"],
+    attributes: [
+      attr("object_type", "part"),
+      attr("part_category", "engine"),
+      attr("brand", brand),
+      attr("manufacturer", mfr),
+      attr("sold_by_third_party", tp ? "true" : "false"),
+      attr("fitment", ...fitment),
+      attr("fitment_drives", ...drives),
+    ],
+    images: img_block(color, "Halden Timing Belt Kit", ["BASE", "SMALL", "THUMBNAIL"],
+      "engine/timing-belt-kit"),
+    routes: [{ path: "engine/timing" }],
+  };
+  return { products: [product], sellable: [[sku, 189.99, false]] };
 }
 
 // Mimics Python str.title(): capitalize each word, lowercase the rest.
@@ -957,12 +1120,7 @@ function validate(pmeta, cmeta, cats, prods, pbs, prices, sellable) {
     }
   }
 
-  // vehicles: reference-only (not visible), no prices
-  for (const p of prods) {
-    if (p.sku.startsWith("veh-") && p.visibleIn && p.visibleIn.length) {
-      errs.push(`vehicle ${p.sku} is visible (should be reference-only)`);
-    }
-  }
+  // vehicles are visible (indexed for the picker) but never priced — enforced in the prices pass below.
 
   // prices
   const pb_ids = new Set(pbs.map((b) => b.priceBookId));
@@ -995,6 +1153,25 @@ function validate(pmeta, cmeta, cats, prods, pbs, prices, sellable) {
     if ("parentId" in b && !pb_ids.has(b.parentId)) errs.push(`price book ${b.priceBookId} bad parent`);
   }
 
+  // Cross-category search hygiene: a product-type noun must appear only in its own family's
+  // name/copy, or it collides in search (a tire blurb naming "wheel" surfaces under a "wheel"
+  // query). Own-category use is fine ("brake pads" in a brake product). Extend HAZARD_NOUNS as needed.
+  const partKeyByCode = Object.fromEntries(PART_SPECS.map((s) => [s.part_code, s.key]));
+  const HAZARD_NOUNS = [
+    ["tire", new Set(["tires"])],
+    ["wheel", new Set(["wheels"])],
+    ["brake", new Set(["brake-pads", "brake-rotors", "brake-calipers", "brake-fluid"])],
+  ];
+  for (const p of prods) {
+    if (p.sku.startsWith("veh-")) continue;
+    const key = partKeyByCode[p.sku.split("-")[0]];
+    const text = `${p.name} ${p.shortDescription ?? ""} ${p.description ?? ""}`.toLowerCase();
+    for (const [noun, allowed] of HAZARD_NOUNS) {
+      if (allowed.has(key) || !new RegExp(`\\b${noun}`).test(text)) continue;
+      errs.push(`${p.sku} (${key}) copy mentions foreign product noun "${noun}"`);
+    }
+  }
+
   // ASCII-only: no em dashes, smart quotes, or other unicode anywhere in copy
   const scan = (o, where) => {
     if (typeof o === "string") {
@@ -1025,6 +1202,9 @@ function main() {
   const cats = build_categories();
   const vehicles = build_vehicles();
   const { products: parts, sellable } = build_parts();
+  const overrides = build_fitment_overrides();
+  parts.push(...overrides.products);
+  sellable.push(...overrides.sellable);
   const prods = vehicles.concat(parts);
   const pbs = build_pricebooks();
   const prices = build_prices(sellable);

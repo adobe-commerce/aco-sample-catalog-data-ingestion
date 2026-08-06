@@ -95,10 +95,23 @@ export const resolveScopes = (websites, storeViews) => {
     eurWebsite &&
     storeViews.find((s) => Number(s.website_id) === Number(eurWebsite.id));
 
+  // tierWebsiteId is the website scope for tier/customer-group prices. USD uses 0 ("all
+  // websites"), which is valid under both Global and Website catalog price scope; EUR uses its
+  // own website id (only meaningful under Website scope) so its currency-specific prices win.
   return {
-    usd: { code: USD_WEBSITE_CODE, websiteId: Number(usdWebsite.id), storeId: 0 },
+    usd: {
+      code: USD_WEBSITE_CODE,
+      websiteId: Number(usdWebsite.id),
+      storeId: 0,
+      tierWebsiteId: 0,
+    },
     eur: eurStore
-      ? { code: EUR_WEBSITE_CODE, websiteId: Number(eurWebsite.id), storeId: Number(eurStore.id) }
+      ? {
+          code: EUR_WEBSITE_CODE,
+          websiteId: Number(eurWebsite.id),
+          storeId: Number(eurStore.id),
+          tierWebsiteId: Number(eurWebsite.id),
+        }
       : null,
   };
 };

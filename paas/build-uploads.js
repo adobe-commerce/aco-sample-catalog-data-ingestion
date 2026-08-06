@@ -10,7 +10,7 @@ import { readData } from "../lib/data.js";
 import {
   deriveAttributeSpec,
   buildImportContext,
-  toImportItem,
+  buildImportItem,
   orderForImport,
   isConfigurable,
 } from "./dto.js";
@@ -46,14 +46,14 @@ const HEADER = [
   "additional_images", "additional_images_labels",
 ];
 
-const csvField = (value) => {
+const escapeCsvField = (value) => {
   const s = String(value ?? "");
   return /[",\n\r]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
 };
 
 const writeCsv = (outPath, rows) => {
   const lines = [HEADER.join(",")];
-  for (const row of rows) lines.push(HEADER.map((h) => csvField(row[h])).join(","));
+  for (const row of rows) lines.push(HEADER.map((h) => escapeCsvField(row[h])).join(","));
   fs.writeFileSync(outPath, lines.join("\n") + "\n", "utf-8");
 };
 
@@ -70,7 +70,7 @@ const main = () => {
   fs.writeFileSync(attrsPath, JSON.stringify(spec, null, 2) + "\n", "utf-8");
 
   const ctx = buildImportContext(products, categories, prices);
-  const rows = orderForImport(products).map((p) => toImportItem(p, ctx));
+  const rows = orderForImport(products).map((p) => buildImportItem(p, ctx));
   const csvPath = path.join(outDir, "carvelo_products.csv");
   writeCsv(csvPath, rows);
 
@@ -81,9 +81,10 @@ const main = () => {
       `${rows.length - configurable} simple).`,
   );
   console.log(
-    "\nNote: products use attribute_set_code 'Carvelo' and reference category NAME paths; " +
-      "image URLs are downloaded by Adobe Commerce at import. VIP / EUR / quantity-tier prices " +
-      "are set via REST (npm run ingest:paas), not this CSV.",
+    "\nNote: products use attribute_set_code 'Carvelo' and reference category NAME paths; the image " +
+      "columns are jsDelivr URLs (the Admin CSV import downloads them; the API path attaches images " +
+      "via the media API instead — see paas/PAAS_TO_ACO.md). VIP / EUR / quantity-tier prices are " +
+      "set via REST (npm run ingest:paas), not this CSV.",
   );
 };
 

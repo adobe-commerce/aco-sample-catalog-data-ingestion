@@ -1,5 +1,5 @@
 // ACO dataset (data/*.json) -> Adobe Commerce representations. Pure mappers, no I/O.
-// The core is toImportItem(): one canonical import record, sent as a /V1/import/json item
+// The core is buildImportItem(): one canonical import record, sent as a /V1/import/json item
 // (paas/ingest.js) or flattened to CSV columns (paas/build-uploads.js).
 
 import {
@@ -19,13 +19,17 @@ import {
 export const isConfigurable = (p) =>
   Array.isArray(p.configurations) && p.configurations.length > 0;
 
-const parentSkuOf = (p) =>
+const getParentSku = (p) =>
   (p.links || []).find((l) => l.type === "VARIANT_OF")?.sku;
 
-export const isReferenceVehicle = (p) =>
-  p.sku.startsWith("veh-") && (p.visibleIn || []).length === 0;
+const getAttrValue = (p, code) =>
+  (p.attributes || []).find((a) => a.code === code)?.values?.[0];
 
-const inputTypeFor = (code) =>
+// Reference vehicles are marked object_type=vehicle. They're visible (indexed for the picker) but
+// imported out-of-stock / zero-price so they're never purchasable in Adobe Commerce.
+export const isReferenceVehicle = (p) => getAttrValue(p, "object_type") === "vehicle";
+
+const getInputTypeFor = (code) =>
   ATTRIBUTE_INPUT_OVERRIDES[code] || DEFAULT_ATTRIBUTE_INPUT;
 
 const hasOptions = (input) => input === "select" || input === "multiselect";
@@ -34,7 +38,7 @@ const hasOptions = (input) => input === "select" || input === "multiselect";
 
 export const selectSmoke = (products, seedSkus) => {
   const seeds = new Set(seedSkus);
-  return products.filter((p) => seeds.has(p.sku) || seeds.has(parentSkuOf(p)));
+  return products.filter((p) => seeds.has(p.sku) || seeds.has(getParentSku(p)));
 };
 
 // ---- Attributes (REST create) ----------------------------------------------------------
@@ -53,13 +57,20 @@ export const deriveAttributeSpec = (metadata, products) => {
   const spec = [];
   for (const meta of metadata) {
     if (NATIVE_ATTRIBUTES.has(meta.code)) continue;
-    const input = inputTypeFor(meta.code);
+    const input = getInputTypeFor(meta.code);
     const entry = {
       attribute_code: meta.code,
       default_frontend_label: meta.label || meta.code,
       frontend_input: input,
       scope: "global",
       is_required: false,
+      // Layered-navigation / search flags mirror the ACO metadata so make/model/year/fitment/
+      // object_type/brand/part_category surface as facets and policy attributes.
+      is_filterable: meta.filterable ? 1 : 0,
+      is_filterable_in_search: !!meta.filterable,
+      used_in_product_listing: !!meta.filterable,
+      is_searchable: !!meta.searchable,
+      used_for_sort_by: !!meta.sortable,
     };
     if (hasOptions(input)) {
       entry.options = (valuesByCode.get(meta.code) || []).map((label) => ({
@@ -71,25 +82,25 @@ export const deriveAttributeSpec = (metadata, products) => {
   return spec;
 };
 
-export const attributeCreateBody = (specEntry) => ({ attribute: specEntry });
+export const buildAttributeCreateBody = (specEntry) => ({ attribute: specEntry });
 
 // ---- Categories (REST create) ----------------------------------------------------------
 
-const slugDepth = (slug) => slug.split("/").length - 1;
-export const parentSlugOf = (slug) => {
+const getSlugDepth = (slug) => slug.split("/").length - 1;
+export const getParentSlug = (slug) => {
   const i = slug.lastIndexOf("/");
   return i === -1 ? null : slug.slice(0, i);
 };
-const leafOf = (slug) => slug.slice(slug.lastIndexOf("/") + 1);
+const getLeaf = (slug) => slug.slice(slug.lastIndexOf("/") + 1);
 
 export const orderCategoriesTopDown = (categories) =>
   [...categories].sort(
     (a, b) =>
-      slugDepth(a.slug) - slugDepth(b.slug) || (a.position ?? 0) - (b.position ?? 0),
+      getSlugDepth(a.slug) - getSlugDepth(b.slug) || (a.position ?? 0) - (b.position ?? 0),
   );
 
-export const categoryPayload = (record, parentId) => {
-  const custom = [{ attribute_code: "url_key", value: leafOf(record.slug) }];
+export const buildCategoryPayload = (record, parentId) => {
+  const custom = [{ attribute_code: "url_key", value: getLeaf(record.slug) }];
   if (record.description) {
     custom.push({ attribute_code: "description", value: record.description });
   }
@@ -121,6 +132,7 @@ const IMPORT_DEFAULTS = {
   stockWebsiteId: "1",
   referencePrice: "0",
   multiselectSep: "|",
+  images: "url",
 };
 
 // Full stock block (matches the sample import); we have no per-SKU inventory data.
@@ -142,18 +154,36 @@ const VISIBILITY_LABELS = new Map([
 ]);
 const BOOL_MAP = { true: "Yes", false: "No" };
 
-const visibilityLabel = (visibleIn) =>
+const getVisibilityLabel = (visibleIn) =>
   VISIBILITY_LABELS.get([...(visibleIn ?? [])].sort().join(",")) ??
   "Not Visible Individually";
 
 const PLACEHOLD_SIZE = /(placehold\.co\/)\d+(?:x\d+)?/;
-const sizedUrl = (url, size) => (url ? url.replace(PLACEHOLD_SIZE, `$1${size}`) : "");
+const buildSizedUrl = (url, size) => (url ? url.replace(PLACEHOLD_SIZE, `$1${size}`) : "");
 
-const imageForRole = (images, role) =>
+const getImageForRole = (images, role) =>
   images.find((img) => (img.roles ?? []).includes(role)) ?? images[0] ?? null;
 
-// base/small/thumbnail (+ labels) sized per role, plus extras as additional_images.
-const imageColumns = (product, sizes) => {
+// Adobe Commerce media dispersion path for a filename: first two chars -> "/b/r/brake.png".
+// Uploading each unique file once lands it here; every other product references the same path.
+export const buildMediaPath = (url) => {
+  const name = url.split("?")[0].split("/").pop() ?? "";
+  const c1 = name[0] && name[0] !== "." ? name[0] : "_";
+  const c2 = name[1] && name[1] !== "." ? name[1] : "_";
+  return `/${c1}/${c2}/${name}`;
+};
+
+// The value for an image column: a shared media path (ctx.images "media", so duplicate uploads
+// collapse to one file) or the sized source URL (default, used by the CSV fallback).
+const resolveImageValue = (img, key, ctx) =>
+  ctx.images === "media"
+    ? ctx.imagePaths?.get(img.url) ?? buildMediaPath(img.url)
+    : buildSizedUrl(img.url, ctx.imageSizes[key]);
+
+// base/small/thumbnail (+ labels) per role, plus extras as additional_images. ctx.images
+// "none" omits image columns entirely (the initial create pass, before uploads exist).
+const buildImageColumns = (product, ctx) => {
+  if (ctx.images === "none") return {};
   const images = product.images ?? [];
   if (!images.length) return {};
   const defaultLabel = product.name ?? "";
@@ -164,16 +194,16 @@ const imageColumns = (product, sizes) => {
     ["SMALL", "small"],
     ["THUMBNAIL", "thumbnail"],
   ]) {
-    const img = imageForRole(images, roleName);
+    const img = getImageForRole(images, roleName);
     if (!img) continue;
     used.push(img);
     const col = key === "thumbnail" ? "thumbnail_image" : `${key}_image`;
-    cols[col] = sizedUrl(img.url, sizes[key]);
+    cols[col] = resolveImageValue(img, key, ctx);
     cols[`${col}_label`] = img.label ?? defaultLabel;
   }
   const extra = images.filter((i) => !used.includes(i));
   if (extra.length) {
-    cols.additional_images = extra.map((i) => sizedUrl(i.url, sizes.base)).join(",");
+    cols.additional_images = extra.map((i) => resolveImageValue(i, "base", ctx)).join(",");
     cols.additional_images_labels = extra.map((i) => i.label ?? defaultLabel).join(",");
   }
   return cols;
@@ -195,7 +225,7 @@ const buildCategoryPaths = (categories, root) => {
 };
 
 // Domain attributes as `code=label|label,code2=label` — labels, not option ids.
-const additionalAttributes = (product, sep) =>
+const buildAdditionalAttributes = (product, sep) =>
   (product.attributes ?? [])
     .map((a) => {
       const vals =
@@ -204,22 +234,22 @@ const additionalAttributes = (product, sep) =>
     })
     .join(",");
 
-const relatedSkus = (product) =>
+const getRelatedSkus = (product) =>
   (product.links ?? [])
     .filter((l) => l.type === "related")
     .map((l) => l.sku)
     .join(",");
 
-const childrenByParentMap = (products) => {
+const buildChildrenByParentMap = (products) => {
   const map = {};
   for (const p of products) {
-    const parent = parentSkuOf(p);
+    const parent = getParentSku(p);
     if (parent) (map[parent] ??= []).push(p);
   }
   return map;
 };
 
-const configurableVariations = (parent, childrenByParent) => {
+const buildConfigurableVariations = (parent, childrenByParent) => {
   const axes = parent.configurations.map((c) => c.attributeCode);
   const parts = (childrenByParent[parent.sku] ?? []).map((child) => {
     const cattrs = Object.fromEntries((child.attributes ?? []).map((a) => [a.code, a.values]));
@@ -233,7 +263,7 @@ const configurableVariations = (parent, childrenByParent) => {
   return [parts.join("|"), labels];
 };
 
-// Build the shared context toImportItem() needs. `overrides` (e.g. websiteCodes discovered
+// Build the shared context buildImportItem() needs. `overrides` (e.g. websiteCodes discovered
 // at runtime) merge over IMPORT_DEFAULTS.
 export const buildImportContext = (products, categories, prices, overrides = {}) => {
   const cfg = { ...IMPORT_DEFAULTS, ...overrides };
@@ -245,13 +275,13 @@ export const buildImportContext = (products, categories, prices, overrides = {})
     ...cfg,
     attributeSetName: ATTRIBUTE_SET_NAME,
     categoryPaths: buildCategoryPaths(categories, cfg.rootCategory),
-    childrenByParent: childrenByParentMap(products),
+    childrenByParent: buildChildrenByParentMap(products),
     priceUsd,
   };
 };
 
 // The canonical Adobe Commerce import record for one product (string-valued, CSV-compatible).
-export const toImportItem = (product, ctx) => {
+export const buildImportItem = (product, ctx) => {
   const config = isConfigurable(product);
   const reference = isReferenceVehicle(product);
 
@@ -265,27 +295,27 @@ export const toImportItem = (product, ctx) => {
     short_description: product.shortDescription ?? "",
     product_online: product.status === "ENABLED" ? "1" : "0",
     tax_class_name: ctx.taxClass,
-    visibility: visibilityLabel(product.visibleIn),
+    visibility: getVisibilityLabel(product.visibleIn),
     url_key: product.slug ?? "",
     save_rewrites_history: "1",
     meta_title: product.name,
     meta_description: product.shortDescription ?? "",
     msrp_display_actual_price_type: "Use config",
-    additional_attributes: additionalAttributes(product, ctx.multiselectSep),
+    additional_attributes: buildAdditionalAttributes(product, ctx.multiselectSep),
     website_id: ctx.stockWebsiteId,
-    related_skus: relatedSkus(product),
+    related_skus: getRelatedSkus(product),
     categories: (product.routes ?? [])
       .filter((r) => r.path in ctx.categoryPaths)
       .map((r) => ctx.categoryPaths[r.path])
       .join(","),
-    ...imageColumns(product, ctx.imageSizes),
+    ...buildImageColumns(product, ctx),
   };
 
   if (config) {
     item.is_in_stock = "1";
     item.manage_stock = "0";
     item.use_config_manage_stock = "1";
-    const [variations, labels] = configurableVariations(product, ctx.childrenByParent);
+    const [variations, labels] = buildConfigurableVariations(product, ctx.childrenByParent);
     item.configurable_variations = variations;
     item.configurable_variation_labels = labels;
   } else {
@@ -319,16 +349,16 @@ export const indexPricesBySku = (prices) => {
   return map;
 };
 
-const currencyScope = (currency, scopes) =>
+const getCurrencyScope = (currency, scopes) =>
   currency === "EUR" ? scopes.eur : scopes.usd;
 
 // base-prices rows for one sku. Skips a currency whose scope is absent (e.g. no EUR website).
-export const basePriceRowsForSku = (sku, booksForSku, scopes) => {
+export const buildBasePriceRows = (sku, booksForSku, scopes) => {
   const rows = [];
   for (const [bookId, meta] of Object.entries(PRICE_BOOK_ROLES)) {
     if (meta.role !== "base") continue;
     const record = booksForSku[bookId];
-    const scope = currencyScope(meta.currency, scopes);
+    const scope = getCurrencyScope(meta.currency, scopes);
     if (!record || !scope) continue;
     rows.push({ sku, price: record.regular, store_id: scope.storeId });
   }
@@ -336,11 +366,11 @@ export const basePriceRowsForSku = (sku, booksForSku, scopes) => {
 };
 
 // tier-prices rows: VIP fixed (per website) + ALL GROUPS qty-tier discounts.
-export const tierPriceRowsForSku = (sku, booksForSku, scopes) => {
+export const buildTierPriceRows = (sku, booksForSku, scopes) => {
   const rows = [];
   for (const [bookId, meta] of Object.entries(PRICE_BOOK_ROLES)) {
     const record = booksForSku[bookId];
-    const scope = currencyScope(meta.currency, scopes);
+    const scope = getCurrencyScope(meta.currency, scopes);
     if (!record || !scope) continue;
 
     if (meta.role === "group") {
@@ -348,7 +378,7 @@ export const tierPriceRowsForSku = (sku, booksForSku, scopes) => {
         sku,
         price: record.regular,
         price_type: "fixed",
-        website_id: scope.websiteId,
+        website_id: scope.tierWebsiteId,
         customer_group: meta.customerGroup || VIP_GROUP_CODE,
         quantity: 1,
       });
@@ -358,7 +388,7 @@ export const tierPriceRowsForSku = (sku, booksForSku, scopes) => {
           sku,
           price: tier.percentage,
           price_type: "discount",
-          website_id: scope.websiteId,
+          website_id: scope.tierWebsiteId,
           customer_group: ALL_GROUPS,
           quantity: tier.qty,
         });
