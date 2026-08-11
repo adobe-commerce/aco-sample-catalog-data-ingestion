@@ -1,0 +1,476 @@
+[
+  {
+    "code": "sku",
+    "source": {
+      "locale": "en-US"
+    },
+    "label": "SKU",
+    "dataType": "TEXT",
+    "visibleIn": [
+      "PRODUCT_DETAIL",
+      "PRODUCT_LISTING",
+      "SEARCH_RESULTS",
+      "PRODUCT_COMPARE"
+    ],
+    "filterable": false,
+    "sortable": false,
+    "searchable": true,
+    "searchWeight": 1,
+    "searchTypes": ["AUTOCOMPLETE"]
+  },
+  {
+    "code": "name",
+    "source": {
+      "locale": "en-US"
+    },
+    "label": "Name",
+    "dataType": "TEXT",
+    "visibleIn": [
+      "PRODUCT_DETAIL",
+      "PRODUCT_LISTING",
+      "SEARCH_RESULTS",
+      "PRODUCT_COMPARE"
+    ],
+    "filterable": false,
+    "sortable": true,
+    "searchable": true,
+    "searchWeight": 5,
+    "searchTypes": ["AUTOCOMPLETE"]
+  },
+  {
+    "code": "description",
+    "source": {
+      "locale": "en-US"
+    },
+    "label": "Description",
+    "dataType": "TEXT",
+    "visibleIn": ["PRODUCT_DETAIL"],
+    "filterable": false,
+    "sortable": false,
+    "searchable": false,
+    "searchWeight": 1,
+    "searchTypes": ["AUTOCOMPLETE"]
+  },
+  {
+    "code": "shortDescription",
+    "source": {
+      "locale": "en-US"
+    },
+    "label": "Short Description",
+    "dataType": "TEXT",
+    "visibleIn": ["PRODUCT_DETAIL"],
+    "filterable": false,
+    "sortable": false,
+    "searchable": true,
+    "searchWeight": 1,
+    "searchTypes": ["AUTOCOMPLETE"]
+  },
+  {
+    "code": "price",
+    "source": {
+      "locale": "en-US"
+    },
+    "label": "Price",
+    "dataType": "DECIMAL",
+    "visibleIn": [
+      "PRODUCT_DETAIL",
+      "PRODUCT_LISTING",
+      "SEARCH_RESULTS",
+      "PRODUCT_COMPARE"
+    ],
+    "filterable": true,
+    "sortable": true,
+    "searchable": false,
+    "searchWeight": 1,
+    "searchTypes": []
+  },
+  {
+    "code": "object_type",
+    "source": {
+      "locale": "en-US"
+    },
+    "label": "Object Type",
+    "dataType": "TEXT",
+    "visibleIn": [
+      "PRODUCT_DETAIL",
+      "PRODUCT_LISTING",
+      "SEARCH_RESULTS",
+      "PRODUCT_COMPARE"
+    ],
+    "filterable": true,
+    "sortable": false,
+    "searchable": false,
+    "searchWeight": 1,
+    "searchTypes": []
+  },
+  {
+    "code": "make",
+    "source": {
+      "locale": "en-US"
+    },
+    "label": "Vehicle Make",
+    "dataType": "TEXT",
+    "visibleIn": [
+      "PRODUCT_DETAIL",
+      "PRODUCT_LISTING",
+      "SEARCH_RESULTS",
+      "PRODUCT_COMPARE"
+    ],
+    "filterable": true,
+    "sortable": false,
+    "searchable": true,
+    "searchWeight": 2,
+    "searchTypes": ["AUTOCOMPLETE"]
+  },
+  {
+    "code": "model",
+    "source": {
+      "locale": "en-US"
+    },
+    "label": "Vehicle Model",
+    "dataType": "TEXT",
+    "visibleIn": [
+      "PRODUCT_DETAIL",
+      "PRODUCT_LISTING",
+      "SEARCH_RESULTS",
+      "PRODUCT_COMPARE"
+    ],
+    "filterable": true,
+    "sortable": false,
+    "searchable": true,
+    "searchWeight": 2,
+    "searchTypes": ["AUTOCOMPLETE"]
+  },
+  {
+    "code": "trim",
+    "source": {
+      "locale": "en-US"
+    },
+    "label": "Vehicle Trim",
+    "dataType": "TEXT",
+    "visibleIn": [
+      "PRODUCT_DETAIL",
+      "PRODUCT_LISTING",
+      "SEARCH_RESULTS",
+      "PRODUCT_COMPARE"
+    ],
+    "filterable": true,
+    "sortable": false,
+    "searchable": false,
+    "searchWeight": 1,
+    "searchTypes": ["AUTOCOMPLETE"]
+  },
+  {
+    "code": "year",
+    "source": {
+      "locale": "en-US"
+    },
+    "label": "Vehicle Year",
+    "dataType": "INTEGER",
+    "visibleIn": [
+      "PRODUCT_DETAIL",
+      "PRODUCT_LISTING",
+      "SEARCH_RESULTS",
+      "PRODUCT_COMPARE"
+    ],
+    "filterable": true,
+    "sortable": false,
+    "searchable": false,
+    "searchWeight": 1,
+    "searchTypes": []
+  },
+  {
+    "code": "part_category",
+    "source": {
+      "locale": "en-US"
+    },
+    "label": "Part Category",
+    "dataType": "TEXT",
+    "visibleIn": [
+      "PRODUCT_DETAIL",
+      "PRODUCT_LISTING",
+      "SEARCH_RESULTS",
+      "PRODUCT_COMPARE"
+    ],
+    "filterable": true,
+    "sortable": false,
+    "searchable": true,
+    "searchWeight": 3,
+    "searchTypes": ["AUTOCOMPLETE"]
+  },
+  {
+    "code": "brand",
+    "source": {
+      "locale": "en-US"
+    },
+    "label": "Brand",
+    "dataType": "TEXT",
+    "visibleIn": [
+      "PRODUCT_DETAIL",
+      "PRODUCT_LISTING",
+      "SEARCH_RESULTS",
+      "PRODUCT_COMPARE"
+    ],
+    "filterable": true,
+    "sortable": false,
+    "searchable": true,
+    "searchWeight": 2,
+    "searchTypes": ["AUTOCOMPLETE"]
+  },
+  {
+    "code": "manufacturer",
+    "source": {
+      "locale": "en-US"
+    },
+    "label": "Manufacturer",
+    "dataType": "TEXT",
+    "visibleIn": [
+      "PRODUCT_DETAIL",
+      "PRODUCT_LISTING",
+      "SEARCH_RESULTS",
+      "PRODUCT_COMPARE"
+    ],
+    "filterable": true,
+    "sortable": false,
+    "searchable": false,
+    "searchWeight": 1,
+    "searchTypes": ["AUTOCOMPLETE"]
+  },
+  {
+    "code": "fitment",
+    "source": {
+      "locale": "en-US"
+    },
+    "label": "Fitment",
+    "dataType": "TEXT",
+    "visibleIn": ["PRODUCT_DETAIL", "SEARCH_RESULTS"],
+    "filterable": true,
+    "sortable": false,
+    "searchable": true,
+    "searchWeight": 2,
+    "searchTypes": ["AUTOCOMPLETE"]
+  },
+  {
+    "code": "make_fitment",
+    "source": {
+      "locale": "en-US"
+    },
+    "label": "Fits Make",
+    "dataType": "TEXT",
+    "visibleIn": [
+      "PRODUCT_DETAIL",
+      "PRODUCT_LISTING",
+      "SEARCH_RESULTS",
+      "PRODUCT_COMPARE"
+    ],
+    "filterable": true,
+    "sortable": false,
+    "searchable": false,
+    "searchWeight": 1,
+    "searchTypes": []
+  },
+  {
+    "code": "make_model_fitment",
+    "source": {
+      "locale": "en-US"
+    },
+    "label": "Fits Model",
+    "dataType": "TEXT",
+    "visibleIn": [
+      "PRODUCT_DETAIL",
+      "PRODUCT_LISTING",
+      "SEARCH_RESULTS",
+      "PRODUCT_COMPARE"
+    ],
+    "filterable": true,
+    "sortable": false,
+    "searchable": false,
+    "searchWeight": 1,
+    "searchTypes": []
+  },
+  {
+    "code": "fitment_drives",
+    "source": {
+      "locale": "en-US"
+    },
+    "label": "Drives",
+    "dataType": "TEXT",
+    "visibleIn": ["PRODUCT_DETAIL"],
+    "filterable": false,
+    "sortable": false,
+    "searchable": false,
+    "searchWeight": 1,
+    "searchTypes": []
+  },
+  {
+    "code": "sold_by_third_party",
+    "source": {
+      "locale": "en-US"
+    },
+    "label": "Sold by Third Party",
+    "dataType": "BOOLEAN",
+    "visibleIn": [
+      "PRODUCT_DETAIL",
+      "PRODUCT_LISTING",
+      "SEARCH_RESULTS",
+      "PRODUCT_COMPARE"
+    ],
+    "filterable": true,
+    "sortable": false,
+    "searchable": false,
+    "searchWeight": 1,
+    "searchTypes": []
+  },
+  {
+    "code": "grade",
+    "source": {
+      "locale": "en-US"
+    },
+    "label": "Grade",
+    "dataType": "TEXT",
+    "visibleIn": [
+      "PRODUCT_DETAIL",
+      "PRODUCT_LISTING",
+      "SEARCH_RESULTS",
+      "PRODUCT_COMPARE"
+    ],
+    "filterable": true,
+    "sortable": false,
+    "searchable": false,
+    "searchWeight": 1,
+    "searchTypes": ["AUTOCOMPLETE"]
+  },
+  {
+    "code": "size",
+    "source": {
+      "locale": "en-US"
+    },
+    "label": "Size",
+    "dataType": "TEXT",
+    "visibleIn": [
+      "PRODUCT_DETAIL",
+      "PRODUCT_LISTING",
+      "SEARCH_RESULTS",
+      "PRODUCT_COMPARE"
+    ],
+    "filterable": true,
+    "sortable": false,
+    "searchable": false,
+    "searchWeight": 1,
+    "searchTypes": ["AUTOCOMPLETE"]
+  },
+  {
+    "code": "profile",
+    "source": {
+      "locale": "en-US"
+    },
+    "label": "Profile",
+    "dataType": "TEXT",
+    "visibleIn": [
+      "PRODUCT_DETAIL",
+      "PRODUCT_LISTING",
+      "SEARCH_RESULTS",
+      "PRODUCT_COMPARE"
+    ],
+    "filterable": true,
+    "sortable": false,
+    "searchable": false,
+    "searchWeight": 1,
+    "searchTypes": ["AUTOCOMPLETE"]
+  },
+  {
+    "code": "rating",
+    "source": {
+      "locale": "en-US"
+    },
+    "label": "Speed Rating",
+    "dataType": "TEXT",
+    "visibleIn": [
+      "PRODUCT_DETAIL",
+      "PRODUCT_LISTING",
+      "SEARCH_RESULTS",
+      "PRODUCT_COMPARE"
+    ],
+    "filterable": true,
+    "sortable": false,
+    "searchable": false,
+    "searchWeight": 1,
+    "searchTypes": ["AUTOCOMPLETE"]
+  },
+  {
+    "code": "bolt_pattern",
+    "source": {
+      "locale": "en-US"
+    },
+    "label": "Bolt Pattern",
+    "dataType": "TEXT",
+    "visibleIn": [
+      "PRODUCT_DETAIL",
+      "PRODUCT_LISTING",
+      "SEARCH_RESULTS",
+      "PRODUCT_COMPARE"
+    ],
+    "filterable": true,
+    "sortable": false,
+    "searchable": false,
+    "searchWeight": 1,
+    "searchTypes": ["AUTOCOMPLETE"]
+  },
+  {
+    "code": "group_size",
+    "source": {
+      "locale": "en-US"
+    },
+    "label": "Group Size",
+    "dataType": "TEXT",
+    "visibleIn": [
+      "PRODUCT_DETAIL",
+      "PRODUCT_LISTING",
+      "SEARCH_RESULTS",
+      "PRODUCT_COMPARE"
+    ],
+    "filterable": true,
+    "sortable": false,
+    "searchable": false,
+    "searchWeight": 1,
+    "searchTypes": ["AUTOCOMPLETE"]
+  },
+  {
+    "code": "volume",
+    "source": {
+      "locale": "en-US"
+    },
+    "label": "Volume",
+    "dataType": "TEXT",
+    "visibleIn": [
+      "PRODUCT_DETAIL",
+      "PRODUCT_LISTING",
+      "SEARCH_RESULTS",
+      "PRODUCT_COMPARE"
+    ],
+    "filterable": true,
+    "sortable": false,
+    "searchable": false,
+    "searchWeight": 1,
+    "searchTypes": ["AUTOCOMPLETE"]
+  },
+  {
+    "code": "viscosity",
+    "source": {
+      "locale": "en-US"
+    },
+    "label": "Viscosity",
+    "dataType": "TEXT",
+    "visibleIn": [
+      "PRODUCT_DETAIL",
+      "PRODUCT_LISTING",
+      "SEARCH_RESULTS",
+      "PRODUCT_COMPARE"
+    ],
+    "filterable": true,
+    "sortable": false,
+    "searchable": false,
+    "searchWeight": 1,
+    "searchTypes": ["AUTOCOMPLETE"]
+  }
+]

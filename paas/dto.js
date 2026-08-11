@@ -1,6 +1,4 @@
-// ACO dataset (data/*.json) -> Adobe Commerce representations. Pure mappers, no I/O.
-// The core is buildImportItem(): one canonical import record, sent as a /V1/import/json item
-// (paas/ingest.js) or flattened to CSV columns (paas/build-uploads.js).
+// ACO dataset (data/*.json) -> Adobe Commerce representations.
 
 import {
   NATIVE_ATTRIBUTES,
@@ -12,38 +10,34 @@ import {
   VIP_GROUP_CODE,
   DEFAULT_QTY,
   PRICE_BOOK_ROLES,
-} from "./config.js";
+} from './config.js';
 
 // ---- Product classification ------------------------------------------------------------
 
-export const isConfigurable = (p) =>
-  Array.isArray(p.configurations) && p.configurations.length > 0;
+export const isConfigurable = p => Array.isArray(p.configurations) && p.configurations.length > 0;
 
-const getParentSku = (p) =>
-  (p.links || []).find((l) => l.type === "VARIANT_OF")?.sku;
+const getParentSku = p => (p.links || []).find(l => l.type === 'VARIANT_OF')?.sku;
 
-const getAttrValue = (p, code) =>
-  (p.attributes || []).find((a) => a.code === code)?.values?.[0];
+const getAttrValue = (p, code) => (p.attributes || []).find(a => a.code === code)?.values?.[0];
 
-// Reference vehicles are marked object_type=vehicle. They're visible (indexed for the picker) but
-// imported out-of-stock / zero-price so they're never purchasable in Adobe Commerce.
-export const isReferenceVehicle = (p) => getAttrValue(p, "object_type") === "vehicle";
+export const isReferenceVehicle = p => getAttrValue(p, 'object_type') === 'vehicle';
 
-const getInputTypeFor = (code) =>
-  ATTRIBUTE_INPUT_OVERRIDES[code] || DEFAULT_ATTRIBUTE_INPUT;
+// fitment_* per-vehicle display attributes are multi-valued vehicle-keyed tokens, so they map to
+// multiselect like `fitment` (options derived from the product values) rather than the default select.
+const getInputTypeFor = code =>
+  ATTRIBUTE_INPUT_OVERRIDES[code] || (code.startsWith('fitment_') ? 'multiselect' : DEFAULT_ATTRIBUTE_INPUT);
 
-const hasOptions = (input) => input === "select" || input === "multiselect";
+const hasOptions = input => input === 'select' || input === 'multiselect';
 
 // ---- Smoke selection -------------------------------------------------------------------
 
 export const selectSmoke = (products, seedSkus) => {
   const seeds = new Set(seedSkus);
-  return products.filter((p) => seeds.has(p.sku) || seeds.has(getParentSku(p)));
+  return products.filter(p => seeds.has(p.sku) || seeds.has(getParentSku(p)));
 };
 
 // ---- Attributes (REST create) ----------------------------------------------------------
-// Metadata order minus NATIVE. Options are the order-preserving union of actual product
-// values (select/multiselect) — this is where fitment's ~376 vehicle-SKU options come from.
+
 export const deriveAttributeSpec = (metadata, products) => {
   const valuesByCode = new Map();
   for (const p of products) {
@@ -58,22 +52,22 @@ export const deriveAttributeSpec = (metadata, products) => {
   for (const meta of metadata) {
     if (NATIVE_ATTRIBUTES.has(meta.code)) continue;
     const input = getInputTypeFor(meta.code);
+    const isVisible = (meta.visibleIn ?? []).length > 0;
     const entry = {
       attribute_code: meta.code,
       default_frontend_label: meta.label || meta.code,
       frontend_input: input,
-      scope: "global",
+      scope: 'global',
       is_required: false,
-      // Layered-navigation / search flags mirror the ACO metadata so make/model/year/fitment/
-      // object_type/brand/part_category surface as facets and policy attributes.
       is_filterable: meta.filterable ? 1 : 0,
       is_filterable_in_search: !!meta.filterable,
-      used_in_product_listing: !!meta.filterable,
+      used_in_product_listing: !!(meta.filterable || isVisible),
+      is_visible_on_front: isVisible ? 1 : 0,
       is_searchable: !!meta.searchable,
       used_for_sort_by: !!meta.sortable,
     };
     if (hasOptions(input)) {
-      entry.options = (valuesByCode.get(meta.code) || []).map((label) => ({
+      entry.options = (valuesByCode.get(meta.code) || []).map(label => ({
         label: String(label),
       }));
     }
@@ -82,33 +76,35 @@ export const deriveAttributeSpec = (metadata, products) => {
   return spec;
 };
 
-export const buildAttributeCreateBody = (specEntry) => ({ attribute: specEntry });
+export const buildAttributeCreateBody = specEntry => ({
+  attribute: specEntry,
+});
 
 // ---- Categories (REST create) ----------------------------------------------------------
 
-const getSlugDepth = (slug) => slug.split("/").length - 1;
-export const getParentSlug = (slug) => {
-  const i = slug.lastIndexOf("/");
+const getSlugDepth = slug => slug.split('/').length - 1;
+export const getParentSlug = slug => {
+  const i = slug.lastIndexOf('/');
   return i === -1 ? null : slug.slice(0, i);
 };
-const getLeaf = (slug) => slug.slice(slug.lastIndexOf("/") + 1);
+const getLeaf = slug => slug.slice(slug.lastIndexOf('/') + 1);
 
-export const orderCategoriesTopDown = (categories) =>
-  [...categories].sort(
-    (a, b) =>
-      getSlugDepth(a.slug) - getSlugDepth(b.slug) || (a.position ?? 0) - (b.position ?? 0),
-  );
+export const orderCategoriesTopDown = categories =>
+  [...categories].sort((a, b) => getSlugDepth(a.slug) - getSlugDepth(b.slug) || (a.position ?? 0) - (b.position ?? 0));
 
 export const buildCategoryPayload = (record, parentId) => {
-  const custom = [{ attribute_code: "url_key", value: getLeaf(record.slug) }];
+  const custom = [{ attribute_code: 'url_key', value: getLeaf(record.slug) }];
   if (record.description) {
-    custom.push({ attribute_code: "description", value: record.description });
+    custom.push({ attribute_code: 'description', value: record.description });
   }
   if (record.metaTags?.title) {
-    custom.push({ attribute_code: "meta_title", value: record.metaTags.title });
+    custom.push({ attribute_code: 'meta_title', value: record.metaTags.title });
   }
   if (record.metaTags?.description) {
-    custom.push({ attribute_code: "meta_description", value: record.metaTags.description });
+    custom.push({
+      attribute_code: 'meta_description',
+      value: record.metaTags.description,
+    });
   }
   return {
     category: {
@@ -125,101 +121,112 @@ export const buildCategoryPayload = (record, parentId) => {
 // ---- Product import item (the canonical DTO) -------------------------------------------
 
 const IMPORT_DEFAULTS = {
-  rootCategory: "Default Category",
-  taxClass: "Taxable Goods",
-  imageSizes: { base: "700x700", small: "300x300", thumbnail: "100x100" },
-  websiteCodes: ["base"],
-  stockWebsiteId: "1",
-  referencePrice: "0",
-  multiselectSep: "|",
-  images: "url",
+  rootCategory: 'Default Category',
+  taxClass: 'Taxable Goods',
+  imageSizes: { base: '700x700', small: '300x300', thumbnail: '100x100' },
+  websiteCodes: ['base'],
+  stockWebsiteId: '1',
+  referencePrice: '0',
+  multiselectSep: '|',
+  images: 'url',
 };
 
 // Full stock block (matches the sample import); we have no per-SKU inventory data.
 const STOCK_SIMPLE = {
-  out_of_stock_qty: "0", use_config_min_qty: "1", is_qty_decimal: "0",
-  allow_backorders: "0", use_config_backorders: "1", min_cart_qty: "1",
-  use_config_min_sale_qty: "1", max_cart_qty: "10000", use_config_max_sale_qty: "1",
-  is_in_stock: "1", use_config_notify_stock_qty: "1", manage_stock: "1",
-  use_config_manage_stock: "1", use_config_qty_increments: "1", qty_increments: "1",
-  use_config_enable_qty_inc: "1", enable_qty_increments: "0", is_decimal_divided: "0",
-  deferred_stock_update: "1", use_config_deferred_stock_update: "1",
+  out_of_stock_qty: '0',
+  use_config_min_qty: '1',
+  is_qty_decimal: '0',
+  allow_backorders: '0',
+  use_config_backorders: '1',
+  min_cart_qty: '1',
+  use_config_min_sale_qty: '1',
+  max_cart_qty: '10000',
+  use_config_max_sale_qty: '1',
+  is_in_stock: '1',
+  use_config_notify_stock_qty: '1',
+  manage_stock: '1',
+  use_config_manage_stock: '1',
+  use_config_qty_increments: '1',
+  qty_increments: '1',
+  use_config_enable_qty_inc: '1',
+  enable_qty_increments: '0',
+  is_decimal_divided: '0',
+  deferred_stock_update: '1',
+  use_config_deferred_stock_update: '1',
 };
 
 const VISIBILITY_LABELS = new Map([
-  ["", "Not Visible Individually"],
-  ["SEARCH", "Search"],
-  ["CATALOG", "Catalog"],
-  ["CATALOG,SEARCH", "Catalog, Search"],
+  ['', 'Not Visible Individually'],
+  ['SEARCH', 'Search'],
+  ['CATALOG', 'Catalog'],
+  ['CATALOG,SEARCH', 'Catalog, Search'],
 ]);
-const BOOL_MAP = { true: "Yes", false: "No" };
+const BOOL_MAP = { true: 'Yes', false: 'No' };
 
-const getVisibilityLabel = (visibleIn) =>
-  VISIBILITY_LABELS.get([...(visibleIn ?? [])].sort().join(",")) ??
-  "Not Visible Individually";
+const getVisibilityLabel = visibleIn =>
+  VISIBILITY_LABELS.get([...(visibleIn ?? [])].sort().join(',')) ?? 'Not Visible Individually';
 
 const PLACEHOLD_SIZE = /(placehold\.co\/)\d+(?:x\d+)?/;
-const buildSizedUrl = (url, size) => (url ? url.replace(PLACEHOLD_SIZE, `$1${size}`) : "");
+const buildSizedUrl = (url, size) => (url ? url.replace(PLACEHOLD_SIZE, `$1${size}`) : '');
 
-const getImageForRole = (images, role) =>
-  images.find((img) => (img.roles ?? []).includes(role)) ?? images[0] ?? null;
+const getImageForRole = (images, role) => images.find(img => (img.roles ?? []).includes(role)) ?? images[0] ?? null;
 
 // Adobe Commerce media dispersion path for a filename: first two chars -> "/b/r/brake.png".
 // Uploading each unique file once lands it here; every other product references the same path.
-export const buildMediaPath = (url) => {
-  const name = url.split("?")[0].split("/").pop() ?? "";
-  const c1 = name[0] && name[0] !== "." ? name[0] : "_";
-  const c2 = name[1] && name[1] !== "." ? name[1] : "_";
+export const buildMediaPath = url => {
+  const name = url.split('?')[0].split('/').pop() ?? '';
+  const c1 = name[0] && name[0] !== '.' ? name[0] : '_';
+  const c2 = name[1] && name[1] !== '.' ? name[1] : '_';
   return `/${c1}/${c2}/${name}`;
 };
 
 // The value for an image column: a shared media path (ctx.images "media", so duplicate uploads
 // collapse to one file) or the sized source URL (default, used by the CSV fallback).
 const resolveImageValue = (img, key, ctx) =>
-  ctx.images === "media"
-    ? ctx.imagePaths?.get(img.url) ?? buildMediaPath(img.url)
+  ctx.images === 'media'
+    ? (ctx.imagePaths?.get(img.url) ?? buildMediaPath(img.url))
     : buildSizedUrl(img.url, ctx.imageSizes[key]);
 
 // base/small/thumbnail (+ labels) per role, plus extras as additional_images. ctx.images
 // "none" omits image columns entirely (the initial create pass, before uploads exist).
 const buildImageColumns = (product, ctx) => {
-  if (ctx.images === "none") return {};
+  if (ctx.images === 'none') return {};
   const images = product.images ?? [];
   if (!images.length) return {};
-  const defaultLabel = product.name ?? "";
+  const defaultLabel = product.name ?? '';
   const cols = {};
   const used = [];
   for (const [roleName, key] of [
-    ["BASE", "base"],
-    ["SMALL", "small"],
-    ["THUMBNAIL", "thumbnail"],
+    ['BASE', 'base'],
+    ['SMALL', 'small'],
+    ['THUMBNAIL', 'thumbnail'],
   ]) {
     const img = getImageForRole(images, roleName);
     if (!img) continue;
     used.push(img);
-    const col = key === "thumbnail" ? "thumbnail_image" : `${key}_image`;
+    const col = key === 'thumbnail' ? 'thumbnail_image' : `${key}_image`;
     cols[col] = resolveImageValue(img, key, ctx);
     cols[`${col}_label`] = img.label ?? defaultLabel;
   }
-  const extra = images.filter((i) => !used.includes(i));
+  const extra = images.filter(i => !used.includes(i));
   if (extra.length) {
-    cols.additional_images = extra.map((i) => resolveImageValue(i, "base", ctx)).join(",");
-    cols.additional_images_labels = extra.map((i) => i.label ?? defaultLabel).join(",");
+    cols.additional_images = extra.map(i => resolveImageValue(i, 'base', ctx)).join(',');
+    cols.additional_images_labels = extra.map(i => i.label ?? defaultLabel).join(',');
   }
   return cols;
 };
 
 // slug 'brakes/pads' -> 'Default Category/Brakes/Brake Pads'.
 const buildCategoryPaths = (categories, root) => {
-  const nameOf = Object.fromEntries(categories.map((c) => [c.slug, c.name]));
+  const nameOf = Object.fromEntries(categories.map(c => [c.slug, c.name]));
   const paths = {};
   for (const c of categories) {
     const acc = [];
-    const names = c.slug.split("/").map((seg) => {
+    const names = c.slug.split('/').map(seg => {
       acc.push(seg);
-      return nameOf[acc.join("/")] ?? seg;
+      return nameOf[acc.join('/')] ?? seg;
     });
-    paths[c.slug] = [root, ...names].join("/");
+    paths[c.slug] = [root, ...names].join('/');
   }
   return paths;
 };
@@ -227,20 +234,19 @@ const buildCategoryPaths = (categories, root) => {
 // Domain attributes as `code=label|label,code2=label` — labels, not option ids.
 const buildAdditionalAttributes = (product, sep) =>
   (product.attributes ?? [])
-    .map((a) => {
-      const vals =
-        a.code === "sold_by_third_party" ? a.values.map((v) => BOOL_MAP[v] ?? v) : a.values;
+    .map(a => {
+      const vals = a.code === 'sold_by_third_party' ? a.values.map(v => BOOL_MAP[v] ?? v) : a.values;
       return `${a.code}=${vals.join(sep)}`;
     })
-    .join(",");
+    .join(',');
 
-const getRelatedSkus = (product) =>
+const getRelatedSkus = product =>
   (product.links ?? [])
-    .filter((l) => l.type === "related")
-    .map((l) => l.sku)
-    .join(",");
+    .filter(l => l.type === 'related')
+    .map(l => l.sku)
+    .join(',');
 
-const buildChildrenByParentMap = (products) => {
+const buildChildrenByParentMap = products => {
   const map = {};
   for (const p of products) {
     const parent = getParentSku(p);
@@ -250,26 +256,22 @@ const buildChildrenByParentMap = (products) => {
 };
 
 const buildConfigurableVariations = (parent, childrenByParent) => {
-  const axes = parent.configurations.map((c) => c.attributeCode);
-  const parts = (childrenByParent[parent.sku] ?? []).map((child) => {
-    const cattrs = Object.fromEntries((child.attributes ?? []).map((a) => [a.code, a.values]));
+  const axes = parent.configurations.map(c => c.attributeCode);
+  const parts = (childrenByParent[parent.sku] ?? []).map(child => {
+    const cattrs = Object.fromEntries((child.attributes ?? []).map(a => [a.code, a.values]));
     const seg = [`sku=${child.sku}`];
     for (const ax of axes) if (cattrs[ax]?.length) seg.push(`${ax}=${cattrs[ax][0]}`);
-    return seg.join(",");
+    return seg.join(',');
   });
-  const labels = parent.configurations
-    .map((c) => `${c.attributeCode}=${c.label ?? c.attributeCode}`)
-    .join(",");
-  return [parts.join("|"), labels];
+  const labels = parent.configurations.map(c => `${c.attributeCode}=${c.label ?? c.attributeCode}`).join(',');
+  return [parts.join('|'), labels];
 };
 
-// Build the shared context buildImportItem() needs. `overrides` (e.g. websiteCodes discovered
-// at runtime) merge over IMPORT_DEFAULTS.
 export const buildImportContext = (products, categories, prices, overrides = {}) => {
   const cfg = { ...IMPORT_DEFAULTS, ...overrides };
   const priceUsd = new Map();
   for (const row of prices) {
-    if (row.priceBookId === "public-usd") priceUsd.set(row.sku, row.regular);
+    if (row.priceBookId === 'public-usd') priceUsd.set(row.sku, row.regular);
   }
   return {
     ...cfg,
@@ -280,41 +282,52 @@ export const buildImportContext = (products, categories, prices, overrides = {})
   };
 };
 
-// The canonical Adobe Commerce import record for one product (string-valued, CSV-compatible).
 export const buildImportItem = (product, ctx) => {
+  if (ctx.storeViewCode) {
+    return {
+      sku: product.sku,
+      store_view_code: ctx.storeViewCode,
+      name: product.name,
+      description: product.description ?? '',
+      short_description: product.shortDescription ?? '',
+      meta_title: product.name,
+      meta_description: product.shortDescription ?? '',
+    };
+  }
+
   const config = isConfigurable(product);
   const reference = isReferenceVehicle(product);
 
   const item = {
     sku: product.sku,
     attribute_set_code: ctx.attributeSetName,
-    product_type: config ? "configurable" : "simple",
-    product_websites: ctx.websiteCodes.join(","),
+    product_type: config ? 'configurable' : 'simple',
+    product_websites: ctx.websiteCodes.join(','),
     name: product.name,
-    description: product.description ?? "",
-    short_description: product.shortDescription ?? "",
-    product_online: product.status === "ENABLED" ? "1" : "0",
+    description: product.description ?? '',
+    short_description: product.shortDescription ?? '',
+    product_online: product.status === 'ENABLED' ? '1' : '0',
     tax_class_name: ctx.taxClass,
     visibility: getVisibilityLabel(product.visibleIn),
-    url_key: product.slug ?? "",
-    save_rewrites_history: "1",
+    url_key: product.slug ?? '',
+    save_rewrites_history: '1',
     meta_title: product.name,
-    meta_description: product.shortDescription ?? "",
-    msrp_display_actual_price_type: "Use config",
+    meta_description: product.shortDescription ?? '',
+    msrp_display_actual_price_type: 'Use config',
     additional_attributes: buildAdditionalAttributes(product, ctx.multiselectSep),
     website_id: ctx.stockWebsiteId,
     related_skus: getRelatedSkus(product),
     categories: (product.routes ?? [])
-      .filter((r) => r.path in ctx.categoryPaths)
-      .map((r) => ctx.categoryPaths[r.path])
-      .join(","),
+      .filter(r => r.path in ctx.categoryPaths)
+      .map(r => ctx.categoryPaths[r.path])
+      .join(','),
     ...buildImageColumns(product, ctx),
   };
 
   if (config) {
-    item.is_in_stock = "1";
-    item.manage_stock = "0";
-    item.use_config_manage_stock = "1";
+    item.is_in_stock = '1';
+    item.manage_stock = '0';
+    item.use_config_manage_stock = '1';
     const [variations, labels] = buildConfigurableVariations(product, ctx.childrenByParent);
     item.configurable_variations = variations;
     item.configurable_variation_labels = labels;
@@ -322,25 +335,25 @@ export const buildImportItem = (product, ctx) => {
     Object.assign(item, STOCK_SIMPLE);
     if (reference) {
       item.price = ctx.referencePrice;
-      item.qty = "0";
-      item.is_in_stock = "0";
+      item.qty = '0';
+      item.is_in_stock = '0';
     } else {
-      item.price = `${ctx.priceUsd.get(product.sku) ?? ""}`;
+      item.price = `${ctx.priceUsd.get(product.sku) ?? ''}`;
       item.qty = String(DEFAULT_QTY);
     }
   }
   return item;
 };
 
-// Order simples/variants before configurable parents (safest import order).
-export const orderForImport = (products) => [
-  ...products.filter((p) => !isConfigurable(p)),
+// Order simples/variants before configurable parents.
+export const orderForImport = products => [
+  ...products.filter(p => !isConfigurable(p)),
   ...products.filter(isConfigurable),
 ];
 
 // ---- Prices (REST, after products exist) -----------------------------------------------
 
-export const indexPricesBySku = (prices) => {
+export const indexPricesBySku = prices => {
   const map = new Map();
   for (const row of prices) {
     if (!map.has(row.sku)) map.set(row.sku, {});
@@ -349,14 +362,13 @@ export const indexPricesBySku = (prices) => {
   return map;
 };
 
-const getCurrencyScope = (currency, scopes) =>
-  currency === "EUR" ? scopes.eur : scopes.usd;
+const getCurrencyScope = (currency, scopes) => (currency === 'EUR' ? scopes.eur : scopes.usd);
 
 // base-prices rows for one sku. Skips a currency whose scope is absent (e.g. no EUR website).
 export const buildBasePriceRows = (sku, booksForSku, scopes) => {
   const rows = [];
   for (const [bookId, meta] of Object.entries(PRICE_BOOK_ROLES)) {
-    if (meta.role !== "base") continue;
+    if (meta.role !== 'base') continue;
     const record = booksForSku[bookId];
     const scope = getCurrencyScope(meta.currency, scopes);
     if (!record || !scope) continue;
@@ -373,21 +385,21 @@ export const buildTierPriceRows = (sku, booksForSku, scopes) => {
     const scope = getCurrencyScope(meta.currency, scopes);
     if (!record || !scope) continue;
 
-    if (meta.role === "group") {
+    if (meta.role === 'group') {
       rows.push({
         sku,
         price: record.regular,
-        price_type: "fixed",
+        price_type: 'fixed',
         website_id: scope.tierWebsiteId,
         customer_group: meta.customerGroup || VIP_GROUP_CODE,
         quantity: 1,
       });
-    } else if (meta.role === "tiers") {
+    } else if (meta.role === 'tiers') {
       for (const tier of record.tierPrices || []) {
         rows.push({
           sku,
           price: tier.percentage,
-          price_type: "discount",
+          price_type: 'discount',
           website_id: scope.tierWebsiteId,
           customer_group: ALL_GROUPS,
           quantity: tier.qty,

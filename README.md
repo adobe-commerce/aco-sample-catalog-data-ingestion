@@ -16,71 +16,55 @@ Also, you can use this repository code as the basis for loading your own commerc
 - Use the Merchandising GraphQL APIs to retrieve catalog data for your frontend.
 
 
-## The Carvelo 2.0 catalog model
+## The fitment catalog model
 
-This dataset models an auto-parts catalog whose headline feature is **"shop by vehicle"
-fitment**: parts are matched to vehicles through a dedicated `fitment` attribute rather than
-through the category tree.
+This dataset models an auto-parts catalog whose headline feature is **"shop by vehicle" fitment**: parts are matched to vehicles through a dedicated `fitment` attribute rather than through the category tree.
 
-- **Vehicles are reference configurable products.** Each model line (e.g. `veh-aurora-flux`)
-  is a configurable product whose variants are its `trim` × `year` combinations, carrying
-  `make` / `model` / `trim` / `year` attributes that power the vehicle-picker widget. They are
-  indexed (`visibleIn: ["CATALOG","SEARCH"]`) so the picker can query them, but are marked
-  `object_type: "vehicle"`, never priced, and imported out-of-stock — so a policy keeps them
-  out of the shopper experience and they are never purchasable.
-- **Parts** are marked `object_type: "part"` and carry a multi-valued `fitment` attribute — on
-  the **parent/simple only** — listing the vehicle variant SKUs (plus the `UNIVERSAL` marker for
-  truly-universal parts) they fit. Configurable **variants are Not Visible Individually**
-  (`visibleIn: []`): a shopper finds the parent in search and picks options on the PDP.
-- **Fitment-neutral options vs. hard-fit split.** A configurable's option axis is always a
-  *preference* that fits the same vehicle (grade, size, volume, profile, rating). A dimension that
-  actually determines fit — wheel `bolt_pattern`, tire `size`, battery `group_size`, spark-plug
-  thread — instead **splits into separate products**, each scoped to the vehicles that accept it
-  (via generator-internal maps in `scripts/generate.js`; never a vehicle attribute). So every
-  option a shopper can pick genuinely fits their vehicle.
-- **Categories** form a functional tree (brakes, suspension, tires, …); products may belong
-  to several leaf categories.
-- **Pricing** spans two currency anchors (USD, EUR), each with a Public and a VIP child, plus
-  quantity-tier discounts on consumables.
+```json
+{
+  "code": "fitment",
+  "values": [
+    "veh-bolt-scout-base-2025",
+    "veh-bolt-scout-premium-2025",
+    "veh-bolt-scout-performance-2025",
+    "veh-bolt-scout-limited-2025"
+  ]
+}
+```
+
+- **Vehicles are reference configurable products.** Each model line (e.g. `veh-aurora-flux`) is a configurable product whose variants are its `trim` × `year` combinations, carrying  `make` / `model` / `trim` / `year` attributes that power the vehicle-picker widget. Since the vehicles and the parts share the same catalog, the vehicles carry an `object_type: "vehicle"` so that  Commerce Optimizer Policy can filter them out of the shopper experience.
+- **Parts** are marked `object_type: "part"` and carry a multi-valued `fitment` attribute on the parent product. This attribute contains the list of vehicle variant SKUs indicating the vehicle models that they fit, plus a `UNIVERSAL` marker indicating universally fitting parts.
 
 ## What will you do?
 
-You can ingest this catalog into **either** target — or both — from the same `data/*.json`:
+You will ingest `Product Metadata`, `Product`, `Category Metadata`, `Category`, `Price Book`, and `Price` data for the Carvelo Automotive demo dataset:
 
-1. **Directly into Adobe Commerce Optimizer (ACO)** via the Commerce Optimizer TypeScript SDK
-   (`npm run ingest`) — Product Metadata (22), Products (2446), Price Books (6), Prices (10158),
-   Category Metadata, and Categories (34). See [aco/ACO_DIRECT.md](aco/ACO_DIRECT.md).
-2. **Into Adobe Commerce (PaaS)** via the Admin REST API (`npm run ingest:paas`), so the
-   [PaaS → ACO connector](https://experienceleague.adobe.com/en/docs/commerce/aco-optimizer-connector/connector-sync-pipeline)
-   re-exports the catalog to Commerce Optimizer. See [paas/PAAS_TO_ACO.md](paas/PAAS_TO_ACO.md).
+1. **Directly into Commerce Optimizer** via the Commerce Optimizer TypeScript SDK (`npm run ingest`).
+2. **Into Adobe Commerce (PaaS)** via the Admin REST API (`npm run ingest:paas`), so the [PaaS → ACO connector](https://experienceleague.adobe.com/en/docs/commerce/aco-optimizer-connector/connector-sync-pipeline) re-exports the catalog to Commerce Optimizer. See [paas/PAAS_TO_ACO.md](paas/PAAS_TO_ACO.md) for detailed instructions.
 
 After you ingest the data, set up Adobe Commerce Optimizer by [defining catalog views and policies](#create-catalog-views-and-policies) to filter the base catalog data. Then, you can integrate with an Adobe Commerce Edge Delivery Services storefront to deliver custom catalogs for your business use cases.
 
-## Repository layout
+**Note:** By default, the `ingest` command loads data for just the `en-US` (or `default` if using Adobe Commerce PaaS) locale. To ingest other locales, such as French, use the `-- --locales=fr-FR` option.
+
+## Directories & Commands
 
 ```
-data/          the dataset (source of truth for both targets) + images/ (served via jsDelivr)
-aco/           ACO-direct loader (SDK): ingest.js, reset.js  +  ACO_DIRECT.md (guide)
-paas/          Adobe Commerce adapter: ingest.js, reset.js, client.js, config.js, dto.js  +  PAAS_TO_ACO.md (guide)
-  build-uploads.js   generates the CSV-fallback files
-  uploads/     ready-to-import Adobe Commerce files (carvelo_products.csv, carvelo_attributes.json)
-scripts/       ACO dataset generator: generate.js + copy-deck.js
-lib/           shared helpers: env.js (config), data.js (dataset reads)
+data/          the dataset, authored per locale in data/<locale>/ (en-US, fr-FR, ...)
+  images/      product PNGs, shared across locales, served via jsDelivr
+aco/           ACO-direct loader (SDK): ingest.js, reset.js + ACO_DIRECT.md (guide)
+paas/          Adobe Commerce adapter: ingest.js, reset.js, client.js, config.js, dto.js + PAAS_TO_ACO.md (guide)
 ```
 
 | Command | Does |
 | --- | --- |
-| `npm run ingest` (`ingest:aco`) | Load `data/*.json` into ACO via the SDK |
-| `npm run ingest:paas` | Load into Adobe Commerce (PaaS): structure via REST + products via import/json (`-- --smoke` first) |
+| `npm run ingest` (`ingest:aco`) | Loads `data/<locale>/*.json` into ACO via the SDK |
+| `npm run ingest:paas` | Loads into Adobe Commerce (PaaS): structure via REST + products via import/json |
 | `npm run reset` (`reset:aco`) / `npm run reset:paas` | Delete the ingested data |
-| `npm run generate` | Regenerate `data/*.json` |
-| `npm run generate:paas:uploads` | Regenerate `paas/uploads/*` |
 
-> **Attribute naming:** two intentional namespaces — **camelCase** for ACO SDK schema fields
-> (`visibleIn`, `shortDescription`, `priceBookId`, `variantReferenceId`), **snake_case** for the
-> custom attribute codes (`part_category`, `sold_by_third_party`, `bolt_pattern`). Don't normalize
-> one into the other; the camelCase names are the SDK contract and the snake_case codes are also
-> what Adobe Commerce expects.
+> **Locales.** The dataset is authored per locale under `data/<locale>/`. `ingest`, and `reset`, 
+> default to `en-US`; add `-- --locales=en-US,fr-FR` or `-- --all-locales` to synchronize more.
+> A locale is an ACO `source.locale`.
+> On Adobe Commerce PaaS, a locale is a **store view code**.
 
 ## Environment setup
 
@@ -181,47 +165,67 @@ The `.env.dist` file provides the configuration template to instantiate the SDK 
 
 1. Save your changes.
 
-## Choose your path
+## Ingest the data into Commerce Optimizer
 
-Both paths load the same `data/*.json`. Pick one:
+### Adobe Commerce (PaaS) to ACO Ingestion
 
-### Directly into Commerce Optimizer (SDK)
+**Important**: If you are using Adobe Commerce (PaaS) with the Adobe Commerce (PaaS) connector, see the **[paas/PAAS_TO_ACO.md](paas/PAAS_TO_ACO.md)** guide for instructions.
 
-```shell
-npm run ingest      # load data/*.json into ACO via the SDK
-npm run reset       # delete it
+### Commerce Optimizer Direct Ingestion
+
+ The ingestion process handles data in the following order:
+
+ 1. Product Metadata (26 items)
+ 1. Products (2452 items in batches of 100)
+ 1. Price Books (6 items)
+ 1. Prices (10152 items in batches of 100)
+
+Run the following command to ingest the Carvelo sample data found in the `data` directory.
+
+ ```shell
+ npm run ingest -- locales=en-US
+ ```
+
+You should see output similar to the following:
+
+ ```shell
+> $ npm run ingest -- locales=en-US
+Ingesting metadata batch 1 containing 10 items                  #  Ingesting the metadata for the product attributes
+
+...
+
+Metadata batch 1 response: { status: 'ACCEPTED', acceptedCount: 10 }
+Successfully ingested 10 out of 10 items
+Ingesting products batch 1 containing 100 products
+Products batch 1 response: { status: 'ACCEPTED', acceptedCount: 100 }  # Ingesting product data
+Ingesting products batch 2 containing 100 products
+
+...
+
+Successfully ingested 1080 out of 1080 products
+Ingesting price books batch 1 containing 5 price books                    # Ingesting price books data
+Price books batch 1 response: { status: 'ACCEPTED', acceptedCount: 5 }
+Successfully ingested 5 out of 5 price books
+Ingesting prices batch 1 containing 100 prices                         # Ingesting price data
+Prices batch 1 response: { status: 'ACCEPTED', acceptedCount: 100 }
+Ingesting prices batch 2 containing 100 prices
+Prices batch 2 response: { status: 'ACCEPTED', acceptedCount: 100 }
+Ingesting prices batch 3 containing 100 prices
+Prices batch 3 response: { status: 'ACCEPTED', acceptedCount: 100 }
+
+...
+
+Successfully ingested 10152 out of 10152 prices
+
 ```
 
-Full guide — ingestion order, expected output, and how to validate:
-**[aco/ACO_DIRECT.md](aco/ACO_DIRECT.md)**.
+## Reset the sample data
 
-### Into Adobe Commerce (PaaS) → connector → Commerce Optimizer
+To reset the sample catalog data in your Commerce Optimizer instance, run the following script to delete the Carvelo catalog data loaded by the `index.js` ingestion script.
 
-Stand the same catalog up in Adobe Commerce (PaaS) over the Admin REST API; the
-[PaaS → ACO connector](https://experienceleague.adobe.com/en/docs/commerce/aco-optimizer-connector/connector-sync-pipeline)
-re-exports it into Commerce Optimizer. One synchronous pass, no Admin UI (products load via
-`POST /V1/import/json`), and it runs on a fresh instance with zero setup (USD on the default
-`base` website; add an EUR website for multi-currency).
-
-```shell
-npm run ingest:paas -- --smoke   # small slice first — verify
-npm run ingest:paas              # the full catalog (~2446 products)
-npm run reset:paas               # tear down
-```
-
-Full guide — prerequisites, image config, CSV fallback, and validation:
-**[paas/PAAS_TO_ACO.md](paas/PAAS_TO_ACO.md)**.
-
-How the Carvelo axes map onto Commerce (and what the connector emits):
-
-| Carvelo dataset | Adobe Commerce (PaaS) | Connector → ACO |
-| --- | --- | --- |
-| USD / EUR price anchors | one **website** per currency | catalog scope |
-| Public / VIP price books | **base price** / **VIP customer-group price** | price books named `<website>::<SHA1(customer group id)>` |
-| Quantity tiers | ALL GROUPS tier discounts | tier prices |
-| `en-US` locale | a **store view** | one **catalog source** per store view |
-| Configurable vehicle / part | Commerce configurable product (`trim`+`year`, `grade`, …) | configurable product |
-| `fitment` (multi-value) | multiselect product attribute | fitment attribute |
+ ```shell
+ npm run reset
+ ```
 
 ## Configure Commerce Optimizer
 
@@ -233,17 +237,17 @@ From the Commerce Optimizer user interface, create the catalog views and policie
 
 **Note:** See the documentation to learn more about [catalog views](https://experienceleague.adobe.com/en/docs/commerce/optimizer/setup/catalog-view), [policies](https://experienceleague.adobe.com/en/docs/commerce/optimizer/setup/policies), and policy types [policy types](https://experienceleague.adobe.com/en/docs/commerce/optimizer/catalog/policies#value-source-types).
 
-### Shop by vehicle: object_type policies + fitment trigger
+### Create Catalog Views
 
 The catalog carries both shopper-facing **parts** and reference **vehicles** (the vehicle-picker's
 data source), distinguished by the `object_type` attribute. Two catalog views separate them:
 
 | Catalog view | Policies | Purpose |
 | ------------- | ------------- | ------------- |
-| **English Storefront** | `Parts` (static) + `Vehicle` (trigger) | Shopper browse/search — parts only, narrowed to a selected vehicle |
 | **Vehicle Picker** | `Vehicles` (static) | Feeds the vehicle-picker widget (make → model → year → trim) |
+| **English Storefront** | `Parts` (static) + `Vehicle` (trigger) | Shopping experience for parts that fit the selected vehicle |
 
-Create these policies:
+### Create Policies
 
 | Policy Name | Type | Trigger name / transport | Attribute | Operator | Value source | Value |
 | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
@@ -251,38 +255,7 @@ Create these policies:
 | Vehicles | universal (STATIC) | — | object_type | IN | STATIC | vehicle |
 | Vehicle | exclusive (TRIGGER) | AC-Policy-Vehicle / HTTP_HEADER | fitment | IN | TRIGGER | AC-Policy-Vehicle |
 
-(Use the same **Add Policy** steps as the sections below.) Then create the two catalog views
-(**Catalog > Views > Add Catalog View**) with the catalog source for your store view — `default`
-on the PaaS → connector path, `en-US` on the ACO-direct path — and the policies from the first table.
-
-When a shopper selects a vehicle, the storefront sends the vehicle at every fitment granularity plus
-the universal sentinel, e.g.:
-
-```
-AC-Policy-Vehicle: veh-cruz-verde-base-2026,veh-cruz-verde,UNIVERSAL
-```
-
-`fitment IN {…}` then returns the parts that fit that vehicle (per-model-year parts match the trim
-variant, broad parts like batteries match the model parent) plus `UNIVERSAL` parts. With no header,
-the storefront shows all parts. Because the **English Storefront** view always applies `Parts`,
-vehicles never appear in browse/search or get a PDP.
-
-### Create universal policies
-
-The policies and views below are a separate B2B2X **brand / part-category segmentation** example
-(three regional views). They're independent of the shop-by-vehicle setup above; if you build them,
-add the `Parts` policy to each so vehicles stay out of those views too.
-
-Create four universal (STATIC) policies with the following configuration settings:
-
-| Policy Name  | Attribute | Operator | Value source | Value |
-| ------------- | ------------- | ------------- | ------------- | ------------- |
-| West Coast Inc brands | brand | IN | STATIC | Aurora, Bolt, Cruz |
-| East Coast Inc brands  | brand  | IN | STATIC | Bolt, Cruz |
-| Arkbridge part categories  | part_category  | IN | STATIC | tires, brakes, suspension |
-| Kingsbluff part categories | part_category | IN | STATIC | tires, brakes |
-
-**Create each universal policy**
+#### Create the vehicle and part policies
 
 1. Log in to Commerce Optimizer.
 
@@ -302,10 +275,50 @@ Create four universal (STATIC) policies with the following configuration setting
    - For **Value source**, select `STATIC`
    - For **value**, add the values one at a time, then press enter.
 
+1. Apply configuration changes: Click **Save**.
 
-   The modal should look like the screenshot below.
+1. Activate the policy you have just created by clicking the action dots (…) and selecting **Enable**.
 
-   ![Commerce Optimizer universal (static) policy configuration](./assets/aco-sample-data-setup-create-static-policy.png)
+1. Save the policy: Click **Save**.
+
+The policy filter configurations should look like the screenshots below.
+
+Vehicles Only
+
+![Commerce Optimizer vehicles only policy configuration](./assets/vehicles-only-policy.png)
+
+Parts Only
+
+![Commerce Optimizer parts only policy configuration](./assets/parts-only-policy.png)
+
+#### Create the vehicle fitment policy
+
+1. Log in to Commerce Optimizer.
+
+1. Navigate to **Catalog > Policies**.
+
+1. Click **Add Policy**.
+
+1. Enter the policy name.
+
+1. Configure the Trigger details: Click **Add Trigger**.
+
+   - For **Name**, add the trigger name value, for example `AC-Policy-Vehicle`
+   - For **Transport type**, select `HTTP_HEADER`
+   - Click **Save**
+   
+   ![Commerce Optimizer fitment policy trigger configuration](./assets/fitment-policy-trigger.png)
+
+1. Add the filter details for the trigger: Click **Add Filter**
+
+   - For **Attribute**, enter the attribute name `fitment`.
+   - For **Operator**, select **IN**.
+   - For **Value source**, select **TRIGGER**.
+   - For **Value**, enter the trigger name, for example `AC-Policy-Vehicle`
+   - Click **Save**.
+   - Activate the policy by clicking on the action dots (…) and selecting **Enable**.
+   
+   ![Commerce Optimizer fitment policy filter configuration](./assets/fitment-policy-filter.png)
 
 1. Apply configuration changes: Click **Save**.
 
@@ -313,72 +326,49 @@ Create four universal (STATIC) policies with the following configuration setting
 
 1. Save the policy: Click **Save**.
 
-### Create exclusive (TRIGGER) policies
-
-Create two exclusive policies with the following configuration settings:
-
-| Policy Name  | Trigger - Name | Trigger - transport type | Attribute | Operator | Value source | Value |
-| ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
-| Brand  | AC-Policy-Brand  | HTTP_HEADER | model | IN | TRIGGER | AC-Policy-Brand |
-| Model  | AC-Policy-Model  | HTTP_HEADER | model | IN | TRIGGER | AC-Policy-Model |
-
-**Create each exclusive policy**
-
-Use the values from the table to create each policy.
-
-1. From the **Catalog > Policies** page, click **Add Policy**
-
-1. Enter the policy name.
-
-1. Configure the Trigger details: Click **Add Trigger**.
-
-   - For **Name**, add the trigger name value, for example `AC-Policy-Brand`
-   - For **Transport type**, select `HTTP_HEADER`
-   - Click **Save**
-
-1. Add the filter details for the trigger: Click **Add Filter**
-
-   - For **Attribute**, enter the attribute name from the table.
-   - For **Operator**, select **IN**.
-   - For **Value source**, select **TRIGGER**.
-   - For **Value**, enter the trigger name, for example `AC-Policy-Brand`
-   - Click **Save**.
-   - Activate the policy by clicking on the action dots (…) and selecting **Enable**.
-
 ### Verify policies
 
-After you create the six policies, verify that the policy list page includes all the policies.
-
-![Composable Catalog policies for sample data](./assets/aco-sample-data-setup-policies-created.png)
-
-**Important:** Ensure that all of your policies have a status of `Enabled`.
+After you create the three policies, verify that the policy list page includes all the policies with a status of `Enabled`.
 
 ### Create Catalog Views
 
 1. In the Commerce Optimizer interface, navigate to **Catalog > Views**.
 
-1. Create three catalog views that use your newly created policies.
+1. Create the `Vehicle Picker` catalog view that uses your newly created policy.
 
    - Click **Add Catalog View**.
    - Add the following details:
-     Name: `Global`
-     Catalog Sources: `en-US` (make sure you hit **enter** button after typing in this value)
-     Policies: `Brand`, `Model`, `West Coast Inc brands`
+     Name: `Vehicle Picker`
+     Catalog Sources: `en-US` (or `default` is using Adobe Commerce PaaS -> ACO) (make sure you hit **enter** button after typing in this value)
+     Policies: `Vehicles Only`
 
-     The modal should look like the screenshot below.
+     The view configuration should look like the screenshot below.
 
-     ![Screenshot 2025-06-11 at 4 15 19 PM](https://github.com/user-attachments/assets/23267d3b-390a-42d9-890f-d8d9de2013f5)
+     ![Commerce Optimizer vehicles only catalog view configuration](./assets/vehicle-picker-view.png)
 
    - Click **Save**.
 
-   Repeat the above steps to create two more catalog views. Use the following details:
+1. Create the `English Storefront` catalog view that uses your newly created policy.
 
-   | Name  | Catalog Sources | Policies |
-   | ------------- | ------------- | ------------- |
-   | Arkbridge  | en-US  | `Brand` `Model` `West Coast Inc brands` `Arkbridge part categories`|
-   | Kingsbluff  | en-US  | `Brand` `Model` `East Coast Inc brands` `Kingsbluff part categories`|
+   - Click **Add Catalog View**.
+   - Add the following details:
+     Name: `English Storefront`
+     Catalog Sources: `en-US` (or `default` is using Adobe Commerce PaaS -> ACO) (make sure you hit **enter** button after typing in this value)
+     Policies: `Parts Only` and `Vehicle Fitment`
+   - Add allowed price books: 
+     ACO Direct Ingestion: `Public USD`, `VIP USD`
+     Adobe Commerce PaaS: `General (Main Website)`, `NOT LOGGED IN (Main Website)`, `Retailer (Main Website)`, `VIP (Main Website)`, `Wholesale (Main Website)`
+   - Select default price book: 
+     ACO Direct Ingestion: `Public USD`
+     Adobe Commerce PaaS: `NOT LOGGED IN (Main Website)`
+   
+     ![Commerce Optimizer english storefront catalog view configuration](./assets/english-storefront-price-books.png)
 
-At this point you have created three catalog views and six policies that reflect the business structure and sales operations flow for the sample Carvelo organization. You are now ready to [set up your storefront](https://experienceleague.adobe.com/en/docs/commerce/optimizer/storefront).
+     The view configuration should look like the screenshot below.
+
+     ![Commerce Optimizer english storefront catalog view configuration](./assets/english-storefront-view.png)
+
+   - Click **Save**.
 
 ## Explore the SDK
 
@@ -815,4 +805,3 @@ const config: ClientConfig = {
   logger, // Uses pino logger from your application
 };
 ```
-

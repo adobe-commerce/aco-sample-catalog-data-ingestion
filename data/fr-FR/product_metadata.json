@@ -2,9 +2,9 @@
   {
     "code": "sku",
     "source": {
-      "locale": "en-US"
+      "locale": "fr-FR"
     },
-    "label": "SKU",
+    "label": "Référence",
     "dataType": "TEXT",
     "visibleIn": [
       "PRODUCT_DETAIL",
@@ -21,9 +21,9 @@
   {
     "code": "name",
     "source": {
-      "locale": "en-US"
+      "locale": "fr-FR"
     },
-    "label": "Name",
+    "label": "Nom",
     "dataType": "TEXT",
     "visibleIn": [
       "PRODUCT_DETAIL",
@@ -34,13 +34,13 @@
     "filterable": false,
     "sortable": true,
     "searchable": true,
-    "searchWeight": 1,
+    "searchWeight": 5,
     "searchTypes": ["AUTOCOMPLETE"]
   },
   {
     "code": "description",
     "source": {
-      "locale": "en-US"
+      "locale": "fr-FR"
     },
     "label": "Description",
     "dataType": "TEXT",
@@ -54,9 +54,9 @@
   {
     "code": "shortDescription",
     "source": {
-      "locale": "en-US"
+      "locale": "fr-FR"
     },
-    "label": "Short Description",
+    "label": "Description courte",
     "dataType": "TEXT",
     "visibleIn": ["PRODUCT_DETAIL"],
     "filterable": false,
@@ -68,9 +68,9 @@
   {
     "code": "price",
     "source": {
-      "locale": "en-US"
+      "locale": "fr-FR"
     },
-    "label": "Price",
+    "label": "Prix",
     "dataType": "DECIMAL",
     "visibleIn": [
       "PRODUCT_DETAIL",
@@ -87,9 +87,9 @@
   {
     "code": "object_type",
     "source": {
-      "locale": "en-US"
+      "locale": "fr-FR"
     },
-    "label": "Object Type",
+    "label": "Type d'objet",
     "dataType": "TEXT",
     "visibleIn": [
       "PRODUCT_DETAIL",
@@ -106,9 +106,9 @@
   {
     "code": "make",
     "source": {
-      "locale": "en-US"
+      "locale": "fr-FR"
     },
-    "label": "Vehicle Make",
+    "label": "Marque du véhicule",
     "dataType": "TEXT",
     "visibleIn": [
       "PRODUCT_DETAIL",
@@ -125,9 +125,9 @@
   {
     "code": "model",
     "source": {
-      "locale": "en-US"
+      "locale": "fr-FR"
     },
-    "label": "Vehicle Model",
+    "label": "Modèle du véhicule",
     "dataType": "TEXT",
     "visibleIn": [
       "PRODUCT_DETAIL",
@@ -144,9 +144,9 @@
   {
     "code": "trim",
     "source": {
-      "locale": "en-US"
+      "locale": "fr-FR"
     },
-    "label": "Vehicle Trim",
+    "label": "Finition du véhicule",
     "dataType": "TEXT",
     "visibleIn": [
       "PRODUCT_DETAIL",
@@ -163,9 +163,9 @@
   {
     "code": "year",
     "source": {
-      "locale": "en-US"
+      "locale": "fr-FR"
     },
-    "label": "Vehicle Year",
+    "label": "Année du véhicule",
     "dataType": "INTEGER",
     "visibleIn": [
       "PRODUCT_DETAIL",
@@ -182,9 +182,9 @@
   {
     "code": "part_category",
     "source": {
-      "locale": "en-US"
+      "locale": "fr-FR"
     },
-    "label": "Part Category",
+    "label": "Catégorie de pièce",
     "dataType": "TEXT",
     "visibleIn": [
       "PRODUCT_DETAIL",
@@ -201,9 +201,9 @@
   {
     "code": "brand",
     "source": {
-      "locale": "en-US"
+      "locale": "fr-FR"
     },
-    "label": "Brand",
+    "label": "Marque",
     "dataType": "TEXT",
     "visibleIn": [
       "PRODUCT_DETAIL",
@@ -220,9 +220,9 @@
   {
     "code": "manufacturer",
     "source": {
-      "locale": "en-US"
+      "locale": "fr-FR"
     },
-    "label": "Manufacturer",
+    "label": "Fabricant",
     "dataType": "TEXT",
     "visibleIn": [
       "PRODUCT_DETAIL",
@@ -239,9 +239,9 @@
   {
     "code": "fitment",
     "source": {
-      "locale": "en-US"
+      "locale": "fr-FR"
     },
-    "label": "Fitment",
+    "label": "Compatibilité",
     "dataType": "TEXT",
     "visibleIn": ["PRODUCT_DETAIL", "SEARCH_RESULTS"],
     "filterable": true,
@@ -251,11 +251,49 @@
     "searchTypes": ["AUTOCOMPLETE"]
   },
   {
+    "code": "make_fitment",
+    "source": {
+      "locale": "fr-FR"
+    },
+    "label": "Marques compatibles",
+    "dataType": "TEXT",
+    "visibleIn": [
+      "PRODUCT_DETAIL",
+      "PRODUCT_LISTING",
+      "SEARCH_RESULTS",
+      "PRODUCT_COMPARE"
+    ],
+    "filterable": true,
+    "sortable": false,
+    "searchable": false,
+    "searchWeight": 1,
+    "searchTypes": []
+  },
+  {
+    "code": "make_model_fitment",
+    "source": {
+      "locale": "fr-FR"
+    },
+    "label": "Modèles compatibles",
+    "dataType": "TEXT",
+    "visibleIn": [
+      "PRODUCT_DETAIL",
+      "PRODUCT_LISTING",
+      "SEARCH_RESULTS",
+      "PRODUCT_COMPARE"
+    ],
+    "filterable": true,
+    "sortable": false,
+    "searchable": false,
+    "searchWeight": 1,
+    "searchTypes": []
+  },
+  {
     "code": "fitment_drives",
     "source": {
-      "locale": "en-US"
+      "locale": "fr-FR"
     },
-    "label": "Drives",
+    "label": "Entraîne",
     "dataType": "TEXT",
     "visibleIn": ["PRODUCT_DETAIL"],
     "filterable": false,
@@ -267,9 +305,9 @@
   {
     "code": "sold_by_third_party",
     "source": {
-      "locale": "en-US"
+      "locale": "fr-FR"
     },
-    "label": "Sold by Third Party",
+    "label": "Vendu par un tiers",
     "dataType": "BOOLEAN",
     "visibleIn": [
       "PRODUCT_DETAIL",
@@ -286,9 +324,9 @@
   {
     "code": "grade",
     "source": {
-      "locale": "en-US"
+      "locale": "fr-FR"
     },
-    "label": "Grade",
+    "label": "Gamme",
     "dataType": "TEXT",
     "visibleIn": [
       "PRODUCT_DETAIL",
@@ -305,9 +343,9 @@
   {
     "code": "size",
     "source": {
-      "locale": "en-US"
+      "locale": "fr-FR"
     },
-    "label": "Size",
+    "label": "Taille",
     "dataType": "TEXT",
     "visibleIn": [
       "PRODUCT_DETAIL",
@@ -324,9 +362,9 @@
   {
     "code": "profile",
     "source": {
-      "locale": "en-US"
+      "locale": "fr-FR"
     },
-    "label": "Profile",
+    "label": "Profil",
     "dataType": "TEXT",
     "visibleIn": [
       "PRODUCT_DETAIL",
@@ -343,9 +381,9 @@
   {
     "code": "rating",
     "source": {
-      "locale": "en-US"
+      "locale": "fr-FR"
     },
-    "label": "Speed Rating",
+    "label": "Indice de vitesse",
     "dataType": "TEXT",
     "visibleIn": [
       "PRODUCT_DETAIL",
@@ -362,9 +400,9 @@
   {
     "code": "bolt_pattern",
     "source": {
-      "locale": "en-US"
+      "locale": "fr-FR"
     },
-    "label": "Bolt Pattern",
+    "label": "Entraxe",
     "dataType": "TEXT",
     "visibleIn": [
       "PRODUCT_DETAIL",
@@ -381,9 +419,9 @@
   {
     "code": "group_size",
     "source": {
-      "locale": "en-US"
+      "locale": "fr-FR"
     },
-    "label": "Group Size",
+    "label": "Groupe",
     "dataType": "TEXT",
     "visibleIn": [
       "PRODUCT_DETAIL",
@@ -400,7 +438,7 @@
   {
     "code": "volume",
     "source": {
-      "locale": "en-US"
+      "locale": "fr-FR"
     },
     "label": "Volume",
     "dataType": "TEXT",
@@ -419,9 +457,9 @@
   {
     "code": "viscosity",
     "source": {
-      "locale": "en-US"
+      "locale": "fr-FR"
     },
-    "label": "Viscosity",
+    "label": "Viscosité",
     "dataType": "TEXT",
     "visibleIn": [
       "PRODUCT_DETAIL",

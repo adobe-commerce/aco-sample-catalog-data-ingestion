@@ -1,0 +1,32 @@
+[
+  {
+    "priceBookId": "base-usd",
+    "name": "USD Base",
+    "currency": "USD"
+  },
+  {
+    "priceBookId": "public-usd",
+    "name": "Public USD",
+    "parentId": "base-usd"
+  },
+  {
+    "priceBookId": "vip-usd",
+    "name": "VIP USD",
+    "parentId": "base-usd"
+  },
+  {
+    "priceBookId": "base-eur",
+    "name": "EUR Base",
+    "currency": "EUR"
+  },
+  {
+    "priceBookId": "public-eur",
+    "name": "Public EUR",
+    "parentId": "base-eur"
+  },
+  {
+    "priceBookId": "vip-eur",
+    "name": "VIP EUR",
+    "parentId": "base-eur"
+  }
+]

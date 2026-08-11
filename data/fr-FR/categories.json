@@ -1,0 +1,770 @@
+[
+  {
+    "name": "Freins",
+    "slug": "brakes",
+    "source": {
+      "locale": "fr-FR"
+    },
+    "description": "Tout ce qui arrête votre Carvelo, des plaquettes et disques aux étriers et au liquide.",
+    "families": ["menu"],
+    "position": 0,
+    "metaTags": {
+      "title": "Freins | Carvelo Pièces",
+      "description": "Tout ce qui arrête votre Carvelo, des plaquettes et disques aux étriers et au liquide.",
+      "keywords": ["carvelo", "auto", "pièces", "freins"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/c62828/ffffff.png?text=Freins",
+        "label": "Freins",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
+    ]
+  },
+  {
+    "name": "Plaquettes de frein",
+    "slug": "brakes/pads",
+    "source": {
+      "locale": "fr-FR"
+    },
+    "description": "Plaquettes de frein de remplacement et d'évolution pour des arrêts sûrs et silencieux.",
+    "families": ["menu"],
+    "position": 1,
+    "metaTags": {
+      "title": "Plaquettes de frein | Carvelo Pièces",
+      "description": "Plaquettes de frein de remplacement et d'évolution pour des arrêts sûrs et silencieux.",
+      "keywords": ["carvelo", "auto", "pièces", "plaquettes de frein"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/c62828/ffffff.png?text=Plaquettes+de+frein",
+        "label": "Plaquettes de frein",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
+    ]
+  },
+  {
+    "name": "Disques de frein",
+    "slug": "brakes/rotors",
+    "source": {
+      "locale": "fr-FR"
+    },
+    "description": "Des disques de frein qui dissipent la chaleur pour un freinage stable et sans fading.",
+    "families": ["menu"],
+    "position": 2,
+    "metaTags": {
+      "title": "Disques de frein | Carvelo Pièces",
+      "description": "Des disques de frein qui dissipent la chaleur pour un freinage stable et sans fading.",
+      "keywords": ["carvelo", "auto", "pièces", "disques de frein"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/c62828/ffffff.png?text=Disques+de+frein",
+        "label": "Disques de frein",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
+    ]
+  },
+  {
+    "name": "Étriers de frein",
+    "slug": "brakes/calipers",
+    "source": {
+      "locale": "fr-FR"
+    },
+    "description": "Des étriers de frein qui serrent les plaquettes avec une force régulière et fiable.",
+    "families": ["menu"],
+    "position": 3,
+    "metaTags": {
+      "title": "Étriers de frein | Carvelo Pièces",
+      "description": "Des étriers de frein qui serrent les plaquettes avec une force régulière et fiable.",
+      "keywords": ["carvelo", "auto", "pièces", "étriers de frein"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/c62828/ffffff.png?text=Étriers+de+frein",
+        "label": "Étriers de frein",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
+    ]
+  },
+  {
+    "name": "Liquide de frein",
+    "slug": "brakes/fluid",
+    "source": {
+      "locale": "fr-FR"
+    },
+    "description": "Du liquide de frein pour garder une pédale ferme et un freinage réactif.",
+    "families": ["menu"],
+    "position": 4,
+    "metaTags": {
+      "title": "Liquide de frein | Carvelo Pièces",
+      "description": "Du liquide de frein pour garder une pédale ferme et un freinage réactif.",
+      "keywords": ["carvelo", "auto", "pièces", "liquide de frein"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/c62828/ffffff.png?text=Liquide+de+frein",
+        "label": "Liquide de frein",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
+    ]
+  },
+  {
+    "name": "Suspension",
+    "slug": "suspension",
+    "source": {
+      "locale": "fr-FR"
+    },
+    "description": "Des pièces de suspension qui maîtrisent le roulage et gardent le véhicule planté et posé.",
+    "families": ["menu"],
+    "position": 5,
+    "metaTags": {
+      "title": "Suspension | Carvelo Pièces",
+      "description": "Des pièces de suspension qui maîtrisent le roulage et gardent le véhicule planté et posé.",
+      "keywords": ["carvelo", "auto", "pièces", "suspension"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/6a1b9a/ffffff.png?text=Suspension",
+        "label": "Suspension",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
+    ]
+  },
+  {
+    "name": "Amortisseurs",
+    "slug": "suspension/shocks",
+    "source": {
+      "locale": "fr-FR"
+    },
+    "description": "Des amortisseurs pour un roulage posé sur toutes les routes.",
+    "families": ["menu"],
+    "position": 6,
+    "metaTags": {
+      "title": "Amortisseurs | Carvelo Pièces",
+      "description": "Des amortisseurs pour un roulage posé sur toutes les routes.",
+      "keywords": ["carvelo", "auto", "pièces", "amortisseurs"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/6a1b9a/ffffff.png?text=Amortisseurs",
+        "label": "Amortisseurs",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
+    ]
+  },
+  {
+    "name": "Ressorts",
+    "slug": "suspension/springs",
+    "source": {
+      "locale": "fr-FR"
+    },
+    "description": "Des ressorts hélicoïdaux qui règlent la hauteur de caisse et supportent la charge.",
+    "families": ["menu"],
+    "position": 7,
+    "metaTags": {
+      "title": "Ressorts | Carvelo Pièces",
+      "description": "Des ressorts hélicoïdaux qui règlent la hauteur de caisse et supportent la charge.",
+      "keywords": ["carvelo", "auto", "pièces", "ressorts"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/6a1b9a/ffffff.png?text=Ressorts",
+        "label": "Ressorts",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
+    ]
+  },
+  {
+    "name": "Bras de suspension",
+    "slug": "suspension/control-arms",
+    "source": {
+      "locale": "fr-FR"
+    },
+    "description": "Des bras de suspension qui maintiennent le train roulant en place et conservent le parallélisme.",
+    "families": ["menu"],
+    "position": 8,
+    "metaTags": {
+      "title": "Bras de suspension | Carvelo Pièces",
+      "description": "Des bras de suspension qui maintiennent le train roulant en place et conservent le parallélisme.",
+      "keywords": ["carvelo", "auto", "pièces", "bras de suspension"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/6a1b9a/ffffff.png?text=Bras+de+suspension",
+        "label": "Bras de suspension",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
+    ]
+  },
+  {
+    "name": "Barres stabilisatrices",
+    "slug": "suspension/sway-bars",
+    "source": {
+      "locale": "fr-FR"
+    },
+    "description": "Des barres stabilisatrices qui réduisent le roulis dans les virages.",
+    "families": ["menu"],
+    "position": 9,
+    "metaTags": {
+      "title": "Barres stabilisatrices | Carvelo Pièces",
+      "description": "Des barres stabilisatrices qui réduisent le roulis dans les virages.",
+      "keywords": ["carvelo", "auto", "pièces", "barres stabilisatrices"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/6a1b9a/ffffff.png?text=Barres+stabilisatrices",
+        "label": "Barres stabilisatrices",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
+    ]
+  },
+  {
+    "name": "Pneus",
+    "slug": "tires",
+    "source": {
+      "locale": "fr-FR"
+    },
+    "description": "Des pneus pour chaque Carvelo, réglés pour l'adhérence, le confort et le silence.",
+    "families": ["menu"],
+    "position": 10,
+    "metaTags": {
+      "title": "Pneus | Carvelo Pièces",
+      "description": "Des pneus pour chaque Carvelo, réglés pour l'adhérence, le confort et le silence.",
+      "keywords": ["carvelo", "auto", "pièces", "pneus"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/263238/ffffff.png?text=Pneus",
+        "label": "Pneus",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
+    ]
+  },
+  {
+    "name": "Transmission",
+    "slug": "transmission",
+    "source": {
+      "locale": "fr-FR"
+    },
+    "description": "Des pièces de transmission qui gardent des passages de vitesses souples et la puissance qui circule.",
+    "families": ["menu"],
+    "position": 11,
+    "metaTags": {
+      "title": "Transmission | Carvelo Pièces",
+      "description": "Des pièces de transmission qui gardent des passages de vitesses souples et la puissance qui circule.",
+      "keywords": ["carvelo", "auto", "pièces", "transmission"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/00838f/ffffff.png?text=Transmission",
+        "label": "Transmission",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
+    ]
+  },
+  {
+    "name": "Liquide de transmission",
+    "slug": "transmission/fluid",
+    "source": {
+      "locale": "fr-FR"
+    },
+    "description": "Du liquide de transmission pour des passages de vitesses nets, frais et fiables.",
+    "families": ["menu"],
+    "position": 12,
+    "metaTags": {
+      "title": "Liquide de transmission | Carvelo Pièces",
+      "description": "Du liquide de transmission pour des passages de vitesses nets, frais et fiables.",
+      "keywords": ["carvelo", "auto", "pièces", "liquide de transmission"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/00838f/ffffff.png?text=Liquide+de+transmission",
+        "label": "Liquide de transmission",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
+    ]
+  },
+  {
+    "name": "Embrayage",
+    "slug": "transmission/clutch",
+    "source": {
+      "locale": "fr-FR"
+    },
+    "description": "Des kits d'embrayage qui relient le moteur à la boîte avec un mordant franc.",
+    "families": ["menu"],
+    "position": 13,
+    "metaTags": {
+      "title": "Embrayage | Carvelo Pièces",
+      "description": "Des kits d'embrayage qui relient le moteur à la boîte avec un mordant franc.",
+      "keywords": ["carvelo", "auto", "pièces", "embrayage"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/00838f/ffffff.png?text=Embrayage",
+        "label": "Embrayage",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
+    ]
+  },
+  {
+    "name": "Volant moteur",
+    "slug": "transmission/flywheel",
+    "source": {
+      "locale": "fr-FR"
+    },
+    "description": "Des volants moteur qui offrent à l'embrayage une surface plane et équilibrée.",
+    "families": ["menu"],
+    "position": 14,
+    "metaTags": {
+      "title": "Volant moteur | Carvelo Pièces",
+      "description": "Des volants moteur qui offrent à l'embrayage une surface plane et équilibrée.",
+      "keywords": ["carvelo", "auto", "pièces", "volant moteur"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/00838f/ffffff.png?text=Volant+moteur",
+        "label": "Volant moteur",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
+    ]
+  },
+  {
+    "name": "Système de charge",
+    "slug": "charging-system",
+    "source": {
+      "locale": "fr-FR"
+    },
+    "description": "Les pièces qui stockent et renouvellent l'énergie électrique de votre véhicule.",
+    "families": ["menu"],
+    "position": 15,
+    "metaTags": {
+      "title": "Système de charge | Carvelo Pièces",
+      "description": "Les pièces qui stockent et renouvellent l'énergie électrique de votre véhicule.",
+      "keywords": ["carvelo", "auto", "pièces", "système de charge"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/2e7d32/ffffff.png?text=Système+de+charge",
+        "label": "Système de charge",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
+    ]
+  },
+  {
+    "name": "Chargeur",
+    "slug": "charging-system/charger",
+    "source": {
+      "locale": "fr-FR"
+    },
+    "description": "Des chargeurs embarqués qui rechargent la batterie en toute sécurité et efficacité.",
+    "families": ["menu"],
+    "position": 16,
+    "metaTags": {
+      "title": "Chargeur | Carvelo Pièces",
+      "description": "Des chargeurs embarqués qui rechargent la batterie en toute sécurité et efficacité.",
+      "keywords": ["carvelo", "auto", "pièces", "chargeur"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/2e7d32/ffffff.png?text=Chargeur",
+        "label": "Chargeur",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
+    ]
+  },
+  {
+    "name": "Batteries",
+    "slug": "charging-system/batteries",
+    "source": {
+      "locale": "fr-FR"
+    },
+    "description": "Des batteries qui démarrent le véhicule et stabilisent le circuit électrique.",
+    "families": ["menu"],
+    "position": 17,
+    "metaTags": {
+      "title": "Batteries | Carvelo Pièces",
+      "description": "Des batteries qui démarrent le véhicule et stabilisent le circuit électrique.",
+      "keywords": ["carvelo", "auto", "pièces", "batteries"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/2e7d32/ffffff.png?text=Batteries",
+        "label": "Batteries",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
+    ]
+  },
+  {
+    "name": "Jantes",
+    "slug": "wheels",
+    "source": {
+      "locale": "fr-FR"
+    },
+    "description": "Des jantes qui supportent la charge et définissent l'allure de votre Carvelo.",
+    "families": ["menu"],
+    "position": 18,
+    "metaTags": {
+      "title": "Jantes | Carvelo Pièces",
+      "description": "Des jantes qui supportent la charge et définissent l'allure de votre Carvelo.",
+      "keywords": ["carvelo", "auto", "pièces", "jantes"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/37474f/ffffff.png?text=Jantes",
+        "label": "Jantes",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
+    ]
+  },
+  {
+    "name": "Électricité",
+    "slug": "electrical",
+    "source": {
+      "locale": "fr-FR"
+    },
+    "description": "Des pièces électriques qui démarrent le véhicule et gardent le courant qui circule.",
+    "families": ["menu"],
+    "position": 19,
+    "metaTags": {
+      "title": "Électricité | Carvelo Pièces",
+      "description": "Des pièces électriques qui démarrent le véhicule et gardent le courant qui circule.",
+      "keywords": ["carvelo", "auto", "pièces", "électricité"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/f9a825/ffffff.png?text=Électricité",
+        "label": "Électricité",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
+    ]
+  },
+  {
+    "name": "Alternateurs",
+    "slug": "electrical/alternators",
+    "source": {
+      "locale": "fr-FR"
+    },
+    "description": "Des alternateurs qui gardent la batterie chargée en roulant.",
+    "families": ["menu"],
+    "position": 20,
+    "metaTags": {
+      "title": "Alternateurs | Carvelo Pièces",
+      "description": "Des alternateurs qui gardent la batterie chargée en roulant.",
+      "keywords": ["carvelo", "auto", "pièces", "alternateurs"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/f9a825/ffffff.png?text=Alternateurs",
+        "label": "Alternateurs",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
+    ]
+  },
+  {
+    "name": "Démarreurs",
+    "slug": "electrical/starters",
+    "source": {
+      "locale": "fr-FR"
+    },
+    "description": "Des démarreurs qui lancent le moteur à chaque fois.",
+    "families": ["menu"],
+    "position": 21,
+    "metaTags": {
+      "title": "Démarreurs | Carvelo Pièces",
+      "description": "Des démarreurs qui lancent le moteur à chaque fois.",
+      "keywords": ["carvelo", "auto", "pièces", "démarreurs"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/f9a825/ffffff.png?text=Démarreurs",
+        "label": "Démarreurs",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
+    ]
+  },
+  {
+    "name": "Batteries",
+    "slug": "electrical/batteries",
+    "source": {
+      "locale": "fr-FR"
+    },
+    "description": "Des batteries qui démarrent le véhicule et stabilisent le circuit électrique.",
+    "families": ["menu"],
+    "position": 22,
+    "metaTags": {
+      "title": "Batteries | Carvelo Pièces",
+      "description": "Des batteries qui démarrent le véhicule et stabilisent le circuit électrique.",
+      "keywords": ["carvelo", "auto", "pièces", "batteries"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/f9a825/ffffff.png?text=Batteries",
+        "label": "Batteries",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
+    ]
+  },
+  {
+    "name": "Fluides",
+    "slug": "fluids",
+    "source": {
+      "locale": "fr-FR"
+    },
+    "description": "Des huiles et des fluides qui gardent chaque système propre et frais.",
+    "families": ["menu"],
+    "position": 23,
+    "metaTags": {
+      "title": "Fluides | Carvelo Pièces",
+      "description": "Des huiles et des fluides qui gardent chaque système propre et frais.",
+      "keywords": ["carvelo", "auto", "pièces", "fluides"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/1565c0/ffffff.png?text=Fluides",
+        "label": "Fluides",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
+    ]
+  },
+  {
+    "name": "Huile",
+    "slug": "fluids/oil",
+    "source": {
+      "locale": "fr-FR"
+    },
+    "description": "De l'huile moteur qui lubrifie, refroidit et protège le moteur.",
+    "families": ["menu"],
+    "position": 24,
+    "metaTags": {
+      "title": "Huile | Carvelo Pièces",
+      "description": "De l'huile moteur qui lubrifie, refroidit et protège le moteur.",
+      "keywords": ["carvelo", "auto", "pièces", "huile"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/1565c0/ffffff.png?text=Huile",
+        "label": "Huile",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
+    ]
+  },
+  {
+    "name": "Liquide de transmission",
+    "slug": "fluids/transmission",
+    "source": {
+      "locale": "fr-FR"
+    },
+    "description": "Du liquide de transmission pour des passages de vitesses nets, frais et fiables.",
+    "families": ["menu"],
+    "position": 25,
+    "metaTags": {
+      "title": "Liquide de transmission | Carvelo Pièces",
+      "description": "Du liquide de transmission pour des passages de vitesses nets, frais et fiables.",
+      "keywords": ["carvelo", "auto", "pièces", "liquide de transmission"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/1565c0/ffffff.png?text=Liquide+de+transmission",
+        "label": "Liquide de transmission",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
+    ]
+  },
+  {
+    "name": "Liquide de frein",
+    "slug": "fluids/brake-fluid",
+    "source": {
+      "locale": "fr-FR"
+    },
+    "description": "Du liquide de frein pour garder une pédale ferme et un freinage réactif.",
+    "families": ["menu"],
+    "position": 26,
+    "metaTags": {
+      "title": "Liquide de frein | Carvelo Pièces",
+      "description": "Du liquide de frein pour garder une pédale ferme et un freinage réactif.",
+      "keywords": ["carvelo", "auto", "pièces", "liquide de frein"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/1565c0/ffffff.png?text=Liquide+de+frein",
+        "label": "Liquide de frein",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
+    ]
+  },
+  {
+    "name": "Lave-glace",
+    "slug": "fluids/wiper-fluid",
+    "source": {
+      "locale": "fr-FR"
+    },
+    "description": "Du lave-glace pour un pare-brise dégagé par tous les temps.",
+    "families": ["menu"],
+    "position": 27,
+    "metaTags": {
+      "title": "Lave-glace | Carvelo Pièces",
+      "description": "Du lave-glace pour un pare-brise dégagé par tous les temps.",
+      "keywords": ["carvelo", "auto", "pièces", "lave-glace"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/1565c0/ffffff.png?text=Lave-glace",
+        "label": "Lave-glace",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
+    ]
+  },
+  {
+    "name": "Moteur",
+    "slug": "engine",
+    "source": {
+      "locale": "fr-FR"
+    },
+    "description": "Des pièces moteur qui gardent la combustion propre, alimentée et respirante.",
+    "families": ["menu"],
+    "position": 28,
+    "metaTags": {
+      "title": "Moteur | Carvelo Pièces",
+      "description": "Des pièces moteur qui gardent la combustion propre, alimentée et respirante.",
+      "keywords": ["carvelo", "auto", "pièces", "moteur"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/ef6c00/ffffff.png?text=Moteur",
+        "label": "Moteur",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
+    ]
+  },
+  {
+    "name": "Distribution",
+    "slug": "engine/timing",
+    "source": {
+      "locale": "fr-FR"
+    },
+    "families": ["menu"],
+    "position": 29,
+    "metaTags": {
+      "title": "Distribution | Carvelo Pièces",
+      "keywords": ["carvelo", "auto", "pièces", "distribution"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/ef6c00/ffffff.png?text=Distribution",
+        "label": "Distribution",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
+    ]
+  },
+  {
+    "name": "Pompe à carburant",
+    "slug": "engine/fuel-pump",
+    "source": {
+      "locale": "fr-FR"
+    },
+    "description": "Des pompes à carburant qui délivrent une pression stable sous toutes les charges.",
+    "families": ["menu"],
+    "position": 30,
+    "metaTags": {
+      "title": "Pompe à carburant | Carvelo Pièces",
+      "description": "Des pompes à carburant qui délivrent une pression stable sous toutes les charges.",
+      "keywords": ["carvelo", "auto", "pièces", "pompe à carburant"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/ef6c00/ffffff.png?text=Pompe+à+carburant",
+        "label": "Pompe à carburant",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
+    ]
+  },
+  {
+    "name": "Filtres à carburant",
+    "slug": "engine/fuel-filters",
+    "source": {
+      "locale": "fr-FR"
+    },
+    "description": "Des filtres à carburant qui éliminent les impuretés avant les injecteurs.",
+    "families": ["menu"],
+    "position": 31,
+    "metaTags": {
+      "title": "Filtres à carburant | Carvelo Pièces",
+      "description": "Des filtres à carburant qui éliminent les impuretés avant les injecteurs.",
+      "keywords": ["carvelo", "auto", "pièces", "filtres à carburant"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/ef6c00/ffffff.png?text=Filtres+à+carburant",
+        "label": "Filtres à carburant",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
+    ]
+  },
+  {
+    "name": "Filtres à air",
+    "slug": "engine/air-filters",
+    "source": {
+      "locale": "fr-FR"
+    },
+    "description": "Des filtres à air qui gardent le moteur alimenté en air propre.",
+    "families": ["menu"],
+    "position": 32,
+    "metaTags": {
+      "title": "Filtres à air | Carvelo Pièces",
+      "description": "Des filtres à air qui gardent le moteur alimenté en air propre.",
+      "keywords": ["carvelo", "auto", "pièces", "filtres à air"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/ef6c00/ffffff.png?text=Filtres+à+air",
+        "label": "Filtres à air",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
+    ]
+  },
+  {
+    "name": "Filtres à huile",
+    "slug": "engine/oil-filters",
+    "source": {
+      "locale": "fr-FR"
+    },
+    "description": "Des filtres à huile qui piègent les particules récupérées par l'huile moteur.",
+    "families": ["menu"],
+    "position": 33,
+    "metaTags": {
+      "title": "Filtres à huile | Carvelo Pièces",
+      "description": "Des filtres à huile qui piègent les particules récupérées par l'huile moteur.",
+      "keywords": ["carvelo", "auto", "pièces", "filtres à huile"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/ef6c00/ffffff.png?text=Filtres+à+huile",
+        "label": "Filtres à huile",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
+    ]
+  },
+  {
+    "name": "Bougies",
+    "slug": "engine/spark-plugs",
+    "source": {
+      "locale": "fr-FR"
+    },
+    "description": "Des bougies pour une étincelle propre et fiable et une réponse vive.",
+    "families": ["menu"],
+    "position": 34,
+    "metaTags": {
+      "title": "Bougies | Carvelo Pièces",
+      "description": "Des bougies pour une étincelle propre et fiable et une réponse vive.",
+      "keywords": ["carvelo", "auto", "pièces", "bougies"]
+    },
+    "images": [
+      {
+        "url": "https://placehold.co/500x500/ef6c00/ffffff.png?text=Bougies",
+        "label": "Bougies",
+        "roles": ["SMALL", "THUMBNAIL"]
+      }
+    ]
+  }
+]

@@ -5,12 +5,13 @@ import {
 } from "@adobe-commerce/aco-ts-sdk";
 import { loadAcoConfig } from "../lib/env.js";
 import { readData } from "../lib/data.js";
+import { parseLocaleArgs } from "../lib/locales.js";
 
 const BATCH_SIZE = 100;
 
-const ingestProductMetadata = async (client) => {
+const ingestProductMetadata = async (client, locale) => {
   try {
-    const metadata = readData("product_metadata.json");
+    const metadata = readData("product_metadata.json", locale);
     let accepted = 0;
     for (let i = 0; i < metadata.length; i += BATCH_SIZE) {
       const response = await client.createProductMetadata(
@@ -26,9 +27,9 @@ const ingestProductMetadata = async (client) => {
   }
 };
 
-const ingestCategoryMetadata = async (client) => {
+const ingestCategoryMetadata = async (client, locale) => {
   try {
-    const metadata = readData("category_metadata.json");
+    const metadata = readData("category_metadata.json", locale);
     let accepted = 0;
     for (let i = 0; i < metadata.length; i += BATCH_SIZE) {
       const response = await client.createCategoryMetadata(
@@ -44,9 +45,9 @@ const ingestCategoryMetadata = async (client) => {
   }
 };
 
-const ingestProducts = async (client) => {
+const ingestProducts = async (client, locale) => {
   try {
-    const products = readData("products.json");
+    const products = readData("products.json", locale);
     let accepted = 0;
     for (let i = 0; i < products.length; i += BATCH_SIZE) {
       const response = await client.createProducts(
@@ -60,9 +61,9 @@ const ingestProducts = async (client) => {
   }
 };
 
-const ingestPriceBooks = async (client) => {
+const ingestPriceBooks = async (client, locale) => {
   try {
-    const priceBooks = readData("pricebooks.json");
+    const priceBooks = readData("pricebooks.json", locale);
     let accepted = 0;
     for (let i = 0; i < priceBooks.length; i += BATCH_SIZE) {
       const response = await client.createPriceBooks(
@@ -76,9 +77,9 @@ const ingestPriceBooks = async (client) => {
   }
 };
 
-const ingestPrices = async (client) => {
+const ingestPrices = async (client, locale) => {
   try {
-    const prices = readData("prices.json");
+    const prices = readData("prices.json", locale);
     let accepted = 0;
     for (let i = 0; i < prices.length; i += BATCH_SIZE) {
       const response = await client.createPrices(
@@ -92,9 +93,9 @@ const ingestPrices = async (client) => {
   }
 };
 
-const ingestCategories = async (client) => {
+const ingestCategories = async (client, locale) => {
   try {
-    const categories = readData("categories.json");
+    const categories = readData("categories.json", locale);
     let accepted = 0;
     for (let i = 0; i < categories.length; i += BATCH_SIZE) {
       const response = await client.createCategories(
@@ -118,21 +119,26 @@ const main = async () => {
     logger: consoleLogger(LogLevel.INFO),
   });
 
-  await ingestProductMetadata(client);
-  await ingestProducts(client);
-  await ingestPriceBooks(client);
-  await ingestPrices(client);
-  await ingestCategoryMetadata(client);
-  await ingestCategories(client);
+  // Each locale is a separate catalog source in ACO (its own index), so the full
+  // feed is (re)sent per locale, each record stamped with its own source.locale.
+  for (const locale of parseLocaleArgs()) {
+    console.info(`\n=== Ingesting locale: ${locale} ===`);
+    await ingestProductMetadata(client, locale);
+    await ingestProducts(client, locale);
+    await ingestPriceBooks(client, locale);
+    await ingestPrices(client, locale);
+    await ingestCategoryMetadata(client, locale);
+    await ingestCategories(client, locale);
+  }
 };
 
 const extra = process.argv.slice(2);
-if (extra.length) {
-  const help = extra.includes("--help") || extra.includes("-h");
-  (help ? console.log : console.error)(
-    "Usage: npm run ingest   (no options) — load data/*.json into ACO via the SDK",
+if (extra.includes("--help") || extra.includes("-h")) {
+  console.log(
+    "Usage: npm run ingest [-- --locales=en-US,fr-FR | --all-locales]\n" +
+      "  Loads data/<locale>/*.json into ACO via the SDK (default locale: en-US).",
   );
-  process.exit(help ? 0 : 1);
+  process.exit(0);
 }
 
 main().catch(console.error);

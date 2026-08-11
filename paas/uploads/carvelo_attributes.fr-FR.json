@@ -1,0 +1,2059 @@
+[
+  {
+    "attribute_code": "object_type",
+    "default_frontend_label": "Type d'objet",
+    "frontend_input": "select",
+    "scope": "global",
+    "is_required": false,
+    "is_filterable": 1,
+    "is_filterable_in_search": true,
+    "used_in_product_listing": true,
+    "is_visible_on_front": 1,
+    "is_searchable": false,
+    "used_for_sort_by": false,
+    "options": [
+      {
+        "label": "vehicle"
+      },
+      {
+        "label": "part"
+      }
+    ]
+  },
+  {
+    "attribute_code": "make",
+    "default_frontend_label": "Marque du véhicule",
+    "frontend_input": "select",
+    "scope": "global",
+    "is_required": false,
+    "is_filterable": 1,
+    "is_filterable_in_search": true,
+    "used_in_product_listing": true,
+    "is_visible_on_front": 1,
+    "is_searchable": true,
+    "used_for_sort_by": false,
+    "options": [
+      {
+        "label": "Aurora"
+      },
+      {
+        "label": "Bolt"
+      },
+      {
+        "label": "Cruz"
+      }
+    ]
+  },
+  {
+    "attribute_code": "model",
+    "default_frontend_label": "Modèle du véhicule",
+    "frontend_input": "select",
+    "scope": "global",
+    "is_required": false,
+    "is_filterable": 1,
+    "is_filterable_in_search": true,
+    "used_in_product_listing": true,
+    "is_visible_on_front": 1,
+    "is_searchable": true,
+    "used_for_sort_by": false,
+    "options": [
+      {
+        "label": "Flux"
+      },
+      {
+        "label": "Prism"
+      },
+      {
+        "label": "Pulse"
+      },
+      {
+        "label": "Nexus"
+      },
+      {
+        "label": "Nova"
+      },
+      {
+        "label": "Atlas"
+      },
+      {
+        "label": "Mammoth"
+      },
+      {
+        "label": "Ranger"
+      },
+      {
+        "label": "Scout"
+      },
+      {
+        "label": "Terrain"
+      },
+      {
+        "label": "Breeze"
+      },
+      {
+        "label": "Echo"
+      },
+      {
+        "label": "Element"
+      },
+      {
+        "label": "Harmony"
+      },
+      {
+        "label": "Verde"
+      }
+    ]
+  },
+  {
+    "attribute_code": "trim",
+    "default_frontend_label": "Finition du véhicule",
+    "frontend_input": "select",
+    "scope": "global",
+    "is_required": false,
+    "is_filterable": 1,
+    "is_filterable_in_search": true,
+    "used_in_product_listing": true,
+    "is_visible_on_front": 1,
+    "is_searchable": false,
+    "used_for_sort_by": false,
+    "options": [
+      {
+        "label": "Base"
+      },
+      {
+        "label": "Premium"
+      },
+      {
+        "label": "Performance"
+      },
+      {
+        "label": "Limited"
+      }
+    ]
+  },
+  {
+    "attribute_code": "year",
+    "default_frontend_label": "Année du véhicule",
+    "frontend_input": "select",
+    "scope": "global",
+    "is_required": false,
+    "is_filterable": 1,
+    "is_filterable_in_search": true,
+    "used_in_product_listing": true,
+    "is_visible_on_front": 1,
+    "is_searchable": false,
+    "used_for_sort_by": false,
+    "options": [
+      {
+        "label": "2021"
+      },
+      {
+        "label": "2022"
+      },
+      {
+        "label": "2023"
+      },
+      {
+        "label": "2024"
+      },
+      {
+        "label": "2025"
+      },
+      {
+        "label": "2026"
+      }
+    ]
+  },
+  {
+    "attribute_code": "part_category",
+    "default_frontend_label": "Catégorie de pièce",
+    "frontend_input": "select",
+    "scope": "global",
+    "is_required": false,
+    "is_filterable": 1,
+    "is_filterable_in_search": true,
+    "used_in_product_listing": true,
+    "is_visible_on_front": 1,
+    "is_searchable": true,
+    "used_for_sort_by": false,
+    "options": [
+      {
+        "label": "brakes"
+      },
+      {
+        "label": "suspension"
+      },
+      {
+        "label": "transmission"
+      },
+      {
+        "label": "charging-system"
+      },
+      {
+        "label": "electrical"
+      },
+      {
+        "label": "engine"
+      },
+      {
+        "label": "tires"
+      },
+      {
+        "label": "wheels"
+      },
+      {
+        "label": "fluids"
+      }
+    ]
+  },
+  {
+    "attribute_code": "brand",
+    "default_frontend_label": "Marque",
+    "frontend_input": "select",
+    "scope": "global",
+    "is_required": false,
+    "is_filterable": 1,
+    "is_filterable_in_search": true,
+    "used_in_product_listing": true,
+    "is_visible_on_front": 1,
+    "is_searchable": true,
+    "used_for_sort_by": false,
+    "options": [
+      {
+        "label": "Halden"
+      },
+      {
+        "label": "Torqa Performance"
+      },
+      {
+        "label": "Carvelo OE"
+      },
+      {
+        "label": "RideWorks"
+      },
+      {
+        "label": "Apex Dynamics"
+      },
+      {
+        "label": "GearMark"
+      },
+      {
+        "label": "AmpEdge"
+      },
+      {
+        "label": "Voltaic"
+      },
+      {
+        "label": "FuelPro"
+      },
+      {
+        "label": "Ignis"
+      },
+      {
+        "label": "Cleanstream"
+      },
+      {
+        "label": "Aeroline"
+      },
+      {
+        "label": "Terravox"
+      },
+      {
+        "label": "Forgecraft"
+      },
+      {
+        "label": "PureFlow"
+      },
+      {
+        "label": "Vireo Lubricants"
+      }
+    ]
+  },
+  {
+    "attribute_code": "manufacturer",
+    "default_frontend_label": "Fabricant",
+    "frontend_input": "select",
+    "scope": "global",
+    "is_required": false,
+    "is_filterable": 1,
+    "is_filterable_in_search": true,
+    "used_in_product_listing": true,
+    "is_visible_on_front": 1,
+    "is_searchable": false,
+    "used_for_sort_by": false,
+    "options": [
+      {
+        "label": "Meridian Components"
+      },
+      {
+        "label": "Apex Parts Group"
+      },
+      {
+        "label": "Carvelo OE"
+      },
+      {
+        "label": "Northwind Automotive"
+      },
+      {
+        "label": "Helio Industries"
+      }
+    ]
+  },
+  {
+    "attribute_code": "fitment",
+    "default_frontend_label": "Compatibilité",
+    "frontend_input": "multiselect",
+    "scope": "global",
+    "is_required": false,
+    "is_filterable": 1,
+    "is_filterable_in_search": true,
+    "used_in_product_listing": true,
+    "is_visible_on_front": 1,
+    "is_searchable": true,
+    "used_for_sort_by": false,
+    "options": [
+      {
+        "label": "veh-aurora-flux-base-2021"
+      },
+      {
+        "label": "veh-aurora-flux-premium-2021"
+      },
+      {
+        "label": "veh-aurora-flux-performance-2021"
+      },
+      {
+        "label": "veh-aurora-flux-limited-2021"
+      },
+      {
+        "label": "veh-aurora-flux-base-2022"
+      },
+      {
+        "label": "veh-aurora-flux-premium-2022"
+      },
+      {
+        "label": "veh-aurora-flux-performance-2022"
+      },
+      {
+        "label": "veh-aurora-flux-limited-2022"
+      },
+      {
+        "label": "veh-aurora-flux-base-2023"
+      },
+      {
+        "label": "veh-aurora-flux-premium-2023"
+      },
+      {
+        "label": "veh-aurora-flux-performance-2023"
+      },
+      {
+        "label": "veh-aurora-flux-limited-2023"
+      },
+      {
+        "label": "veh-aurora-flux-base-2024"
+      },
+      {
+        "label": "veh-aurora-flux-premium-2024"
+      },
+      {
+        "label": "veh-aurora-flux-performance-2024"
+      },
+      {
+        "label": "veh-aurora-flux-limited-2024"
+      },
+      {
+        "label": "veh-aurora-flux-base-2025"
+      },
+      {
+        "label": "veh-aurora-flux-premium-2025"
+      },
+      {
+        "label": "veh-aurora-flux-performance-2025"
+      },
+      {
+        "label": "veh-aurora-flux-limited-2025"
+      },
+      {
+        "label": "veh-aurora-flux-base-2026"
+      },
+      {
+        "label": "veh-aurora-flux-premium-2026"
+      },
+      {
+        "label": "veh-aurora-flux-performance-2026"
+      },
+      {
+        "label": "veh-aurora-flux-limited-2026"
+      },
+      {
+        "label": "veh-aurora-prism-base-2021"
+      },
+      {
+        "label": "veh-aurora-prism-premium-2021"
+      },
+      {
+        "label": "veh-aurora-prism-performance-2021"
+      },
+      {
+        "label": "veh-aurora-prism-limited-2021"
+      },
+      {
+        "label": "veh-aurora-prism-base-2022"
+      },
+      {
+        "label": "veh-aurora-prism-premium-2022"
+      },
+      {
+        "label": "veh-aurora-prism-performance-2022"
+      },
+      {
+        "label": "veh-aurora-prism-limited-2022"
+      },
+      {
+        "label": "veh-aurora-prism-base-2023"
+      },
+      {
+        "label": "veh-aurora-prism-premium-2023"
+      },
+      {
+        "label": "veh-aurora-prism-performance-2023"
+      },
+      {
+        "label": "veh-aurora-prism-limited-2023"
+      },
+      {
+        "label": "veh-aurora-prism-base-2024"
+      },
+      {
+        "label": "veh-aurora-prism-premium-2024"
+      },
+      {
+        "label": "veh-aurora-prism-performance-2024"
+      },
+      {
+        "label": "veh-aurora-prism-limited-2024"
+      },
+      {
+        "label": "veh-aurora-prism-base-2025"
+      },
+      {
+        "label": "veh-aurora-prism-premium-2025"
+      },
+      {
+        "label": "veh-aurora-prism-performance-2025"
+      },
+      {
+        "label": "veh-aurora-prism-limited-2025"
+      },
+      {
+        "label": "veh-aurora-prism-base-2026"
+      },
+      {
+        "label": "veh-aurora-prism-premium-2026"
+      },
+      {
+        "label": "veh-aurora-prism-performance-2026"
+      },
+      {
+        "label": "veh-aurora-prism-limited-2026"
+      },
+      {
+        "label": "veh-aurora-pulse-base-2021"
+      },
+      {
+        "label": "veh-aurora-pulse-premium-2021"
+      },
+      {
+        "label": "veh-aurora-pulse-performance-2021"
+      },
+      {
+        "label": "veh-aurora-pulse-limited-2021"
+      },
+      {
+        "label": "veh-aurora-pulse-base-2022"
+      },
+      {
+        "label": "veh-aurora-pulse-premium-2022"
+      },
+      {
+        "label": "veh-aurora-pulse-performance-2022"
+      },
+      {
+        "label": "veh-aurora-pulse-limited-2022"
+      },
+      {
+        "label": "veh-aurora-pulse-base-2023"
+      },
+      {
+        "label": "veh-aurora-pulse-premium-2023"
+      },
+      {
+        "label": "veh-aurora-pulse-performance-2023"
+      },
+      {
+        "label": "veh-aurora-pulse-limited-2023"
+      },
+      {
+        "label": "veh-aurora-pulse-base-2024"
+      },
+      {
+        "label": "veh-aurora-pulse-premium-2024"
+      },
+      {
+        "label": "veh-aurora-pulse-performance-2024"
+      },
+      {
+        "label": "veh-aurora-pulse-limited-2024"
+      },
+      {
+        "label": "veh-aurora-pulse-base-2025"
+      },
+      {
+        "label": "veh-aurora-pulse-premium-2025"
+      },
+      {
+        "label": "veh-aurora-pulse-performance-2025"
+      },
+      {
+        "label": "veh-aurora-pulse-limited-2025"
+      },
+      {
+        "label": "veh-aurora-pulse-base-2026"
+      },
+      {
+        "label": "veh-aurora-pulse-premium-2026"
+      },
+      {
+        "label": "veh-aurora-pulse-performance-2026"
+      },
+      {
+        "label": "veh-aurora-pulse-limited-2026"
+      },
+      {
+        "label": "veh-aurora-nexus-base-2021"
+      },
+      {
+        "label": "veh-aurora-nexus-premium-2021"
+      },
+      {
+        "label": "veh-aurora-nexus-performance-2021"
+      },
+      {
+        "label": "veh-aurora-nexus-limited-2021"
+      },
+      {
+        "label": "veh-aurora-nexus-base-2022"
+      },
+      {
+        "label": "veh-aurora-nexus-premium-2022"
+      },
+      {
+        "label": "veh-aurora-nexus-performance-2022"
+      },
+      {
+        "label": "veh-aurora-nexus-limited-2022"
+      },
+      {
+        "label": "veh-aurora-nexus-base-2023"
+      },
+      {
+        "label": "veh-aurora-nexus-premium-2023"
+      },
+      {
+        "label": "veh-aurora-nexus-performance-2023"
+      },
+      {
+        "label": "veh-aurora-nexus-limited-2023"
+      },
+      {
+        "label": "veh-aurora-nexus-base-2024"
+      },
+      {
+        "label": "veh-aurora-nexus-premium-2024"
+      },
+      {
+        "label": "veh-aurora-nexus-performance-2024"
+      },
+      {
+        "label": "veh-aurora-nexus-limited-2024"
+      },
+      {
+        "label": "veh-aurora-nexus-base-2025"
+      },
+      {
+        "label": "veh-aurora-nexus-premium-2025"
+      },
+      {
+        "label": "veh-aurora-nexus-performance-2025"
+      },
+      {
+        "label": "veh-aurora-nexus-limited-2025"
+      },
+      {
+        "label": "veh-aurora-nexus-base-2026"
+      },
+      {
+        "label": "veh-aurora-nexus-premium-2026"
+      },
+      {
+        "label": "veh-aurora-nexus-performance-2026"
+      },
+      {
+        "label": "veh-aurora-nexus-limited-2026"
+      },
+      {
+        "label": "veh-aurora-nova-base-2021"
+      },
+      {
+        "label": "veh-aurora-nova-premium-2021"
+      },
+      {
+        "label": "veh-aurora-nova-performance-2021"
+      },
+      {
+        "label": "veh-aurora-nova-limited-2021"
+      },
+      {
+        "label": "veh-aurora-nova-base-2022"
+      },
+      {
+        "label": "veh-aurora-nova-premium-2022"
+      },
+      {
+        "label": "veh-aurora-nova-performance-2022"
+      },
+      {
+        "label": "veh-aurora-nova-limited-2022"
+      },
+      {
+        "label": "veh-aurora-nova-base-2023"
+      },
+      {
+        "label": "veh-aurora-nova-premium-2023"
+      },
+      {
+        "label": "veh-aurora-nova-performance-2023"
+      },
+      {
+        "label": "veh-aurora-nova-limited-2023"
+      },
+      {
+        "label": "veh-aurora-nova-base-2024"
+      },
+      {
+        "label": "veh-aurora-nova-premium-2024"
+      },
+      {
+        "label": "veh-aurora-nova-performance-2024"
+      },
+      {
+        "label": "veh-aurora-nova-limited-2024"
+      },
+      {
+        "label": "veh-aurora-nova-base-2025"
+      },
+      {
+        "label": "veh-aurora-nova-premium-2025"
+      },
+      {
+        "label": "veh-aurora-nova-performance-2025"
+      },
+      {
+        "label": "veh-aurora-nova-limited-2025"
+      },
+      {
+        "label": "veh-aurora-nova-base-2026"
+      },
+      {
+        "label": "veh-aurora-nova-premium-2026"
+      },
+      {
+        "label": "veh-aurora-nova-performance-2026"
+      },
+      {
+        "label": "veh-aurora-nova-limited-2026"
+      },
+      {
+        "label": "veh-bolt-atlas-base-2021"
+      },
+      {
+        "label": "veh-bolt-atlas-premium-2021"
+      },
+      {
+        "label": "veh-bolt-atlas-performance-2021"
+      },
+      {
+        "label": "veh-bolt-atlas-limited-2021"
+      },
+      {
+        "label": "veh-bolt-atlas-base-2022"
+      },
+      {
+        "label": "veh-bolt-atlas-premium-2022"
+      },
+      {
+        "label": "veh-bolt-atlas-performance-2022"
+      },
+      {
+        "label": "veh-bolt-atlas-limited-2022"
+      },
+      {
+        "label": "veh-bolt-atlas-base-2023"
+      },
+      {
+        "label": "veh-bolt-atlas-premium-2023"
+      },
+      {
+        "label": "veh-bolt-atlas-performance-2023"
+      },
+      {
+        "label": "veh-bolt-atlas-limited-2023"
+      },
+      {
+        "label": "veh-bolt-atlas-base-2024"
+      },
+      {
+        "label": "veh-bolt-atlas-premium-2024"
+      },
+      {
+        "label": "veh-bolt-atlas-performance-2024"
+      },
+      {
+        "label": "veh-bolt-atlas-limited-2024"
+      },
+      {
+        "label": "veh-bolt-atlas-base-2025"
+      },
+      {
+        "label": "veh-bolt-atlas-premium-2025"
+      },
+      {
+        "label": "veh-bolt-atlas-performance-2025"
+      },
+      {
+        "label": "veh-bolt-atlas-limited-2025"
+      },
+      {
+        "label": "veh-bolt-atlas-base-2026"
+      },
+      {
+        "label": "veh-bolt-atlas-premium-2026"
+      },
+      {
+        "label": "veh-bolt-atlas-performance-2026"
+      },
+      {
+        "label": "veh-bolt-atlas-limited-2026"
+      },
+      {
+        "label": "veh-bolt-mammoth-base-2021"
+      },
+      {
+        "label": "veh-bolt-mammoth-premium-2021"
+      },
+      {
+        "label": "veh-bolt-mammoth-performance-2021"
+      },
+      {
+        "label": "veh-bolt-mammoth-limited-2021"
+      },
+      {
+        "label": "veh-bolt-mammoth-base-2022"
+      },
+      {
+        "label": "veh-bolt-mammoth-premium-2022"
+      },
+      {
+        "label": "veh-bolt-mammoth-performance-2022"
+      },
+      {
+        "label": "veh-bolt-mammoth-limited-2022"
+      },
+      {
+        "label": "veh-bolt-mammoth-base-2023"
+      },
+      {
+        "label": "veh-bolt-mammoth-premium-2023"
+      },
+      {
+        "label": "veh-bolt-mammoth-performance-2023"
+      },
+      {
+        "label": "veh-bolt-mammoth-limited-2023"
+      },
+      {
+        "label": "veh-bolt-mammoth-base-2024"
+      },
+      {
+        "label": "veh-bolt-mammoth-premium-2024"
+      },
+      {
+        "label": "veh-bolt-mammoth-performance-2024"
+      },
+      {
+        "label": "veh-bolt-mammoth-limited-2024"
+      },
+      {
+        "label": "veh-bolt-mammoth-base-2025"
+      },
+      {
+        "label": "veh-bolt-mammoth-premium-2025"
+      },
+      {
+        "label": "veh-bolt-mammoth-performance-2025"
+      },
+      {
+        "label": "veh-bolt-mammoth-limited-2025"
+      },
+      {
+        "label": "veh-bolt-mammoth-base-2026"
+      },
+      {
+        "label": "veh-bolt-mammoth-premium-2026"
+      },
+      {
+        "label": "veh-bolt-mammoth-performance-2026"
+      },
+      {
+        "label": "veh-bolt-mammoth-limited-2026"
+      },
+      {
+        "label": "veh-bolt-ranger-base-2021"
+      },
+      {
+        "label": "veh-bolt-ranger-premium-2021"
+      },
+      {
+        "label": "veh-bolt-ranger-performance-2021"
+      },
+      {
+        "label": "veh-bolt-ranger-limited-2021"
+      },
+      {
+        "label": "veh-bolt-ranger-base-2022"
+      },
+      {
+        "label": "veh-bolt-ranger-premium-2022"
+      },
+      {
+        "label": "veh-bolt-ranger-performance-2022"
+      },
+      {
+        "label": "veh-bolt-ranger-limited-2022"
+      },
+      {
+        "label": "veh-bolt-ranger-base-2023"
+      },
+      {
+        "label": "veh-bolt-ranger-premium-2023"
+      },
+      {
+        "label": "veh-bolt-ranger-performance-2023"
+      },
+      {
+        "label": "veh-bolt-ranger-limited-2023"
+      },
+      {
+        "label": "veh-bolt-ranger-base-2024"
+      },
+      {
+        "label": "veh-bolt-ranger-premium-2024"
+      },
+      {
+        "label": "veh-bolt-ranger-performance-2024"
+      },
+      {
+        "label": "veh-bolt-ranger-limited-2024"
+      },
+      {
+        "label": "veh-bolt-ranger-base-2025"
+      },
+      {
+        "label": "veh-bolt-ranger-premium-2025"
+      },
+      {
+        "label": "veh-bolt-ranger-performance-2025"
+      },
+      {
+        "label": "veh-bolt-ranger-limited-2025"
+      },
+      {
+        "label": "veh-bolt-ranger-base-2026"
+      },
+      {
+        "label": "veh-bolt-ranger-premium-2026"
+      },
+      {
+        "label": "veh-bolt-ranger-performance-2026"
+      },
+      {
+        "label": "veh-bolt-ranger-limited-2026"
+      },
+      {
+        "label": "veh-bolt-scout-base-2021"
+      },
+      {
+        "label": "veh-bolt-scout-premium-2021"
+      },
+      {
+        "label": "veh-bolt-scout-performance-2021"
+      },
+      {
+        "label": "veh-bolt-scout-limited-2021"
+      },
+      {
+        "label": "veh-bolt-scout-base-2022"
+      },
+      {
+        "label": "veh-bolt-scout-premium-2022"
+      },
+      {
+        "label": "veh-bolt-scout-performance-2022"
+      },
+      {
+        "label": "veh-bolt-scout-limited-2022"
+      },
+      {
+        "label": "veh-bolt-scout-base-2023"
+      },
+      {
+        "label": "veh-bolt-scout-premium-2023"
+      },
+      {
+        "label": "veh-bolt-scout-performance-2023"
+      },
+      {
+        "label": "veh-bolt-scout-limited-2023"
+      },
+      {
+        "label": "veh-bolt-scout-base-2024"
+      },
+      {
+        "label": "veh-bolt-scout-premium-2024"
+      },
+      {
+        "label": "veh-bolt-scout-performance-2024"
+      },
+      {
+        "label": "veh-bolt-scout-limited-2024"
+      },
+      {
+        "label": "veh-bolt-scout-base-2025"
+      },
+      {
+        "label": "veh-bolt-scout-premium-2025"
+      },
+      {
+        "label": "veh-bolt-scout-performance-2025"
+      },
+      {
+        "label": "veh-bolt-scout-limited-2025"
+      },
+      {
+        "label": "veh-bolt-scout-base-2026"
+      },
+      {
+        "label": "veh-bolt-scout-premium-2026"
+      },
+      {
+        "label": "veh-bolt-scout-performance-2026"
+      },
+      {
+        "label": "veh-bolt-scout-limited-2026"
+      },
+      {
+        "label": "veh-bolt-terrain-base-2021"
+      },
+      {
+        "label": "veh-bolt-terrain-premium-2021"
+      },
+      {
+        "label": "veh-bolt-terrain-performance-2021"
+      },
+      {
+        "label": "veh-bolt-terrain-limited-2021"
+      },
+      {
+        "label": "veh-bolt-terrain-base-2022"
+      },
+      {
+        "label": "veh-bolt-terrain-premium-2022"
+      },
+      {
+        "label": "veh-bolt-terrain-performance-2022"
+      },
+      {
+        "label": "veh-bolt-terrain-limited-2022"
+      },
+      {
+        "label": "veh-bolt-terrain-base-2023"
+      },
+      {
+        "label": "veh-bolt-terrain-premium-2023"
+      },
+      {
+        "label": "veh-bolt-terrain-performance-2023"
+      },
+      {
+        "label": "veh-bolt-terrain-limited-2023"
+      },
+      {
+        "label": "veh-bolt-terrain-base-2024"
+      },
+      {
+        "label": "veh-bolt-terrain-premium-2024"
+      },
+      {
+        "label": "veh-bolt-terrain-performance-2024"
+      },
+      {
+        "label": "veh-bolt-terrain-limited-2024"
+      },
+      {
+        "label": "veh-bolt-terrain-base-2025"
+      },
+      {
+        "label": "veh-bolt-terrain-premium-2025"
+      },
+      {
+        "label": "veh-bolt-terrain-performance-2025"
+      },
+      {
+        "label": "veh-bolt-terrain-limited-2025"
+      },
+      {
+        "label": "veh-bolt-terrain-base-2026"
+      },
+      {
+        "label": "veh-bolt-terrain-premium-2026"
+      },
+      {
+        "label": "veh-bolt-terrain-performance-2026"
+      },
+      {
+        "label": "veh-bolt-terrain-limited-2026"
+      },
+      {
+        "label": "veh-cruz-breeze-base-2021"
+      },
+      {
+        "label": "veh-cruz-breeze-premium-2021"
+      },
+      {
+        "label": "veh-cruz-breeze-performance-2021"
+      },
+      {
+        "label": "veh-cruz-breeze-limited-2021"
+      },
+      {
+        "label": "veh-cruz-breeze-base-2022"
+      },
+      {
+        "label": "veh-cruz-breeze-premium-2022"
+      },
+      {
+        "label": "veh-cruz-breeze-performance-2022"
+      },
+      {
+        "label": "veh-cruz-breeze-limited-2022"
+      },
+      {
+        "label": "veh-cruz-breeze-base-2023"
+      },
+      {
+        "label": "veh-cruz-breeze-premium-2023"
+      },
+      {
+        "label": "veh-cruz-breeze-performance-2023"
+      },
+      {
+        "label": "veh-cruz-breeze-limited-2023"
+      },
+      {
+        "label": "veh-cruz-breeze-base-2024"
+      },
+      {
+        "label": "veh-cruz-breeze-premium-2024"
+      },
+      {
+        "label": "veh-cruz-breeze-performance-2024"
+      },
+      {
+        "label": "veh-cruz-breeze-limited-2024"
+      },
+      {
+        "label": "veh-cruz-breeze-base-2025"
+      },
+      {
+        "label": "veh-cruz-breeze-premium-2025"
+      },
+      {
+        "label": "veh-cruz-breeze-performance-2025"
+      },
+      {
+        "label": "veh-cruz-breeze-limited-2025"
+      },
+      {
+        "label": "veh-cruz-breeze-base-2026"
+      },
+      {
+        "label": "veh-cruz-breeze-premium-2026"
+      },
+      {
+        "label": "veh-cruz-breeze-performance-2026"
+      },
+      {
+        "label": "veh-cruz-breeze-limited-2026"
+      },
+      {
+        "label": "veh-cruz-echo-base-2021"
+      },
+      {
+        "label": "veh-cruz-echo-premium-2021"
+      },
+      {
+        "label": "veh-cruz-echo-performance-2021"
+      },
+      {
+        "label": "veh-cruz-echo-limited-2021"
+      },
+      {
+        "label": "veh-cruz-echo-base-2022"
+      },
+      {
+        "label": "veh-cruz-echo-premium-2022"
+      },
+      {
+        "label": "veh-cruz-echo-performance-2022"
+      },
+      {
+        "label": "veh-cruz-echo-limited-2022"
+      },
+      {
+        "label": "veh-cruz-echo-base-2023"
+      },
+      {
+        "label": "veh-cruz-echo-premium-2023"
+      },
+      {
+        "label": "veh-cruz-echo-performance-2023"
+      },
+      {
+        "label": "veh-cruz-echo-limited-2023"
+      },
+      {
+        "label": "veh-cruz-echo-base-2024"
+      },
+      {
+        "label": "veh-cruz-echo-premium-2024"
+      },
+      {
+        "label": "veh-cruz-echo-performance-2024"
+      },
+      {
+        "label": "veh-cruz-echo-limited-2024"
+      },
+      {
+        "label": "veh-cruz-echo-base-2025"
+      },
+      {
+        "label": "veh-cruz-echo-premium-2025"
+      },
+      {
+        "label": "veh-cruz-echo-performance-2025"
+      },
+      {
+        "label": "veh-cruz-echo-limited-2025"
+      },
+      {
+        "label": "veh-cruz-echo-base-2026"
+      },
+      {
+        "label": "veh-cruz-echo-premium-2026"
+      },
+      {
+        "label": "veh-cruz-echo-performance-2026"
+      },
+      {
+        "label": "veh-cruz-echo-limited-2026"
+      },
+      {
+        "label": "veh-cruz-element-base-2021"
+      },
+      {
+        "label": "veh-cruz-element-premium-2021"
+      },
+      {
+        "label": "veh-cruz-element-performance-2021"
+      },
+      {
+        "label": "veh-cruz-element-limited-2021"
+      },
+      {
+        "label": "veh-cruz-element-base-2022"
+      },
+      {
+        "label": "veh-cruz-element-premium-2022"
+      },
+      {
+        "label": "veh-cruz-element-performance-2022"
+      },
+      {
+        "label": "veh-cruz-element-limited-2022"
+      },
+      {
+        "label": "veh-cruz-element-base-2023"
+      },
+      {
+        "label": "veh-cruz-element-premium-2023"
+      },
+      {
+        "label": "veh-cruz-element-performance-2023"
+      },
+      {
+        "label": "veh-cruz-element-limited-2023"
+      },
+      {
+        "label": "veh-cruz-element-base-2024"
+      },
+      {
+        "label": "veh-cruz-element-premium-2024"
+      },
+      {
+        "label": "veh-cruz-element-performance-2024"
+      },
+      {
+        "label": "veh-cruz-element-limited-2024"
+      },
+      {
+        "label": "veh-cruz-element-base-2025"
+      },
+      {
+        "label": "veh-cruz-element-premium-2025"
+      },
+      {
+        "label": "veh-cruz-element-performance-2025"
+      },
+      {
+        "label": "veh-cruz-element-limited-2025"
+      },
+      {
+        "label": "veh-cruz-element-base-2026"
+      },
+      {
+        "label": "veh-cruz-element-premium-2026"
+      },
+      {
+        "label": "veh-cruz-element-performance-2026"
+      },
+      {
+        "label": "veh-cruz-element-limited-2026"
+      },
+      {
+        "label": "veh-cruz-harmony-base-2021"
+      },
+      {
+        "label": "veh-cruz-harmony-premium-2021"
+      },
+      {
+        "label": "veh-cruz-harmony-performance-2021"
+      },
+      {
+        "label": "veh-cruz-harmony-limited-2021"
+      },
+      {
+        "label": "veh-cruz-harmony-base-2022"
+      },
+      {
+        "label": "veh-cruz-harmony-premium-2022"
+      },
+      {
+        "label": "veh-cruz-harmony-performance-2022"
+      },
+      {
+        "label": "veh-cruz-harmony-limited-2022"
+      },
+      {
+        "label": "veh-cruz-harmony-base-2023"
+      },
+      {
+        "label": "veh-cruz-harmony-premium-2023"
+      },
+      {
+        "label": "veh-cruz-harmony-performance-2023"
+      },
+      {
+        "label": "veh-cruz-harmony-limited-2023"
+      },
+      {
+        "label": "veh-cruz-harmony-base-2024"
+      },
+      {
+        "label": "veh-cruz-harmony-premium-2024"
+      },
+      {
+        "label": "veh-cruz-harmony-performance-2024"
+      },
+      {
+        "label": "veh-cruz-harmony-limited-2024"
+      },
+      {
+        "label": "veh-cruz-harmony-base-2025"
+      },
+      {
+        "label": "veh-cruz-harmony-premium-2025"
+      },
+      {
+        "label": "veh-cruz-harmony-performance-2025"
+      },
+      {
+        "label": "veh-cruz-harmony-limited-2025"
+      },
+      {
+        "label": "veh-cruz-harmony-base-2026"
+      },
+      {
+        "label": "veh-cruz-harmony-premium-2026"
+      },
+      {
+        "label": "veh-cruz-harmony-performance-2026"
+      },
+      {
+        "label": "veh-cruz-harmony-limited-2026"
+      },
+      {
+        "label": "veh-cruz-verde-base-2021"
+      },
+      {
+        "label": "veh-cruz-verde-premium-2021"
+      },
+      {
+        "label": "veh-cruz-verde-performance-2021"
+      },
+      {
+        "label": "veh-cruz-verde-limited-2021"
+      },
+      {
+        "label": "veh-cruz-verde-base-2022"
+      },
+      {
+        "label": "veh-cruz-verde-premium-2022"
+      },
+      {
+        "label": "veh-cruz-verde-performance-2022"
+      },
+      {
+        "label": "veh-cruz-verde-limited-2022"
+      },
+      {
+        "label": "veh-cruz-verde-base-2023"
+      },
+      {
+        "label": "veh-cruz-verde-premium-2023"
+      },
+      {
+        "label": "veh-cruz-verde-performance-2023"
+      },
+      {
+        "label": "veh-cruz-verde-limited-2023"
+      },
+      {
+        "label": "veh-cruz-verde-base-2024"
+      },
+      {
+        "label": "veh-cruz-verde-premium-2024"
+      },
+      {
+        "label": "veh-cruz-verde-performance-2024"
+      },
+      {
+        "label": "veh-cruz-verde-limited-2024"
+      },
+      {
+        "label": "veh-cruz-verde-base-2025"
+      },
+      {
+        "label": "veh-cruz-verde-premium-2025"
+      },
+      {
+        "label": "veh-cruz-verde-performance-2025"
+      },
+      {
+        "label": "veh-cruz-verde-limited-2025"
+      },
+      {
+        "label": "veh-cruz-verde-base-2026"
+      },
+      {
+        "label": "veh-cruz-verde-premium-2026"
+      },
+      {
+        "label": "veh-cruz-verde-performance-2026"
+      },
+      {
+        "label": "veh-cruz-verde-limited-2026"
+      },
+      {
+        "label": "UNIVERSAL"
+      }
+    ]
+  },
+  {
+    "attribute_code": "make_fitment",
+    "default_frontend_label": "Marques compatibles",
+    "frontend_input": "multiselect",
+    "scope": "global",
+    "is_required": false,
+    "is_filterable": 1,
+    "is_filterable_in_search": true,
+    "used_in_product_listing": true,
+    "is_visible_on_front": 1,
+    "is_searchable": false,
+    "used_for_sort_by": false,
+    "options": [
+      {
+        "label": "veh-aurora"
+      },
+      {
+        "label": "veh-bolt"
+      },
+      {
+        "label": "veh-cruz"
+      }
+    ]
+  },
+  {
+    "attribute_code": "make_model_fitment",
+    "default_frontend_label": "Modèles compatibles",
+    "frontend_input": "multiselect",
+    "scope": "global",
+    "is_required": false,
+    "is_filterable": 1,
+    "is_filterable_in_search": true,
+    "used_in_product_listing": true,
+    "is_visible_on_front": 1,
+    "is_searchable": false,
+    "used_for_sort_by": false,
+    "options": [
+      {
+        "label": "veh-aurora-flux"
+      },
+      {
+        "label": "veh-aurora-prism"
+      },
+      {
+        "label": "veh-aurora-pulse"
+      },
+      {
+        "label": "veh-aurora-nexus"
+      },
+      {
+        "label": "veh-aurora-nova"
+      },
+      {
+        "label": "veh-bolt-atlas"
+      },
+      {
+        "label": "veh-bolt-mammoth"
+      },
+      {
+        "label": "veh-bolt-ranger"
+      },
+      {
+        "label": "veh-bolt-scout"
+      },
+      {
+        "label": "veh-bolt-terrain"
+      },
+      {
+        "label": "veh-cruz-breeze"
+      },
+      {
+        "label": "veh-cruz-echo"
+      },
+      {
+        "label": "veh-cruz-element"
+      },
+      {
+        "label": "veh-cruz-harmony"
+      },
+      {
+        "label": "veh-cruz-verde"
+      }
+    ]
+  },
+  {
+    "attribute_code": "fitment_drives",
+    "default_frontend_label": "Entraîne",
+    "frontend_input": "multiselect",
+    "scope": "global",
+    "is_required": false,
+    "is_filterable": 0,
+    "is_filterable_in_search": false,
+    "used_in_product_listing": true,
+    "is_visible_on_front": 1,
+    "is_searchable": false,
+    "used_for_sort_by": false,
+    "options": [
+      {
+        "label": "veh-aurora-flux-base-2021::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-flux-premium-2021::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-flux-performance-2021::Arbre à cames et arbre d'équilibrage"
+      },
+      {
+        "label": "veh-aurora-flux-limited-2021::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-flux-base-2022::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-flux-premium-2022::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-flux-performance-2022::Arbre à cames et arbre d'équilibrage"
+      },
+      {
+        "label": "veh-aurora-flux-limited-2022::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-flux-base-2023::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-flux-premium-2023::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-flux-performance-2023::Arbre à cames et arbre d'équilibrage"
+      },
+      {
+        "label": "veh-aurora-flux-limited-2023::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-flux-base-2024::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-flux-premium-2024::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-flux-performance-2024::Arbre à cames et arbre d'équilibrage"
+      },
+      {
+        "label": "veh-aurora-flux-limited-2024::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-flux-base-2025::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-flux-premium-2025::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-flux-performance-2025::Arbre à cames et arbre d'équilibrage"
+      },
+      {
+        "label": "veh-aurora-flux-limited-2025::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-flux-base-2026::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-flux-premium-2026::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-flux-performance-2026::Arbre à cames et arbre d'équilibrage"
+      },
+      {
+        "label": "veh-aurora-flux-limited-2026::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-prism-base-2021::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-prism-premium-2021::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-prism-performance-2021::Arbre à cames et arbre d'équilibrage"
+      },
+      {
+        "label": "veh-aurora-prism-limited-2021::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-prism-base-2022::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-prism-premium-2022::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-prism-performance-2022::Arbre à cames et arbre d'équilibrage"
+      },
+      {
+        "label": "veh-aurora-prism-limited-2022::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-prism-base-2023::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-prism-premium-2023::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-prism-performance-2023::Arbre à cames et arbre d'équilibrage"
+      },
+      {
+        "label": "veh-aurora-prism-limited-2023::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-prism-base-2024::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-prism-premium-2024::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-prism-performance-2024::Arbre à cames et arbre d'équilibrage"
+      },
+      {
+        "label": "veh-aurora-prism-limited-2024::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-prism-base-2025::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-prism-premium-2025::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-prism-performance-2025::Arbre à cames et arbre d'équilibrage"
+      },
+      {
+        "label": "veh-aurora-prism-limited-2025::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-prism-base-2026::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-prism-premium-2026::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-prism-performance-2026::Arbre à cames et arbre d'équilibrage"
+      },
+      {
+        "label": "veh-aurora-prism-limited-2026::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-pulse-base-2021::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-pulse-premium-2021::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-pulse-performance-2021::Arbre à cames et arbre d'équilibrage"
+      },
+      {
+        "label": "veh-aurora-pulse-limited-2021::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-pulse-base-2022::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-pulse-premium-2022::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-pulse-performance-2022::Arbre à cames et arbre d'équilibrage"
+      },
+      {
+        "label": "veh-aurora-pulse-limited-2022::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-pulse-base-2023::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-pulse-premium-2023::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-pulse-performance-2023::Arbre à cames et arbre d'équilibrage"
+      },
+      {
+        "label": "veh-aurora-pulse-limited-2023::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-pulse-base-2024::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-pulse-premium-2024::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-pulse-performance-2024::Arbre à cames et arbre d'équilibrage"
+      },
+      {
+        "label": "veh-aurora-pulse-limited-2024::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-pulse-base-2025::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-pulse-premium-2025::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-pulse-performance-2025::Arbre à cames et arbre d'équilibrage"
+      },
+      {
+        "label": "veh-aurora-pulse-limited-2025::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-pulse-base-2026::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-pulse-premium-2026::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-pulse-performance-2026::Arbre à cames et arbre d'équilibrage"
+      },
+      {
+        "label": "veh-aurora-pulse-limited-2026::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-nexus-base-2021::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-nexus-premium-2021::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-nexus-performance-2021::Arbre à cames et arbre d'équilibrage"
+      },
+      {
+        "label": "veh-aurora-nexus-limited-2021::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-nexus-base-2022::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-nexus-premium-2022::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-nexus-performance-2022::Arbre à cames et arbre d'équilibrage"
+      },
+      {
+        "label": "veh-aurora-nexus-limited-2022::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-nexus-base-2023::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-nexus-premium-2023::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-nexus-performance-2023::Arbre à cames et arbre d'équilibrage"
+      },
+      {
+        "label": "veh-aurora-nexus-limited-2023::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-nexus-base-2024::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-nexus-premium-2024::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-nexus-performance-2024::Arbre à cames et arbre d'équilibrage"
+      },
+      {
+        "label": "veh-aurora-nexus-limited-2024::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-nexus-base-2025::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-nexus-premium-2025::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-nexus-performance-2025::Arbre à cames et arbre d'équilibrage"
+      },
+      {
+        "label": "veh-aurora-nexus-limited-2025::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-nexus-base-2026::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-nexus-premium-2026::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-nexus-performance-2026::Arbre à cames et arbre d'équilibrage"
+      },
+      {
+        "label": "veh-aurora-nexus-limited-2026::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-nova-base-2021::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-nova-premium-2021::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-nova-performance-2021::Arbre à cames et arbre d'équilibrage"
+      },
+      {
+        "label": "veh-aurora-nova-limited-2021::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-nova-base-2022::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-nova-premium-2022::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-nova-performance-2022::Arbre à cames et arbre d'équilibrage"
+      },
+      {
+        "label": "veh-aurora-nova-limited-2022::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-nova-base-2023::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-nova-premium-2023::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-nova-performance-2023::Arbre à cames et arbre d'équilibrage"
+      },
+      {
+        "label": "veh-aurora-nova-limited-2023::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-nova-base-2024::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-nova-premium-2024::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-nova-performance-2024::Arbre à cames et arbre d'équilibrage"
+      },
+      {
+        "label": "veh-aurora-nova-limited-2024::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-nova-base-2025::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-nova-premium-2025::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-nova-performance-2025::Arbre à cames et arbre d'équilibrage"
+      },
+      {
+        "label": "veh-aurora-nova-limited-2025::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-nova-base-2026::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-nova-premium-2026::Arbre à cames"
+      },
+      {
+        "label": "veh-aurora-nova-performance-2026::Arbre à cames et arbre d'équilibrage"
+      },
+      {
+        "label": "veh-aurora-nova-limited-2026::Arbre à cames"
+      }
+    ]
+  },
+  {
+    "attribute_code": "sold_by_third_party",
+    "default_frontend_label": "Vendu par un tiers",
+    "frontend_input": "boolean",
+    "scope": "global",
+    "is_required": false,
+    "is_filterable": 1,
+    "is_filterable_in_search": true,
+    "used_in_product_listing": true,
+    "is_visible_on_front": 1,
+    "is_searchable": false,
+    "used_for_sort_by": false
+  },
+  {
+    "attribute_code": "grade",
+    "default_frontend_label": "Gamme",
+    "frontend_input": "select",
+    "scope": "global",
+    "is_required": false,
+    "is_filterable": 1,
+    "is_filterable_in_search": true,
+    "used_in_product_listing": true,
+    "is_visible_on_front": 1,
+    "is_searchable": false,
+    "used_for_sort_by": false,
+    "options": [
+      {
+        "label": "Eco"
+      },
+      {
+        "label": "Performance"
+      },
+      {
+        "label": "Luxury"
+      }
+    ]
+  },
+  {
+    "attribute_code": "size",
+    "default_frontend_label": "Taille",
+    "frontend_input": "select",
+    "scope": "global",
+    "is_required": false,
+    "is_filterable": 1,
+    "is_filterable_in_search": true,
+    "used_in_product_listing": true,
+    "is_visible_on_front": 1,
+    "is_searchable": false,
+    "used_for_sort_by": false,
+    "options": [
+      {
+        "label": "17\""
+      },
+      {
+        "label": "18\""
+      },
+      {
+        "label": "19\""
+      },
+      {
+        "label": "20\""
+      },
+      {
+        "label": "Standard"
+      },
+      {
+        "label": "High-Flow"
+      },
+      {
+        "label": "Extended"
+      }
+    ]
+  },
+  {
+    "attribute_code": "profile",
+    "default_frontend_label": "Profil",
+    "frontend_input": "select",
+    "scope": "global",
+    "is_required": false,
+    "is_filterable": 1,
+    "is_filterable_in_search": true,
+    "used_in_product_listing": true,
+    "is_visible_on_front": 1,
+    "is_searchable": false,
+    "used_for_sort_by": false,
+    "options": [
+      {
+        "label": "35"
+      },
+      {
+        "label": "45"
+      },
+      {
+        "label": "55"
+      }
+    ]
+  },
+  {
+    "attribute_code": "rating",
+    "default_frontend_label": "Indice de vitesse",
+    "frontend_input": "select",
+    "scope": "global",
+    "is_required": false,
+    "is_filterable": 1,
+    "is_filterable_in_search": true,
+    "used_in_product_listing": true,
+    "is_visible_on_front": 1,
+    "is_searchable": false,
+    "used_for_sort_by": false,
+    "options": [
+      {
+        "label": "H"
+      },
+      {
+        "label": "V"
+      },
+      {
+        "label": "Z"
+      }
+    ]
+  },
+  {
+    "attribute_code": "bolt_pattern",
+    "default_frontend_label": "Entraxe",
+    "frontend_input": "select",
+    "scope": "global",
+    "is_required": false,
+    "is_filterable": 1,
+    "is_filterable_in_search": true,
+    "used_in_product_listing": true,
+    "is_visible_on_front": 1,
+    "is_searchable": false,
+    "used_for_sort_by": false,
+    "options": []
+  },
+  {
+    "attribute_code": "group_size",
+    "default_frontend_label": "Groupe",
+    "frontend_input": "select",
+    "scope": "global",
+    "is_required": false,
+    "is_filterable": 1,
+    "is_filterable_in_search": true,
+    "used_in_product_listing": true,
+    "is_visible_on_front": 1,
+    "is_searchable": false,
+    "used_for_sort_by": false,
+    "options": []
+  },
+  {
+    "attribute_code": "volume",
+    "default_frontend_label": "Volume",
+    "frontend_input": "select",
+    "scope": "global",
+    "is_required": false,
+    "is_filterable": 1,
+    "is_filterable_in_search": true,
+    "used_in_product_listing": true,
+    "is_visible_on_front": 1,
+    "is_searchable": false,
+    "used_for_sort_by": false,
+    "options": [
+      {
+        "label": "1L"
+      },
+      {
+        "label": "5L"
+      },
+      {
+        "label": "0.5L"
+      },
+      {
+        "label": "4L"
+      }
+    ]
+  },
+  {
+    "attribute_code": "viscosity",
+    "default_frontend_label": "Viscosité",
+    "frontend_input": "select",
+    "scope": "global",
+    "is_required": false,
+    "is_filterable": 1,
+    "is_filterable_in_search": true,
+    "used_in_product_listing": true,
+    "is_visible_on_front": 1,
+    "is_searchable": false,
+    "used_for_sort_by": false,
+    "options": [
+      {
+        "label": "0W-20"
+      },
+      {
+        "label": "5W-30"
+      },
+      {
+        "label": "10W-40"
+      }
+    ]
+  }
+]

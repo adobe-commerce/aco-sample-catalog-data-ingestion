@@ -8,6 +8,7 @@
     "is_filterable": 1,
     "is_filterable_in_search": true,
     "used_in_product_listing": true,
+    "is_visible_on_front": 1,
     "is_searchable": false,
     "used_for_sort_by": false,
     "options": [
@@ -28,6 +29,7 @@
     "is_filterable": 1,
     "is_filterable_in_search": true,
     "used_in_product_listing": true,
+    "is_visible_on_front": 1,
     "is_searchable": true,
     "used_for_sort_by": false,
     "options": [
@@ -51,6 +53,7 @@
     "is_filterable": 1,
     "is_filterable_in_search": true,
     "used_in_product_listing": true,
+    "is_visible_on_front": 1,
     "is_searchable": true,
     "used_for_sort_by": false,
     "options": [
@@ -110,6 +113,7 @@
     "is_filterable": 1,
     "is_filterable_in_search": true,
     "used_in_product_listing": true,
+    "is_visible_on_front": 1,
     "is_searchable": false,
     "used_for_sort_by": false,
     "options": [
@@ -136,6 +140,7 @@
     "is_filterable": 1,
     "is_filterable_in_search": true,
     "used_in_product_listing": true,
+    "is_visible_on_front": 1,
     "is_searchable": false,
     "used_for_sort_by": false,
     "options": [
@@ -168,6 +173,7 @@
     "is_filterable": 1,
     "is_filterable_in_search": true,
     "used_in_product_listing": true,
+    "is_visible_on_front": 1,
     "is_searchable": true,
     "used_for_sort_by": false,
     "options": [
@@ -209,6 +215,7 @@
     "is_filterable": 1,
     "is_filterable_in_search": true,
     "used_in_product_listing": true,
+    "is_visible_on_front": 1,
     "is_searchable": true,
     "used_for_sort_by": false,
     "options": [
@@ -271,6 +278,7 @@
     "is_filterable": 1,
     "is_filterable_in_search": true,
     "used_in_product_listing": true,
+    "is_visible_on_front": 1,
     "is_searchable": false,
     "used_for_sort_by": false,
     "options": [
@@ -300,6 +308,7 @@
     "is_filterable": 1,
     "is_filterable_in_search": true,
     "used_in_product_listing": true,
+    "is_visible_on_front": 1,
     "is_searchable": true,
     "used_for_sort_by": false,
     "options": [
@@ -1389,6 +1398,465 @@
     ]
   },
   {
+    "attribute_code": "make_fitment",
+    "default_frontend_label": "Fits Make",
+    "frontend_input": "multiselect",
+    "scope": "global",
+    "is_required": false,
+    "is_filterable": 1,
+    "is_filterable_in_search": true,
+    "used_in_product_listing": true,
+    "is_visible_on_front": 1,
+    "is_searchable": false,
+    "used_for_sort_by": false,
+    "options": [
+      {
+        "label": "veh-aurora"
+      },
+      {
+        "label": "veh-bolt"
+      },
+      {
+        "label": "veh-cruz"
+      }
+    ]
+  },
+  {
+    "attribute_code": "make_model_fitment",
+    "default_frontend_label": "Fits Model",
+    "frontend_input": "multiselect",
+    "scope": "global",
+    "is_required": false,
+    "is_filterable": 1,
+    "is_filterable_in_search": true,
+    "used_in_product_listing": true,
+    "is_visible_on_front": 1,
+    "is_searchable": false,
+    "used_for_sort_by": false,
+    "options": [
+      {
+        "label": "veh-aurora-flux"
+      },
+      {
+        "label": "veh-aurora-prism"
+      },
+      {
+        "label": "veh-aurora-pulse"
+      },
+      {
+        "label": "veh-aurora-nexus"
+      },
+      {
+        "label": "veh-aurora-nova"
+      },
+      {
+        "label": "veh-bolt-atlas"
+      },
+      {
+        "label": "veh-bolt-mammoth"
+      },
+      {
+        "label": "veh-bolt-ranger"
+      },
+      {
+        "label": "veh-bolt-scout"
+      },
+      {
+        "label": "veh-bolt-terrain"
+      },
+      {
+        "label": "veh-cruz-breeze"
+      },
+      {
+        "label": "veh-cruz-echo"
+      },
+      {
+        "label": "veh-cruz-element"
+      },
+      {
+        "label": "veh-cruz-harmony"
+      },
+      {
+        "label": "veh-cruz-verde"
+      }
+    ]
+  },
+  {
+    "attribute_code": "fitment_drives",
+    "default_frontend_label": "Drives",
+    "frontend_input": "multiselect",
+    "scope": "global",
+    "is_required": false,
+    "is_filterable": 0,
+    "is_filterable_in_search": false,
+    "used_in_product_listing": true,
+    "is_visible_on_front": 1,
+    "is_searchable": false,
+    "used_for_sort_by": false,
+    "options": [
+      {
+        "label": "veh-aurora-flux-base-2021::Camshaft"
+      },
+      {
+        "label": "veh-aurora-flux-premium-2021::Camshaft"
+      },
+      {
+        "label": "veh-aurora-flux-performance-2021::Camshaft and balance shaft"
+      },
+      {
+        "label": "veh-aurora-flux-limited-2021::Camshaft"
+      },
+      {
+        "label": "veh-aurora-flux-base-2022::Camshaft"
+      },
+      {
+        "label": "veh-aurora-flux-premium-2022::Camshaft"
+      },
+      {
+        "label": "veh-aurora-flux-performance-2022::Camshaft and balance shaft"
+      },
+      {
+        "label": "veh-aurora-flux-limited-2022::Camshaft"
+      },
+      {
+        "label": "veh-aurora-flux-base-2023::Camshaft"
+      },
+      {
+        "label": "veh-aurora-flux-premium-2023::Camshaft"
+      },
+      {
+        "label": "veh-aurora-flux-performance-2023::Camshaft and balance shaft"
+      },
+      {
+        "label": "veh-aurora-flux-limited-2023::Camshaft"
+      },
+      {
+        "label": "veh-aurora-flux-base-2024::Camshaft"
+      },
+      {
+        "label": "veh-aurora-flux-premium-2024::Camshaft"
+      },
+      {
+        "label": "veh-aurora-flux-performance-2024::Camshaft and balance shaft"
+      },
+      {
+        "label": "veh-aurora-flux-limited-2024::Camshaft"
+      },
+      {
+        "label": "veh-aurora-flux-base-2025::Camshaft"
+      },
+      {
+        "label": "veh-aurora-flux-premium-2025::Camshaft"
+      },
+      {
+        "label": "veh-aurora-flux-performance-2025::Camshaft and balance shaft"
+      },
+      {
+        "label": "veh-aurora-flux-limited-2025::Camshaft"
+      },
+      {
+        "label": "veh-aurora-flux-base-2026::Camshaft"
+      },
+      {
+        "label": "veh-aurora-flux-premium-2026::Camshaft"
+      },
+      {
+        "label": "veh-aurora-flux-performance-2026::Camshaft and balance shaft"
+      },
+      {
+        "label": "veh-aurora-flux-limited-2026::Camshaft"
+      },
+      {
+        "label": "veh-aurora-prism-base-2021::Camshaft"
+      },
+      {
+        "label": "veh-aurora-prism-premium-2021::Camshaft"
+      },
+      {
+        "label": "veh-aurora-prism-performance-2021::Camshaft and balance shaft"
+      },
+      {
+        "label": "veh-aurora-prism-limited-2021::Camshaft"
+      },
+      {
+        "label": "veh-aurora-prism-base-2022::Camshaft"
+      },
+      {
+        "label": "veh-aurora-prism-premium-2022::Camshaft"
+      },
+      {
+        "label": "veh-aurora-prism-performance-2022::Camshaft and balance shaft"
+      },
+      {
+        "label": "veh-aurora-prism-limited-2022::Camshaft"
+      },
+      {
+        "label": "veh-aurora-prism-base-2023::Camshaft"
+      },
+      {
+        "label": "veh-aurora-prism-premium-2023::Camshaft"
+      },
+      {
+        "label": "veh-aurora-prism-performance-2023::Camshaft and balance shaft"
+      },
+      {
+        "label": "veh-aurora-prism-limited-2023::Camshaft"
+      },
+      {
+        "label": "veh-aurora-prism-base-2024::Camshaft"
+      },
+      {
+        "label": "veh-aurora-prism-premium-2024::Camshaft"
+      },
+      {
+        "label": "veh-aurora-prism-performance-2024::Camshaft and balance shaft"
+      },
+      {
+        "label": "veh-aurora-prism-limited-2024::Camshaft"
+      },
+      {
+        "label": "veh-aurora-prism-base-2025::Camshaft"
+      },
+      {
+        "label": "veh-aurora-prism-premium-2025::Camshaft"
+      },
+      {
+        "label": "veh-aurora-prism-performance-2025::Camshaft and balance shaft"
+      },
+      {
+        "label": "veh-aurora-prism-limited-2025::Camshaft"
+      },
+      {
+        "label": "veh-aurora-prism-base-2026::Camshaft"
+      },
+      {
+        "label": "veh-aurora-prism-premium-2026::Camshaft"
+      },
+      {
+        "label": "veh-aurora-prism-performance-2026::Camshaft and balance shaft"
+      },
+      {
+        "label": "veh-aurora-prism-limited-2026::Camshaft"
+      },
+      {
+        "label": "veh-aurora-pulse-base-2021::Camshaft"
+      },
+      {
+        "label": "veh-aurora-pulse-premium-2021::Camshaft"
+      },
+      {
+        "label": "veh-aurora-pulse-performance-2021::Camshaft and balance shaft"
+      },
+      {
+        "label": "veh-aurora-pulse-limited-2021::Camshaft"
+      },
+      {
+        "label": "veh-aurora-pulse-base-2022::Camshaft"
+      },
+      {
+        "label": "veh-aurora-pulse-premium-2022::Camshaft"
+      },
+      {
+        "label": "veh-aurora-pulse-performance-2022::Camshaft and balance shaft"
+      },
+      {
+        "label": "veh-aurora-pulse-limited-2022::Camshaft"
+      },
+      {
+        "label": "veh-aurora-pulse-base-2023::Camshaft"
+      },
+      {
+        "label": "veh-aurora-pulse-premium-2023::Camshaft"
+      },
+      {
+        "label": "veh-aurora-pulse-performance-2023::Camshaft and balance shaft"
+      },
+      {
+        "label": "veh-aurora-pulse-limited-2023::Camshaft"
+      },
+      {
+        "label": "veh-aurora-pulse-base-2024::Camshaft"
+      },
+      {
+        "label": "veh-aurora-pulse-premium-2024::Camshaft"
+      },
+      {
+        "label": "veh-aurora-pulse-performance-2024::Camshaft and balance shaft"
+      },
+      {
+        "label": "veh-aurora-pulse-limited-2024::Camshaft"
+      },
+      {
+        "label": "veh-aurora-pulse-base-2025::Camshaft"
+      },
+      {
+        "label": "veh-aurora-pulse-premium-2025::Camshaft"
+      },
+      {
+        "label": "veh-aurora-pulse-performance-2025::Camshaft and balance shaft"
+      },
+      {
+        "label": "veh-aurora-pulse-limited-2025::Camshaft"
+      },
+      {
+        "label": "veh-aurora-pulse-base-2026::Camshaft"
+      },
+      {
+        "label": "veh-aurora-pulse-premium-2026::Camshaft"
+      },
+      {
+        "label": "veh-aurora-pulse-performance-2026::Camshaft and balance shaft"
+      },
+      {
+        "label": "veh-aurora-pulse-limited-2026::Camshaft"
+      },
+      {
+        "label": "veh-aurora-nexus-base-2021::Camshaft"
+      },
+      {
+        "label": "veh-aurora-nexus-premium-2021::Camshaft"
+      },
+      {
+        "label": "veh-aurora-nexus-performance-2021::Camshaft and balance shaft"
+      },
+      {
+        "label": "veh-aurora-nexus-limited-2021::Camshaft"
+      },
+      {
+        "label": "veh-aurora-nexus-base-2022::Camshaft"
+      },
+      {
+        "label": "veh-aurora-nexus-premium-2022::Camshaft"
+      },
+      {
+        "label": "veh-aurora-nexus-performance-2022::Camshaft and balance shaft"
+      },
+      {
+        "label": "veh-aurora-nexus-limited-2022::Camshaft"
+      },
+      {
+        "label": "veh-aurora-nexus-base-2023::Camshaft"
+      },
+      {
+        "label": "veh-aurora-nexus-premium-2023::Camshaft"
+      },
+      {
+        "label": "veh-aurora-nexus-performance-2023::Camshaft and balance shaft"
+      },
+      {
+        "label": "veh-aurora-nexus-limited-2023::Camshaft"
+      },
+      {
+        "label": "veh-aurora-nexus-base-2024::Camshaft"
+      },
+      {
+        "label": "veh-aurora-nexus-premium-2024::Camshaft"
+      },
+      {
+        "label": "veh-aurora-nexus-performance-2024::Camshaft and balance shaft"
+      },
+      {
+        "label": "veh-aurora-nexus-limited-2024::Camshaft"
+      },
+      {
+        "label": "veh-aurora-nexus-base-2025::Camshaft"
+      },
+      {
+        "label": "veh-aurora-nexus-premium-2025::Camshaft"
+      },
+      {
+        "label": "veh-aurora-nexus-performance-2025::Camshaft and balance shaft"
+      },
+      {
+        "label": "veh-aurora-nexus-limited-2025::Camshaft"
+      },
+      {
+        "label": "veh-aurora-nexus-base-2026::Camshaft"
+      },
+      {
+        "label": "veh-aurora-nexus-premium-2026::Camshaft"
+      },
+      {
+        "label": "veh-aurora-nexus-performance-2026::Camshaft and balance shaft"
+      },
+      {
+        "label": "veh-aurora-nexus-limited-2026::Camshaft"
+      },
+      {
+        "label": "veh-aurora-nova-base-2021::Camshaft"
+      },
+      {
+        "label": "veh-aurora-nova-premium-2021::Camshaft"
+      },
+      {
+        "label": "veh-aurora-nova-performance-2021::Camshaft and balance shaft"
+      },
+      {
+        "label": "veh-aurora-nova-limited-2021::Camshaft"
+      },
+      {
+        "label": "veh-aurora-nova-base-2022::Camshaft"
+      },
+      {
+        "label": "veh-aurora-nova-premium-2022::Camshaft"
+      },
+      {
+        "label": "veh-aurora-nova-performance-2022::Camshaft and balance shaft"
+      },
+      {
+        "label": "veh-aurora-nova-limited-2022::Camshaft"
+      },
+      {
+        "label": "veh-aurora-nova-base-2023::Camshaft"
+      },
+      {
+        "label": "veh-aurora-nova-premium-2023::Camshaft"
+      },
+      {
+        "label": "veh-aurora-nova-performance-2023::Camshaft and balance shaft"
+      },
+      {
+        "label": "veh-aurora-nova-limited-2023::Camshaft"
+      },
+      {
+        "label": "veh-aurora-nova-base-2024::Camshaft"
+      },
+      {
+        "label": "veh-aurora-nova-premium-2024::Camshaft"
+      },
+      {
+        "label": "veh-aurora-nova-performance-2024::Camshaft and balance shaft"
+      },
+      {
+        "label": "veh-aurora-nova-limited-2024::Camshaft"
+      },
+      {
+        "label": "veh-aurora-nova-base-2025::Camshaft"
+      },
+      {
+        "label": "veh-aurora-nova-premium-2025::Camshaft"
+      },
+      {
+        "label": "veh-aurora-nova-performance-2025::Camshaft and balance shaft"
+      },
+      {
+        "label": "veh-aurora-nova-limited-2025::Camshaft"
+      },
+      {
+        "label": "veh-aurora-nova-base-2026::Camshaft"
+      },
+      {
+        "label": "veh-aurora-nova-premium-2026::Camshaft"
+      },
+      {
+        "label": "veh-aurora-nova-performance-2026::Camshaft and balance shaft"
+      },
+      {
+        "label": "veh-aurora-nova-limited-2026::Camshaft"
+      }
+    ]
+  },
+  {
     "attribute_code": "sold_by_third_party",
     "default_frontend_label": "Sold by Third Party",
     "frontend_input": "boolean",
@@ -1397,6 +1865,7 @@
     "is_filterable": 1,
     "is_filterable_in_search": true,
     "used_in_product_listing": true,
+    "is_visible_on_front": 1,
     "is_searchable": false,
     "used_for_sort_by": false
   },
@@ -1409,6 +1878,7 @@
     "is_filterable": 1,
     "is_filterable_in_search": true,
     "used_in_product_listing": true,
+    "is_visible_on_front": 1,
     "is_searchable": false,
     "used_for_sort_by": false,
     "options": [
@@ -1432,6 +1902,7 @@
     "is_filterable": 1,
     "is_filterable_in_search": true,
     "used_in_product_listing": true,
+    "is_visible_on_front": 1,
     "is_searchable": false,
     "used_for_sort_by": false,
     "options": [
@@ -1467,6 +1938,7 @@
     "is_filterable": 1,
     "is_filterable_in_search": true,
     "used_in_product_listing": true,
+    "is_visible_on_front": 1,
     "is_searchable": false,
     "used_for_sort_by": false,
     "options": [
@@ -1490,6 +1962,7 @@
     "is_filterable": 1,
     "is_filterable_in_search": true,
     "used_in_product_listing": true,
+    "is_visible_on_front": 1,
     "is_searchable": false,
     "used_for_sort_by": false,
     "options": [
@@ -1513,6 +1986,7 @@
     "is_filterable": 1,
     "is_filterable_in_search": true,
     "used_in_product_listing": true,
+    "is_visible_on_front": 1,
     "is_searchable": false,
     "used_for_sort_by": false,
     "options": []
@@ -1526,6 +2000,7 @@
     "is_filterable": 1,
     "is_filterable_in_search": true,
     "used_in_product_listing": true,
+    "is_visible_on_front": 1,
     "is_searchable": false,
     "used_for_sort_by": false,
     "options": []
@@ -1539,6 +2014,7 @@
     "is_filterable": 1,
     "is_filterable_in_search": true,
     "used_in_product_listing": true,
+    "is_visible_on_front": 1,
     "is_searchable": false,
     "used_for_sort_by": false,
     "options": [
@@ -1565,6 +2041,7 @@
     "is_filterable": 1,
     "is_filterable_in_search": true,
     "used_in_product_listing": true,
+    "is_visible_on_front": 1,
     "is_searchable": false,
     "used_for_sort_by": false,
     "options": [

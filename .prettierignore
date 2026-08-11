@@ -1,0 +1,5 @@
+node_modules
+package-lock.json
+data/images
+# Prose docs are hand-authored; Prettier owns code + JSON, not markdown reflow.
+*.md

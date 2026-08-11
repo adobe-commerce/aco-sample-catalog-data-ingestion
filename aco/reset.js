@@ -5,15 +5,18 @@ import {
 } from "@adobe-commerce/aco-ts-sdk";
 import { loadAcoConfig } from "../lib/env.js";
 import { readData } from "../lib/data.js";
+import { parseLocaleArgs } from "../lib/locales.js";
 
 const BATCH_SIZE = 100;
 
-const deletePrices = async (client) => {
+const deletePrices = async (client, locale) => {
   try {
-    const keys = readData("prices.json").map(({ sku, priceBookId }) => ({
-      sku,
-      priceBookId,
-    }));
+    const keys = readData("prices.json", locale).map(
+      ({ sku, priceBookId }) => ({
+        sku,
+        priceBookId,
+      }),
+    );
     let accepted = 0;
     for (let i = 0; i < keys.length; i += BATCH_SIZE) {
       const response = await client.deletePrices(keys.slice(i, i + BATCH_SIZE));
@@ -25,9 +28,9 @@ const deletePrices = async (client) => {
   }
 };
 
-const deletePriceBooks = async (client) => {
+const deletePriceBooks = async (client, locale) => {
   try {
-    const keys = readData("pricebooks.json").map(({ priceBookId }) => ({
+    const keys = readData("pricebooks.json", locale).map(({ priceBookId }) => ({
       priceBookId,
     }));
     let accepted = 0;
@@ -43,9 +46,9 @@ const deletePriceBooks = async (client) => {
   }
 };
 
-const deleteProducts = async (client) => {
+const deleteProducts = async (client, locale) => {
   try {
-    const keys = readData("products.json").map(({ sku, source }) => ({
+    const keys = readData("products.json", locale).map(({ sku, source }) => ({
       sku,
       source,
     }));
@@ -62,12 +65,14 @@ const deleteProducts = async (client) => {
   }
 };
 
-const deleteProductMetadata = async (client) => {
+const deleteProductMetadata = async (client, locale) => {
   try {
-    const keys = readData("product_metadata.json").map(({ code, source }) => ({
-      code,
-      source,
-    }));
+    const keys = readData("product_metadata.json", locale).map(
+      ({ code, source }) => ({
+        code,
+        source,
+      }),
+    );
     let accepted = 0;
     for (let i = 0; i < keys.length; i += BATCH_SIZE) {
       const response = await client.deleteProductMetadata(
@@ -81,12 +86,14 @@ const deleteProductMetadata = async (client) => {
   }
 };
 
-const deleteCategories = async (client) => {
+const deleteCategories = async (client, locale) => {
   try {
-    const keys = readData("categories.json").map(({ slug, source }) => ({
-      slug,
-      source,
-    }));
+    const keys = readData("categories.json", locale).map(
+      ({ slug, source }) => ({
+        slug,
+        source,
+      }),
+    );
     let accepted = 0;
     for (let i = 0; i < keys.length; i += BATCH_SIZE) {
       const response = await client.deleteCategories(
@@ -100,12 +107,14 @@ const deleteCategories = async (client) => {
   }
 };
 
-const deleteCategoryMetadata = async (client) => {
+const deleteCategoryMetadata = async (client, locale) => {
   try {
-    const keys = readData("category_metadata.json").map(({ code, source }) => ({
-      code,
-      source,
-    }));
+    const keys = readData("category_metadata.json", locale).map(
+      ({ code, source }) => ({
+        code,
+        source,
+      }),
+    );
     let accepted = 0;
     for (let i = 0; i < keys.length; i += BATCH_SIZE) {
       const response = await client.deleteCategoryMetadata(
@@ -129,21 +138,24 @@ const main = async () => {
     logger: consoleLogger(LogLevel.INFO),
   });
 
-  await deletePrices(client);
-  await deletePriceBooks(client);
-  await deleteProducts(client);
-  await deleteProductMetadata(client);
-  await deleteCategories(client);
-  await deleteCategoryMetadata(client);
+  for (const locale of parseLocaleArgs()) {
+    console.info(`\n=== Resetting locale: ${locale} ===`);
+    await deletePrices(client, locale);
+    await deletePriceBooks(client, locale);
+    await deleteProducts(client, locale);
+    await deleteProductMetadata(client, locale);
+    await deleteCategories(client, locale);
+    await deleteCategoryMetadata(client, locale);
+  }
 };
 
 const extra = process.argv.slice(2);
-if (extra.length) {
-  const help = extra.includes("--help") || extra.includes("-h");
-  (help ? console.log : console.error)(
-    "Usage: npm run reset   (no options) — delete the ingested Carvelo data from ACO",
+if (extra.includes("--help") || extra.includes("-h")) {
+  console.log(
+    "Usage: npm run reset [-- --locales=en-US,fr-FR | --all-locales]\n" +
+      "  Deletes the ingested Carvelo data from ACO per locale (default: en-US).",
   );
-  process.exit(help ? 0 : 1);
+  process.exit(0);
 }
 
 main().catch(console.error);
