@@ -246,17 +246,6 @@ console.log(
   'categories',
 );
 
-// ----------------------------------------------------------------------------
-// Fictional part brands + manufacturers
-// ----------------------------------------------------------------------------
-const MANUFACTURERS = [
-  'Carvelo OE',
-  'Meridian Components',
-  'Northwind Automotive',
-  'Apex Parts Group',
-  'Helio Industries',
-];
-
 // brand -> [manufacturer, sold_by_third_party default]
 const BRANDS = {
   Halden: ['Meridian Components', false],
@@ -613,9 +602,12 @@ function seg(v) {
 }
 
 // Opaque token pairing a parent's configuration option value with the matching
-// variant. Delimiter "/" is safe because slugify() turns any "/" in a value into "-".
-function vref(axis, value) {
-  return `${axis}/${seg(value)}`;
+// variant. Scoped by the parent SKU because ACO resolves the option-value -> variant
+// join on variantReferenceId globally, not per VARIANT_OF link, so the id must be
+// unique per configurable (see the SDK "pants-color-red" example). Delimiter "/" is
+// safe because slugify() turns any "/" in a value into "-" and SKUs never contain "/".
+function vref(parent, axis, value) {
+  return `${parent}/${axis}/${seg(value)}`;
 }
 
 // Python's round() is round-half-to-even (banker's rounding); replicate it so
@@ -838,9 +830,9 @@ function attr(code, ...values) {
   return { code, values: values.map(v => String(v)) };
 }
 
-function vattr(code, value) {
+function vattr(parent, code, value) {
   const a = attr(code, value);
-  a.variantReferenceId = vref(code, value);
+  a.variantReferenceId = vref(parent, code, value);
   return a;
 }
 
@@ -985,7 +977,7 @@ function build_categories() {
         description: blurb,
         keywords: [...cd.PHRASES.keywords, name.toLowerCase()],
       },
-      images: img_block(color, name, ['SMALL', 'THUMBNAIL']),
+      images: img_block(color, name, ['BASE', 'THUMBNAIL']),
     });
   });
   return out;
@@ -1015,7 +1007,7 @@ function build_vehicles() {
             label: getOr(cd.AXIS_LABEL, 'trim', 'Trim'),
             type: 'CONFIGURABLE',
             values: TRIMS.map(t => ({
-              variantReferenceId: vref('trim', t),
+              variantReferenceId: vref(parent, 'trim', t),
               label: t,
             })),
           },
@@ -1024,7 +1016,7 @@ function build_vehicles() {
             label: getOr(cd.AXIS_LABEL, 'year', 'Year'),
             type: 'CONFIGURABLE',
             values: YEARS.map(y => ({
-              variantReferenceId: vref('year', y),
+              variantReferenceId: vref(parent, 'year', y),
               label: String(y),
             })),
           },
@@ -1046,8 +1038,8 @@ function build_vehicles() {
               attr('object_type', 'vehicle'),
               attr('make', mk),
               attr('model', md),
-              vattr('trim', t),
-              vattr('year', y),
+              vattr(parent, 'trim', t),
+              vattr(parent, 'year', y),
             ],
             links: [{ type: 'VARIANT_OF', sku: parent }],
           });
@@ -1078,9 +1070,15 @@ function resolve_fitment(kind, { mk = null, md = null, yr = null, line = null } 
   throw new Error(String(kind));
 }
 
+// ACO does not roll up category ancestry, so a product needs a route for each ancestor
+// level, not just the leaf: "brakes/pads" -> routes for "brakes" and "brakes/pads".
+function to_routes(...paths) {
+  const expanded = paths.flatMap(p => p.split('/').map((_, i, segs) => segs.slice(0, i + 1).join('/')));
+  return [...new Set(expanded)].map(path => ({ path }));
+}
+
 function part_routes(spec) {
-  const paths = [spec.category, ...(spec.extra_cats || [])];
-  return paths.map(p => ({ path: p }));
+  return to_routes(spec.category, ...(spec.extra_cats || []));
 }
 
 function part_attrs(spec, brand, mfr, tp, fitment, extra = null) {
@@ -1219,7 +1217,7 @@ function build_parts() {
               label: getOr(cd.AXIS_LABEL, code, title(code.split('_').join(' '))),
               type: 'CONFIGURABLE',
               values: vals.map(v => ({
-                variantReferenceId: vref(code, v),
+                variantReferenceId: vref(base_sku, code, v),
                 label: v,
               })),
             })),
@@ -1244,7 +1242,7 @@ function build_parts() {
                 mfr,
                 tp,
                 [],
-                axes.map(([c]) => vattr(c, combo[c])),
+                axes.map(([c]) => vattr(base_sku, c, combo[c])),
               ),
               images: img_block(
                 color,
@@ -1323,7 +1321,7 @@ function build_parts() {
                 label: getOr(cd.AXIS_LABEL, code, title(code.split('_').join(' '))),
                 type: 'CONFIGURABLE',
                 values: vals.map(v => ({
-                  variantReferenceId: vref(code, v),
+                  variantReferenceId: vref(base_sku, code, v),
                   label: v,
                 })),
               })),
@@ -1348,7 +1346,7 @@ function build_parts() {
                   mfr,
                   tp,
                   [],
-                  prefAxes.map(([c]) => vattr(c, combo[c])),
+                  prefAxes.map(([c]) => vattr(base_sku, c, combo[c])),
                 ),
                 images: img_block(
                   color,
@@ -1415,7 +1413,7 @@ function build_fitment_overrides() {
       attr('fitment_drives', ...drives),
     ],
     images: img_block(color, cd.OVERRIDE.imageLabel, ['BASE', 'SMALL', 'THUMBNAIL'], 'engine/timing-belt-kit'),
-    routes: [{ path: 'engine/timing' }],
+    routes: to_routes('engine/timing'),
   };
   return { products: [product], sellable: [[sku, 189.99, false]] };
 }
@@ -1483,7 +1481,6 @@ function write(name, data) {
 function validate(pmeta, cmeta, cats, prods, pbs, prices, sellable) {
   const errs = [];
   const cat_slugs = new Set(cats.map(c => c.slug));
-  const leaf_slugs = new Set(CATEGORY_TREE.filter(c => c[4]).map(c => c[0]));
   const prod_by_sku = new Map();
   for (const p of prods) {
     if (prod_by_sku.has(p.sku)) errs.push(`duplicate sku ${p.sku}`);
@@ -1525,11 +1522,10 @@ function validate(pmeta, cmeta, cats, prods, pbs, prices, sellable) {
     }
   }
 
-  // routes point to leaf categories; parts route only to leaves
+  // every route path (leaf and each ancestor) must match a known category slug
   for (const p of prods) {
     for (const r of p.routes || []) {
       if (!cat_slugs.has(r.path)) errs.push(`${p.sku} route to unknown category ${r.path}`);
-      else if (!leaf_slugs.has(r.path)) errs.push(`${p.sku} route to non-leaf ${r.path}`);
     }
   }
 

@@ -17,7 +17,7 @@
       {
         "url": "https://placehold.co/500x500/c62828/ffffff.png?text=Freins",
         "label": "Freins",
-        "roles": ["SMALL", "THUMBNAIL"]
+        "roles": ["BASE", "THUMBNAIL"]
       }
     ]
   },
@@ -39,7 +39,7 @@
       {
         "url": "https://placehold.co/500x500/c62828/ffffff.png?text=Plaquettes+de+frein",
         "label": "Plaquettes de frein",
-        "roles": ["SMALL", "THUMBNAIL"]
+        "roles": ["BASE", "THUMBNAIL"]
       }
     ]
   },
@@ -61,7 +61,7 @@
       {
         "url": "https://placehold.co/500x500/c62828/ffffff.png?text=Disques+de+frein",
         "label": "Disques de frein",
-        "roles": ["SMALL", "THUMBNAIL"]
+        "roles": ["BASE", "THUMBNAIL"]
       }
     ]
   },
@@ -83,7 +83,7 @@
       {
         "url": "https://placehold.co/500x500/c62828/ffffff.png?text=Étriers+de+frein",
         "label": "Étriers de frein",
-        "roles": ["SMALL", "THUMBNAIL"]
+        "roles": ["BASE", "THUMBNAIL"]
       }
     ]
   },
@@ -105,7 +105,7 @@
       {
         "url": "https://placehold.co/500x500/c62828/ffffff.png?text=Liquide+de+frein",
         "label": "Liquide de frein",
-        "roles": ["SMALL", "THUMBNAIL"]
+        "roles": ["BASE", "THUMBNAIL"]
       }
     ]
   },
@@ -127,7 +127,7 @@
       {
         "url": "https://placehold.co/500x500/6a1b9a/ffffff.png?text=Suspension",
         "label": "Suspension",
-        "roles": ["SMALL", "THUMBNAIL"]
+        "roles": ["BASE", "THUMBNAIL"]
       }
     ]
   },
@@ -149,7 +149,7 @@
       {
         "url": "https://placehold.co/500x500/6a1b9a/ffffff.png?text=Amortisseurs",
         "label": "Amortisseurs",
-        "roles": ["SMALL", "THUMBNAIL"]
+        "roles": ["BASE", "THUMBNAIL"]
       }
     ]
   },
@@ -171,7 +171,7 @@
       {
         "url": "https://placehold.co/500x500/6a1b9a/ffffff.png?text=Ressorts",
         "label": "Ressorts",
-        "roles": ["SMALL", "THUMBNAIL"]
+        "roles": ["BASE", "THUMBNAIL"]
       }
     ]
   },
@@ -193,7 +193,7 @@
       {
         "url": "https://placehold.co/500x500/6a1b9a/ffffff.png?text=Bras+de+suspension",
         "label": "Bras de suspension",
-        "roles": ["SMALL", "THUMBNAIL"]
+        "roles": ["BASE", "THUMBNAIL"]
       }
     ]
   },
@@ -215,7 +215,7 @@
       {
         "url": "https://placehold.co/500x500/6a1b9a/ffffff.png?text=Barres+stabilisatrices",
         "label": "Barres stabilisatrices",
-        "roles": ["SMALL", "THUMBNAIL"]
+        "roles": ["BASE", "THUMBNAIL"]
       }
     ]
   },
@@ -237,7 +237,7 @@
       {
         "url": "https://placehold.co/500x500/263238/ffffff.png?text=Pneus",
         "label": "Pneus",
-        "roles": ["SMALL", "THUMBNAIL"]
+        "roles": ["BASE", "THUMBNAIL"]
       }
     ]
   },
@@ -259,7 +259,7 @@
       {
         "url": "https://placehold.co/500x500/00838f/ffffff.png?text=Transmission",
         "label": "Transmission",
-        "roles": ["SMALL", "THUMBNAIL"]
+        "roles": ["BASE", "THUMBNAIL"]
       }
     ]
   },
@@ -281,7 +281,7 @@
       {
         "url": "https://placehold.co/500x500/00838f/ffffff.png?text=Liquide+de+transmission",
         "label": "Liquide de transmission",
-        "roles": ["SMALL", "THUMBNAIL"]
+        "roles": ["BASE", "THUMBNAIL"]
       }
     ]
   },
@@ -303,7 +303,7 @@
       {
         "url": "https://placehold.co/500x500/00838f/ffffff.png?text=Embrayage",
         "label": "Embrayage",
-        "roles": ["SMALL", "THUMBNAIL"]
+        "roles": ["BASE", "THUMBNAIL"]
       }
     ]
   },
@@ -325,7 +325,7 @@
       {
         "url": "https://placehold.co/500x500/00838f/ffffff.png?text=Volant+moteur",
         "label": "Volant moteur",
-        "roles": ["SMALL", "THUMBNAIL"]
+        "roles": ["BASE", "THUMBNAIL"]
       }
     ]
   },
@@ -347,7 +347,7 @@
       {
         "url": "https://placehold.co/500x500/2e7d32/ffffff.png?text=Système+de+charge",
         "label": "Système de charge",
-        "roles": ["SMALL", "THUMBNAIL"]
+        "roles": ["BASE", "THUMBNAIL"]
       }
     ]
   },
@@ -369,7 +369,7 @@
       {
         "url": "https://placehold.co/500x500/2e7d32/ffffff.png?text=Chargeur",
         "label": "Chargeur",
-        "roles": ["SMALL", "THUMBNAIL"]
+        "roles": ["BASE", "THUMBNAIL"]
       }
     ]
   },
@@ -391,7 +391,7 @@
       {
         "url": "https://placehold.co/500x500/2e7d32/ffffff.png?text=Batteries",
         "label": "Batteries",
-        "roles": ["SMALL", "THUMBNAIL"]
+        "roles": ["BASE", "THUMBNAIL"]
       }
     ]
   },
@@ -413,7 +413,7 @@
       {
         "url": "https://placehold.co/500x500/37474f/ffffff.png?text=Jantes",
         "label": "Jantes",
-        "roles": ["SMALL", "THUMBNAIL"]
+        "roles": ["BASE", "THUMBNAIL"]
       }
     ]
   },
@@ -435,7 +435,7 @@
       {
         "url": "https://placehold.co/500x500/f9a825/ffffff.png?text=Électricité",
         "label": "Électricité",
-        "roles": ["SMALL", "THUMBNAIL"]
+        "roles": ["BASE", "THUMBNAIL"]
       }
     ]
   },
@@ -457,7 +457,7 @@
       {
         "url": "https://placehold.co/500x500/f9a825/ffffff.png?text=Alternateurs",
         "label": "Alternateurs",
-        "roles": ["SMALL", "THUMBNAIL"]
+        "roles": ["BASE", "THUMBNAIL"]
       }
     ]
   },
@@ -479,7 +479,7 @@
       {
         "url": "https://placehold.co/500x500/f9a825/ffffff.png?text=Démarreurs",
         "label": "Démarreurs",
-        "roles": ["SMALL", "THUMBNAIL"]
+        "roles": ["BASE", "THUMBNAIL"]
       }
     ]
   },
@@ -501,7 +501,7 @@
       {
         "url": "https://placehold.co/500x500/f9a825/ffffff.png?text=Batteries",
         "label": "Batteries",
-        "roles": ["SMALL", "THUMBNAIL"]
+        "roles": ["BASE", "THUMBNAIL"]
       }
     ]
   },
@@ -523,7 +523,7 @@
       {
         "url": "https://placehold.co/500x500/1565c0/ffffff.png?text=Fluides",
         "label": "Fluides",
-        "roles": ["SMALL", "THUMBNAIL"]
+        "roles": ["BASE", "THUMBNAIL"]
       }
     ]
   },
@@ -545,7 +545,7 @@
       {
         "url": "https://placehold.co/500x500/1565c0/ffffff.png?text=Huile",
         "label": "Huile",
-        "roles": ["SMALL", "THUMBNAIL"]
+        "roles": ["BASE", "THUMBNAIL"]
       }
     ]
   },
@@ -567,7 +567,7 @@
       {
         "url": "https://placehold.co/500x500/1565c0/ffffff.png?text=Liquide+de+transmission",
         "label": "Liquide de transmission",
-        "roles": ["SMALL", "THUMBNAIL"]
+        "roles": ["BASE", "THUMBNAIL"]
       }
     ]
   },
@@ -589,7 +589,7 @@
       {
         "url": "https://placehold.co/500x500/1565c0/ffffff.png?text=Liquide+de+frein",
         "label": "Liquide de frein",
-        "roles": ["SMALL", "THUMBNAIL"]
+        "roles": ["BASE", "THUMBNAIL"]
       }
     ]
   },
@@ -611,7 +611,7 @@
       {
         "url": "https://placehold.co/500x500/1565c0/ffffff.png?text=Lave-glace",
         "label": "Lave-glace",
-        "roles": ["SMALL", "THUMBNAIL"]
+        "roles": ["BASE", "THUMBNAIL"]
       }
     ]
   },
@@ -633,7 +633,7 @@
       {
         "url": "https://placehold.co/500x500/ef6c00/ffffff.png?text=Moteur",
         "label": "Moteur",
-        "roles": ["SMALL", "THUMBNAIL"]
+        "roles": ["BASE", "THUMBNAIL"]
       }
     ]
   },
@@ -653,7 +653,7 @@
       {
         "url": "https://placehold.co/500x500/ef6c00/ffffff.png?text=Distribution",
         "label": "Distribution",
-        "roles": ["SMALL", "THUMBNAIL"]
+        "roles": ["BASE", "THUMBNAIL"]
       }
     ]
   },
@@ -675,7 +675,7 @@
       {
         "url": "https://placehold.co/500x500/ef6c00/ffffff.png?text=Pompe+à+carburant",
         "label": "Pompe à carburant",
-        "roles": ["SMALL", "THUMBNAIL"]
+        "roles": ["BASE", "THUMBNAIL"]
       }
     ]
   },
@@ -697,7 +697,7 @@
       {
         "url": "https://placehold.co/500x500/ef6c00/ffffff.png?text=Filtres+à+carburant",
         "label": "Filtres à carburant",
-        "roles": ["SMALL", "THUMBNAIL"]
+        "roles": ["BASE", "THUMBNAIL"]
       }
     ]
   },
@@ -719,7 +719,7 @@
       {
         "url": "https://placehold.co/500x500/ef6c00/ffffff.png?text=Filtres+à+air",
         "label": "Filtres à air",
-        "roles": ["SMALL", "THUMBNAIL"]
+        "roles": ["BASE", "THUMBNAIL"]
       }
     ]
   },
@@ -741,7 +741,7 @@
       {
         "url": "https://placehold.co/500x500/ef6c00/ffffff.png?text=Filtres+à+huile",
         "label": "Filtres à huile",
-        "roles": ["SMALL", "THUMBNAIL"]
+        "roles": ["BASE", "THUMBNAIL"]
       }
     ]
   },
@@ -763,7 +763,7 @@
       {
         "url": "https://placehold.co/500x500/ef6c00/ffffff.png?text=Bougies",
         "label": "Bougies",
-        "roles": ["SMALL", "THUMBNAIL"]
+        "roles": ["BASE", "THUMBNAIL"]
       }
     ]
   }

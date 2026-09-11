@@ -6,12 +6,7 @@
     },
     "label": "Référence",
     "dataType": "TEXT",
-    "visibleIn": [
-      "PRODUCT_DETAIL",
-      "PRODUCT_LISTING",
-      "SEARCH_RESULTS",
-      "PRODUCT_COMPARE"
-    ],
+    "visibleIn": ["PRODUCT_DETAIL", "PRODUCT_LISTING", "SEARCH_RESULTS", "PRODUCT_COMPARE"],
     "filterable": false,
     "sortable": false,
     "searchable": true,
@@ -25,12 +20,7 @@
     },
     "label": "Nom",
     "dataType": "TEXT",
-    "visibleIn": [
-      "PRODUCT_DETAIL",
-      "PRODUCT_LISTING",
-      "SEARCH_RESULTS",
-      "PRODUCT_COMPARE"
-    ],
+    "visibleIn": ["PRODUCT_DETAIL", "PRODUCT_LISTING", "SEARCH_RESULTS", "PRODUCT_COMPARE"],
     "filterable": false,
     "sortable": true,
     "searchable": true,
@@ -72,12 +62,7 @@
     },
     "label": "Prix",
     "dataType": "DECIMAL",
-    "visibleIn": [
-      "PRODUCT_DETAIL",
-      "PRODUCT_LISTING",
-      "SEARCH_RESULTS",
-      "PRODUCT_COMPARE"
-    ],
+    "visibleIn": ["PRODUCT_DETAIL", "PRODUCT_LISTING", "SEARCH_RESULTS", "PRODUCT_COMPARE"],
     "filterable": true,
     "sortable": true,
     "searchable": false,
@@ -91,12 +76,7 @@
     },
     "label": "Type d'objet",
     "dataType": "TEXT",
-    "visibleIn": [
-      "PRODUCT_DETAIL",
-      "PRODUCT_LISTING",
-      "SEARCH_RESULTS",
-      "PRODUCT_COMPARE"
-    ],
+    "visibleIn": ["PRODUCT_DETAIL", "PRODUCT_LISTING", "SEARCH_RESULTS", "PRODUCT_COMPARE"],
     "filterable": true,
     "sortable": false,
     "searchable": false,
@@ -110,12 +90,7 @@
     },
     "label": "Marque du véhicule",
     "dataType": "TEXT",
-    "visibleIn": [
-      "PRODUCT_DETAIL",
-      "PRODUCT_LISTING",
-      "SEARCH_RESULTS",
-      "PRODUCT_COMPARE"
-    ],
+    "visibleIn": ["PRODUCT_DETAIL", "PRODUCT_LISTING", "SEARCH_RESULTS", "PRODUCT_COMPARE"],
     "filterable": true,
     "sortable": false,
     "searchable": true,
@@ -129,12 +104,7 @@
     },
     "label": "Modèle du véhicule",
     "dataType": "TEXT",
-    "visibleIn": [
-      "PRODUCT_DETAIL",
-      "PRODUCT_LISTING",
-      "SEARCH_RESULTS",
-      "PRODUCT_COMPARE"
-    ],
+    "visibleIn": ["PRODUCT_DETAIL", "PRODUCT_LISTING", "SEARCH_RESULTS", "PRODUCT_COMPARE"],
     "filterable": true,
     "sortable": false,
     "searchable": true,
@@ -148,12 +118,7 @@
     },
     "label": "Finition du véhicule",
     "dataType": "TEXT",
-    "visibleIn": [
-      "PRODUCT_DETAIL",
-      "PRODUCT_LISTING",
-      "SEARCH_RESULTS",
-      "PRODUCT_COMPARE"
-    ],
+    "visibleIn": ["PRODUCT_DETAIL", "PRODUCT_LISTING", "SEARCH_RESULTS", "PRODUCT_COMPARE"],
     "filterable": true,
     "sortable": false,
     "searchable": false,
@@ -167,12 +132,7 @@
     },
     "label": "Année du véhicule",
     "dataType": "INTEGER",
-    "visibleIn": [
-      "PRODUCT_DETAIL",
-      "PRODUCT_LISTING",
-      "SEARCH_RESULTS",
-      "PRODUCT_COMPARE"
-    ],
+    "visibleIn": ["PRODUCT_DETAIL", "PRODUCT_LISTING", "SEARCH_RESULTS", "PRODUCT_COMPARE"],
     "filterable": true,
     "sortable": false,
     "searchable": false,
@@ -186,12 +146,7 @@
     },
     "label": "Catégorie de pièce",
     "dataType": "TEXT",
-    "visibleIn": [
-      "PRODUCT_DETAIL",
-      "PRODUCT_LISTING",
-      "SEARCH_RESULTS",
-      "PRODUCT_COMPARE"
-    ],
+    "visibleIn": ["PRODUCT_DETAIL", "PRODUCT_LISTING", "SEARCH_RESULTS", "PRODUCT_COMPARE"],
     "filterable": true,
     "sortable": false,
     "searchable": true,
@@ -205,12 +160,7 @@
     },
     "label": "Marque",
     "dataType": "TEXT",
-    "visibleIn": [
-      "PRODUCT_DETAIL",
-      "PRODUCT_LISTING",
-      "SEARCH_RESULTS",
-      "PRODUCT_COMPARE"
-    ],
+    "visibleIn": ["PRODUCT_DETAIL", "PRODUCT_LISTING", "SEARCH_RESULTS", "PRODUCT_COMPARE"],
     "filterable": true,
     "sortable": false,
     "searchable": true,
@@ -224,12 +174,7 @@
     },
     "label": "Fabricant",
     "dataType": "TEXT",
-    "visibleIn": [
-      "PRODUCT_DETAIL",
-      "PRODUCT_LISTING",
-      "SEARCH_RESULTS",
-      "PRODUCT_COMPARE"
-    ],
+    "visibleIn": ["PRODUCT_DETAIL", "PRODUCT_LISTING", "SEARCH_RESULTS", "PRODUCT_COMPARE"],
     "filterable": true,
     "sortable": false,
     "searchable": false,
@@ -257,12 +202,7 @@
     },
     "label": "Marques compatibles",
     "dataType": "TEXT",
-    "visibleIn": [
-      "PRODUCT_DETAIL",
-      "PRODUCT_LISTING",
-      "SEARCH_RESULTS",
-      "PRODUCT_COMPARE"
-    ],
+    "visibleIn": ["PRODUCT_DETAIL", "PRODUCT_LISTING", "SEARCH_RESULTS", "PRODUCT_COMPARE"],
     "filterable": true,
     "sortable": false,
     "searchable": false,
@@ -276,12 +216,7 @@
     },
     "label": "Modèles compatibles",
     "dataType": "TEXT",
-    "visibleIn": [
-      "PRODUCT_DETAIL",
-      "PRODUCT_LISTING",
-      "SEARCH_RESULTS",
-      "PRODUCT_COMPARE"
-    ],
+    "visibleIn": ["PRODUCT_DETAIL", "PRODUCT_LISTING", "SEARCH_RESULTS", "PRODUCT_COMPARE"],
     "filterable": true,
     "sortable": false,
     "searchable": false,
@@ -309,12 +244,7 @@
     },
     "label": "Vendu par un tiers",
     "dataType": "BOOLEAN",
-    "visibleIn": [
-      "PRODUCT_DETAIL",
-      "PRODUCT_LISTING",
-      "SEARCH_RESULTS",
-      "PRODUCT_COMPARE"
-    ],
+    "visibleIn": ["PRODUCT_DETAIL", "PRODUCT_LISTING", "SEARCH_RESULTS", "PRODUCT_COMPARE"],
     "filterable": true,
     "sortable": false,
     "searchable": false,
@@ -328,12 +258,7 @@
     },
     "label": "Gamme",
     "dataType": "TEXT",
-    "visibleIn": [
-      "PRODUCT_DETAIL",
-      "PRODUCT_LISTING",
-      "SEARCH_RESULTS",
-      "PRODUCT_COMPARE"
-    ],
+    "visibleIn": ["PRODUCT_DETAIL", "PRODUCT_LISTING", "SEARCH_RESULTS", "PRODUCT_COMPARE"],
     "filterable": true,
     "sortable": false,
     "searchable": false,
@@ -347,12 +272,7 @@
     },
     "label": "Taille",
     "dataType": "TEXT",
-    "visibleIn": [
-      "PRODUCT_DETAIL",
-      "PRODUCT_LISTING",
-      "SEARCH_RESULTS",
-      "PRODUCT_COMPARE"
-    ],
+    "visibleIn": ["PRODUCT_DETAIL", "PRODUCT_LISTING", "SEARCH_RESULTS", "PRODUCT_COMPARE"],
     "filterable": true,
     "sortable": false,
     "searchable": false,
@@ -366,12 +286,7 @@
     },
     "label": "Profil",
     "dataType": "TEXT",
-    "visibleIn": [
-      "PRODUCT_DETAIL",
-      "PRODUCT_LISTING",
-      "SEARCH_RESULTS",
-      "PRODUCT_COMPARE"
-    ],
+    "visibleIn": ["PRODUCT_DETAIL", "PRODUCT_LISTING", "SEARCH_RESULTS", "PRODUCT_COMPARE"],
     "filterable": true,
     "sortable": false,
     "searchable": false,
@@ -385,12 +300,7 @@
     },
     "label": "Indice de vitesse",
     "dataType": "TEXT",
-    "visibleIn": [
-      "PRODUCT_DETAIL",
-      "PRODUCT_LISTING",
-      "SEARCH_RESULTS",
-      "PRODUCT_COMPARE"
-    ],
+    "visibleIn": ["PRODUCT_DETAIL", "PRODUCT_LISTING", "SEARCH_RESULTS", "PRODUCT_COMPARE"],
     "filterable": true,
     "sortable": false,
     "searchable": false,
@@ -404,12 +314,7 @@
     },
     "label": "Entraxe",
     "dataType": "TEXT",
-    "visibleIn": [
-      "PRODUCT_DETAIL",
-      "PRODUCT_LISTING",
-      "SEARCH_RESULTS",
-      "PRODUCT_COMPARE"
-    ],
+    "visibleIn": ["PRODUCT_DETAIL", "PRODUCT_LISTING", "SEARCH_RESULTS", "PRODUCT_COMPARE"],
     "filterable": true,
     "sortable": false,
     "searchable": false,
@@ -423,12 +328,7 @@
     },
     "label": "Groupe",
     "dataType": "TEXT",
-    "visibleIn": [
-      "PRODUCT_DETAIL",
-      "PRODUCT_LISTING",
-      "SEARCH_RESULTS",
-      "PRODUCT_COMPARE"
-    ],
+    "visibleIn": ["PRODUCT_DETAIL", "PRODUCT_LISTING", "SEARCH_RESULTS", "PRODUCT_COMPARE"],
     "filterable": true,
     "sortable": false,
     "searchable": false,
@@ -442,12 +342,7 @@
     },
     "label": "Volume",
     "dataType": "TEXT",
-    "visibleIn": [
-      "PRODUCT_DETAIL",
-      "PRODUCT_LISTING",
-      "SEARCH_RESULTS",
-      "PRODUCT_COMPARE"
-    ],
+    "visibleIn": ["PRODUCT_DETAIL", "PRODUCT_LISTING", "SEARCH_RESULTS", "PRODUCT_COMPARE"],
     "filterable": true,
     "sortable": false,
     "searchable": false,
@@ -461,12 +356,7 @@
     },
     "label": "Viscosité",
     "dataType": "TEXT",
-    "visibleIn": [
-      "PRODUCT_DETAIL",
-      "PRODUCT_LISTING",
-      "SEARCH_RESULTS",
-      "PRODUCT_COMPARE"
-    ],
+    "visibleIn": ["PRODUCT_DETAIL", "PRODUCT_LISTING", "SEARCH_RESULTS", "PRODUCT_COMPARE"],
     "filterable": true,
     "sortable": false,
     "searchable": false,

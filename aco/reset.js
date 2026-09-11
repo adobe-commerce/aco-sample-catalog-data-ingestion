@@ -1,22 +1,16 @@
-import {
-  createClient,
-  consoleLogger,
-  LogLevel,
-} from "@adobe-commerce/aco-ts-sdk";
-import { loadAcoConfig } from "../lib/env.js";
-import { readData } from "../lib/data.js";
-import { parseLocaleArgs } from "../lib/locales.js";
+import { createClient, consoleLogger, LogLevel } from '@adobe-commerce/aco-ts-sdk';
+import { loadAcoConfig } from '../lib/env.js';
+import { readData } from '../lib/data.js';
+import { parseLocaleArgs } from '../lib/locales.js';
 
 const BATCH_SIZE = 100;
 
 const deletePrices = async (client, locale) => {
   try {
-    const keys = readData("prices.json", locale).map(
-      ({ sku, priceBookId }) => ({
-        sku,
-        priceBookId,
-      }),
-    );
+    const keys = readData('prices.json', locale).map(({ sku, priceBookId }) => ({
+      sku,
+      priceBookId,
+    }));
     let accepted = 0;
     for (let i = 0; i < keys.length; i += BATCH_SIZE) {
       const response = await client.deletePrices(keys.slice(i, i + BATCH_SIZE));
@@ -24,107 +18,91 @@ const deletePrices = async (client, locale) => {
     }
     console.info(`Prices: deleted ${accepted} of ${keys.length}`);
   } catch (error) {
-    console.error("Error deleting prices:", error);
+    console.error('Error deleting prices:', error);
   }
 };
 
 const deletePriceBooks = async (client, locale) => {
   try {
-    const keys = readData("pricebooks.json", locale).map(({ priceBookId }) => ({
+    const keys = readData('pricebooks.json', locale).map(({ priceBookId }) => ({
       priceBookId,
     }));
     let accepted = 0;
     for (let i = 0; i < keys.length; i += BATCH_SIZE) {
-      const response = await client.deletePriceBooks(
-        keys.slice(i, i + BATCH_SIZE),
-      );
+      const response = await client.deletePriceBooks(keys.slice(i, i + BATCH_SIZE));
       accepted += response.data.acceptedCount || 0;
     }
     console.info(`Price books: deleted ${accepted} of ${keys.length}`);
   } catch (error) {
-    console.error("Error deleting price books:", error);
+    console.error('Error deleting price books:', error);
   }
 };
 
 const deleteProducts = async (client, locale) => {
   try {
-    const keys = readData("products.json", locale).map(({ sku, source }) => ({
+    const keys = readData('products.json', locale).map(({ sku, source }) => ({
       sku,
       source,
     }));
     let accepted = 0;
     for (let i = 0; i < keys.length; i += BATCH_SIZE) {
-      const response = await client.deleteProducts(
-        keys.slice(i, i + BATCH_SIZE),
-      );
+      const response = await client.deleteProducts(keys.slice(i, i + BATCH_SIZE));
       accepted += response.data.acceptedCount || 0;
     }
     console.info(`Products: deleted ${accepted} of ${keys.length}`);
   } catch (error) {
-    console.error("Error deleting products:", error);
+    console.error('Error deleting products:', error);
   }
 };
 
 const deleteProductMetadata = async (client, locale) => {
   try {
-    const keys = readData("product_metadata.json", locale).map(
-      ({ code, source }) => ({
-        code,
-        source,
-      }),
-    );
+    const keys = readData('product_metadata.json', locale).map(({ code, source }) => ({
+      code,
+      source,
+    }));
     let accepted = 0;
     for (let i = 0; i < keys.length; i += BATCH_SIZE) {
-      const response = await client.deleteProductMetadata(
-        keys.slice(i, i + BATCH_SIZE),
-      );
+      const response = await client.deleteProductMetadata(keys.slice(i, i + BATCH_SIZE));
       accepted += response.data.acceptedCount || 0;
     }
     console.info(`Product metadata: deleted ${accepted} of ${keys.length}`);
   } catch (error) {
-    console.error("Error deleting product metadata:", error);
+    console.error('Error deleting product metadata:', error);
   }
 };
 
 const deleteCategories = async (client, locale) => {
   try {
-    const keys = readData("categories.json", locale).map(
-      ({ slug, source }) => ({
-        slug,
-        source,
-      }),
-    );
+    const keys = readData('categories.json', locale).map(({ slug, source }) => ({
+      slug,
+      source,
+    }));
     let accepted = 0;
     for (let i = 0; i < keys.length; i += BATCH_SIZE) {
-      const response = await client.deleteCategories(
-        keys.slice(i, i + BATCH_SIZE),
-      );
+      const response = await client.deleteCategories(keys.slice(i, i + BATCH_SIZE));
       accepted += response.data.acceptedCount || 0;
     }
     console.info(`Categories: deleted ${accepted} of ${keys.length}`);
   } catch (error) {
-    console.error("Error deleting categories:", error);
+    console.error('Error deleting categories:', error);
   }
 };
 
 const deleteCategoryMetadata = async (client, locale) => {
   try {
-    const keys = readData("category_metadata.json", locale).map(
-      ({ code, source }) => ({
-        code,
-        source,
-      }),
-    );
+    const keys = readData('category_metadata.json', locale).map(({ code, source }) => ({
+      code,
+      source,
+    }));
     let accepted = 0;
     for (let i = 0; i < keys.length; i += BATCH_SIZE) {
-      const response = await client.deleteCategoryMetadata(
-        keys.slice(i, i + BATCH_SIZE),
-      );
+      const response = await client.deleteCategoryMetadata(keys.slice(i, i + BATCH_SIZE));
       accepted += response.data.acceptedCount || 0;
     }
     console.info(`Category metadata: deleted ${accepted} of ${keys.length}`);
   } catch (error) {
-    console.error("Error deleting category metadata:", error);
+    console.error('Error deleting category metadata:', error);
   }
 };
 
@@ -150,10 +128,10 @@ const main = async () => {
 };
 
 const extra = process.argv.slice(2);
-if (extra.includes("--help") || extra.includes("-h")) {
+if (extra.includes('--help') || extra.includes('-h')) {
   console.log(
-    "Usage: npm run reset [-- --locales=en-US,fr-FR | --all-locales]\n" +
-      "  Deletes the ingested Carvelo data from ACO per locale (default: en-US).",
+    'Usage: npm run reset [-- --locales=en-US,fr-FR | --all-locales]\n' +
+      '  Deletes the ingested Carvelo data from ACO per locale (default: en-US).',
   );
   process.exit(0);
 }
